@@ -1,0 +1,65 @@
+Idea:
+Room 1 (Cell): The player is caught by the guards and sent to prison. As you wake up the player sees a decaying sewer grate, their bed, and the cell door in front of them and a guard.
+option 1: if player sleeps loops back to prompt 1 for x number of days, then wins/get released.
+option 2: Steal guards key adds to inventory
+Option 3: go through sewers
+
+Room 2 (Hallway):
+Option 1: Storage room
+Option 2: Go back to cell interaction with guard
+
+
+
+Room 3 (Sewers):
+Option 1: Go back
+Option 2: go fowards (leads to storage room)
+
+
+
+Room 4 (Storage Room):
+you emerge in a dark storage room, you see a broom, some mouldy food, heavy barrel to lift (uses energy find something under), and a door
+Option 1: Go out (leads to hallway)
+option 2: Go back (sewers)
+option 3: pickup stuff (loops back to 1 or 2)
+(Option 4: Another room?)
+
+
+
+
+
+
+
+
+
+
+
+End: 
+Option 1: Escape
+Option 2: sleep 2 escape
+Option 3: die x amount of time = 
+
+Addons:
+- energy to do things e.g spend 10 energy to open heavy door
+starting energy 100 (can be different)
+- health
+- fights
+- puzzles
+- Attempt to steal key (check)
+
+
+
+
+Room Ideas
+- Guards barracks
+- Courtyard
+- Infirmary
+- Lab/Experiment room??
+- Dragon/Monster room
+- Library/Archives
+- Showers
+- Wardens room
+- Canteen/Kitchen/Dining room
+- Laundry/Cleaning room
+- Room with chains/Dungeon room
+- Gatehouse/exit
+- Tower (uses energy to go up)
