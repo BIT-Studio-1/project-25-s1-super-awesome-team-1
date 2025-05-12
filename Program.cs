@@ -7,82 +7,126 @@
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
-            prisonCell();
+            PrisonCell();
             do
             {
                 switch (roomChoice)
                 {
 
                     case 1:
-                        prisonCell();
+                        PrisonCell();
                         break;
                     case 2:
-                        dungeonHall();
+                        DungeonHall();
                         break;
                     case 3:
-                        sewers();
+                        Sewers();
                         break;
-
+                    case 4:
+                        Kitchen();
+                        break;
+                    case 5:
+                        GaurdsBarracks();
+                        break;
+                    case 6:
+                        Showers();
+                        break;
+                    case 7:
+                        Lab(); 
+                        break;
+                    case 8:
+                        Pantry();
+                        break;
+                    case 9:
+                        Infirmary();
+                        break;
+                    case 10:
+                        TrainingYard();
+                        break;
+                    case 11:
+                        Courtyard();
+                        break;
+                    case 12:
+                        GateHouse();
+                        break;
+                    case 13:
+                        TowerBase();
+                        break;
 
                 }
             }while (roomChoice != 9999);
         }
-        static void prisonCell()//room 1 (main room)
+
+
+
+
+        //All of the rooms 
+        static void PrisonCell()//room 1 (main room)
         {
             Console.WriteLine();
             Console.WriteLine("you made it to room 1 \n do you want to go to room 2 or 3");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
 
-        static void dungeonHall()//
+        static void DungeonHall()//
         {
             Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void sewers()//room 3
+        static void Sewers()//room 3
         {
             Console.WriteLine("you made it to room 3 \n do you want to go to room 2 or 3");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void kitchen()//Room4
+        static void Kitchen()//Room4
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void gaurdsBarracks()//Room5
+        static void GaurdsBarracks()//Room5
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void showers()//Room6
+        static void Showers()//Room6
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void lab()//Room7
+        static void Lab()//Room7
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void pantry()//Room8
+        static void Pantry()//Room8
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void infirmary()//Room9
+        static void Infirmary()//Room9
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void trainingYard()//Room10
+        static void TrainingYard()//Room10
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
         static void Courtyard()//Room11
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
         static void GateHouse()//Room12 EXIT
         {
             Console.WriteLine("");
+            roomChoice = 9999;
         }
         static void TowerBase()//Room13
         {
             Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
 
     }
