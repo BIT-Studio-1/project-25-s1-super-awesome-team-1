@@ -108,18 +108,26 @@
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void Pantry()//Room8
+        static void Pantry()//Room8 Albert
         {
             Console.WriteLine("");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "kitchen":
+                    roomChoice = 4;
+                    break;
+                case "courtyard":
+                    roomChoice = 11;
+                    break;
+                case "back":
+                    break;
+        }
+        static void Infirmary()//Room9 Albert
+        {
+                Console.WriteLine("");
 
-            roomChoice = Convert.ToInt32(Console.ReadLine());
-        }
-        static void Infirmary()//Room9
-        {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
-        }
-        static void TrainingYard()//Room10
+        static void TrainingYard()//Room10 Albert
         {
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
