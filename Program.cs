@@ -157,13 +157,20 @@ namespace Studio1Project
                 case "infrmry":
                 case "infirm":
                 case "doctor":
+                    prev = roomChoice;
                     roomChoice = 9;
                     break;
                 case "Training Yard":
                 case "trainingyard":
                 case "training yard":
                 case "trainyard":
+                    prev = roomChoice;
                     roomChoice = 10;
+                    break;
+                case "Go back":
+                case "back":
+                case "Back":
+                    roomChoice = prev;
                     break;
             }
         }
@@ -179,13 +186,14 @@ namespace Studio1Project
                 case "infrmry":
                 case "infirm":
                 case "doctor":
+                    prev = roomChoice;
                     roomChoice = 9;
                     break;
                 case "go back":
                 case "Back":
                 case "back":
                 case "Go Back":
-
+                    roomChoice=prev;
                     break;
             }
         }
@@ -203,13 +211,14 @@ namespace Studio1Project
                 case "training yard":
                 case "yard":
                 case "Yard":
+                    prev = roomChoice;
                     roomChoice = 10;
                     break;
                 case "Back":
                 case "back":
                 case "Go Back":
                 case "go back":
-                    
+                    roomChoice = prev;
                     break;
             }
         }
