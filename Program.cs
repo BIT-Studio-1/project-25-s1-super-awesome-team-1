@@ -114,8 +114,17 @@
         }
         static void Kitchen()//Room4
         {
-            Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next?");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "dungeon hall":
+                    roomChoice = 2;
+                    break;
+                case "pantry storage":
+                    roomChoice = 8;
+                    break;
+            }
         }
         static void GuardsBarracks()//Room5 SSSSSSS
         {
