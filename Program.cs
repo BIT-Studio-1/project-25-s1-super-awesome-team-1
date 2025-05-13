@@ -126,8 +126,23 @@
         static void Infirmary()//Room9 Albert
         {
                 Console.WriteLine("");
+                action = Console.ReadLine();
+                switch (action)
+                {
+                    case "gaurdbarracks":
+                        roomChoice = 5;
+                        break;
+                    case "showers":
+                        roomChoice = 6;
+                        break;
+                    case "courtyard":
+                        roomChoice = 11;
+                        break;
+                    case "back":
+                        break;
+                }
 
-        static void TrainingYard()//Room10 Albert
+                static void TrainingYard()//Room10 Albert
         {
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
