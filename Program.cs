@@ -148,7 +148,7 @@ namespace Studio1Project
         static void GuardsBarracks()//Room5 SSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to room 5 \n do you want to go to room 9 or 10");
+            Console.WriteLine("you made it to the Guards Barracks \n do you want to go to the Training Yard or Infirmary or Go Back");
             action = Console.ReadLine();
             switch (action)
             {
@@ -170,7 +170,7 @@ namespace Studio1Project
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to the Showers \n do you want to go to the Infirmary or back");
+            Console.WriteLine("you made it to the Showers \n do you want to go to the Infirmary or Go Back");
             action = Console.ReadLine();
             switch (action)
             {
@@ -192,7 +192,7 @@ namespace Studio1Project
         static void Lab()//Room7 SSSSSSSSSSSSSSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to the Lab \n do you want to go to the\nTraining yard\nGo back");
+            Console.WriteLine("you made it to the Lab \n do you want to go to the Training yard or Go Back");
             action = Console.ReadLine();
             switch (action)
             {
