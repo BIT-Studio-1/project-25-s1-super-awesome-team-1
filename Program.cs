@@ -80,7 +80,7 @@
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
+            Console.WriteLine("you made it the dungeon hall. Where do you want to go next?");
             action = Console.ReadLine();
             switch (action)
             {
@@ -89,6 +89,9 @@
                     break;
                 case "guard barracks":
                     roomChoice = 5;
+                    break;
+                case "kitchen":
+                    roomChoice =4;
                     break;
             }
         }
