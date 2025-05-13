@@ -1,5 +1,5 @@
 Idea:
-Room 1 (Cell): The player is caught by the guards and sent to prison. As you wake up the player sees a decaying sewer grate, their bed, and the cell door in front of them and a guard.
+Room 1 Starting room (Cell): The player is caught by the guards and sent to prison. As you wake up the player sees a decaying sewer grate, their bed, and the cell door with a guard keeping watch.
 option 1: if player sleeps loops back to prompt 1 for x number of days, then wins/get released.
 option 2: Steal guards key adds to inventory
 Option 3: go through sewers

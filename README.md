@@ -11,3 +11,4 @@ Merge Conflicts
 Comment curtesy
 - Comment important methods or complicated code
 - clear variables and method names
+- 
