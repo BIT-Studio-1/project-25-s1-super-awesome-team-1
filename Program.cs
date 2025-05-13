@@ -26,7 +26,7 @@
                         Kitchen();
                         break;
                     case 5:
-                        GaurdsBarracks();
+                        GuardsBarracks();
                         break;
                     case 6:
                         Showers();
@@ -83,7 +83,7 @@
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void GaurdsBarracks()//Room5
+        static void GuardsBarracks()//Room5
         {
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
