@@ -4,7 +4,7 @@ namespace Studio1Project
 {
     internal class Program
     {
-        private static int roomChoice,heath=100,stamina=100,prev;
+        private static int roomChoice,heath=100,stamina=100,prev = 1;
         private static string action = "";
         private static List<string> inv = new List<string>();
         static void Main(string[] args)
@@ -170,7 +170,7 @@ namespace Studio1Project
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to room _ \n do you want to go to room _ or _");
+            Console.WriteLine("you made it to the Showers \n do you want to go to the Infirmary or back");
             action = Console.ReadLine();
             switch (action)
             {
