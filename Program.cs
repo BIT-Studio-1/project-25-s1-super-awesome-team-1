@@ -3,6 +3,7 @@
     internal class Program
     {
         private static int roomChoice,heath=100,stamina=100;
+        private static string action = "";
         private static List<string> inv = new List<string>();
         static void Main(string[] args)
         {
@@ -65,7 +66,16 @@
         {
             Console.WriteLine();
             Console.WriteLine("you made it to room 1 \n do you want to go to room 2 or 3");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "hall":
+                    roomChoice = 2;
+                    break;
+                case "sewers":
+                    roomChoice =3;
+                    break;
+            }
         }
 
         static void DungeonHall()//
@@ -80,7 +90,7 @@
         }
         static void Kitchen()//Room4
         {
-            Console.WriteLine("");
+            Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
         static void GuardsBarracks()//Room5
