@@ -64,7 +64,6 @@
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine();
             Console.WriteLine("you made it to room 1 \n do you want to go to room 2 or 3");
             action = Console.ReadLine();
             switch (action)
@@ -75,10 +74,11 @@
                 case "sewers":
                     roomChoice =3;
                     break;
+
             }
         }
 
-        static void DungeonHall()//
+        static void DungeonHall()//Room 2
         {
             Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
             action = Console.ReadLine();
@@ -120,6 +120,7 @@
         static void Pantry()//Room8
         {
             Console.WriteLine("");
+
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
         static void Infirmary()//Room9
