@@ -4,7 +4,7 @@ namespace Studio1Project
 {
     internal class Program
     {
-        private static int roomChoice,heath=100,stamina=100,prev;
+        private static int roomChoice,heath=100,stamina=100,prev = 1;
         private static string action = "";
         private static List<string> inv = new List<string>();
         static void Main(string[] args)
