@@ -82,33 +82,117 @@ namespace Studio1Project
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next?");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "cell":
+                    roomChoice = 1;
+                    break;
+                case "guard barracks":
+                    roomChoice = 5;
+                    break;
+                case "kitchen":
+                    roomChoice =4;
+                    break;
+            }
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to room 3 \n do you want to go to room 2 or 3");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next?");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "cell":
+                    roomChoice = 1;
+                    break;
+                case "showers":
+                    roomChoice =6;
+                    break;
+                case "lab room":
+                    roomChoice = 7;
+                    break;
+            }
         }
         static void Kitchen()//Room4
         {
-            Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next?");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "dungeon hall":
+                    roomChoice = 2;
+                    break;
+                case "pantry storage":
+                    roomChoice = 8;
+                    break;
+            }
         }
-        static void GuardsBarracks()//Room5
+        static void GuardsBarracks()//Room5 SSSSSSS
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("you made it to room 5 \n do you want to go to room 9 or 10");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "infirmary":
+                case "Infirmary":
+                case "infrmry":
+                case "infirm":
+                case "doctor":
+                    roomChoice = 9;
+                    break;
+                case "Training Yard":
+                case "trainingyard":
+                case "training yard":
+                case "trainyard":
+                    roomChoice = 10;
+                    break;
+            }
         }
-        static void Showers()//Room6
+        static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("you made it to room _ \n do you want to go to room _ or _");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "______":
+                case "________":
+                case "_______":
+                case "__________":
+                case "_________":
+                    roomChoice = __;
+                    break;
+                case "___________":
+                case "_":
+                case "__":
+                case "___":
+                    roomChoice = __;
+                    break;
+            }
         }
-        static void Lab()//Room7
+        static void Lab()//Room7 SSSSSSSSSSSSSSSSSSS
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("you made it to room _ \n do you want to go to room _ or _");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "______":
+                case "________":
+                case "_______":
+                case "__________":
+                case "_________":
+                    roomChoice = __;
+                    break;
+                case "___________":
+                case "_":
+                case "__":
+                case "___":
+                    roomChoice = __;
+                    break;
+            }
         }
         static void Pantry()//Room8 Albert
         {
