@@ -117,13 +117,47 @@
         }
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("you made it to room _ \n do you want to go to room _ or _");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "______":
+                case "________":
+                case "_______":
+                case "__________":
+                case "_________":
+                    roomChoice = __;
+                    break;
+                case "___________":
+                case "_":
+                case "__":
+                case "___":
+                    roomChoice = __;
+                    break;
+            }
         }
         static void Lab()//Room7 SSSSSSSSSSSSSSSSSSS
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
+            Console.WriteLine("you made it to room _ \n do you want to go to room _ or _");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "______":
+                case "________":
+                case "_______":
+                case "__________":
+                case "_________":
+                    roomChoice = __;
+                    break;
+                case "___________":
+                case "_":
+                case "__":
+                case "___":
+                    roomChoice = __;
+                    break;
+            }
         }
         static void Pantry()//Room8
         {
