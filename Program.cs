@@ -281,15 +281,15 @@ namespace Studio1Project
         }
         static void Courtyard()//Room11
         {
-            Console.WriteLine("you made it to room 11 \n do you want to go to room 13, 14, 8, 9 or 10");
+            Console.WriteLine("you made it to room 11 \n do you want to go to room 12, 13, 8, 9 or 10");
             action = Console.ReadLine();
             switch (action)
             {
                 case "Gatehouse":
-                    roomChoice = 13;
+                    roomChoice = 12;
                     break;
                 case "Tower Base":
-                    roomChoice = 14;
+                    roomChoice = 13;
                     break;
                 case "Pantry Storage":
                     roomChoice = 8;
@@ -304,8 +304,14 @@ namespace Studio1Project
         }
         static void GateHouse()//Room12 EXIT
         {
-            Console.WriteLine("");
-            roomChoice = 9999;
+            Console.WriteLine("you made it to room 12 \n do you want to go to room 12");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "Courtyard":
+                    roomChoice = 11;
+                    break;
+            }
         }
         static void TowerBase()//Room13
         {
