@@ -1,4 +1,4 @@
-﻿namespace Studio1Project
+namespace Studio1Project
 {
     internal class Program
     {
@@ -83,7 +83,7 @@
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void GaurdsBarracks()//Room5
+        static void GuardsBarracks()//Room5
         {
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
