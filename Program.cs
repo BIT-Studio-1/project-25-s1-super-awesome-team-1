@@ -126,8 +126,26 @@
         }
         static void Courtyard()//Room11
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to room 11 \n do you want to go to room 13, 14, 8, 9 or 10");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "Gatehouse":
+                    roomChoice = 13;
+                    break;
+                case "Tower Base":
+                    roomChoice = 14;
+                    break;
+                case "Pantry Storage":
+                    roomChoice = 8;
+                    break;
+                case "Infirmary":
+                    roomChoice = 9;
+                    break;
+                case "Training Yard":
+                    roomChoice = 10;
+                    break;
+            }
         }
         static void GateHouse()//Room12 EXIT
         {
