@@ -80,7 +80,7 @@
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it the dungeon hall. Where do you want to go next?");
+            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next?");
             action = Console.ReadLine();
             switch (action)
             {
@@ -97,8 +97,20 @@
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to room 3 \n do you want to go to room 2 or 3");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next?");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "cell":
+                    roomChoice = 1;
+                    break;
+                case "showers":
+                    roomChoice =6;
+                    break;
+                case "lab room":
+                    roomChoice = 7;
+                    break;
+            }
         }
         static void Kitchen()//Room4
         {
