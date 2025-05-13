@@ -107,8 +107,11 @@
                 case "doctor":
                     roomChoice = 9;
                     break;
-                case "sewers":
-                    roomChoice = 3;
+                case "Training Yard":
+                case "trainingyard":
+                case "training yard":
+                case "trainyard":
+                    roomChoice = 10;
                     break;
             }
         }
