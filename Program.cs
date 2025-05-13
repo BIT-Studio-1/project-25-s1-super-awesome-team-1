@@ -134,18 +134,17 @@
             action = Console.ReadLine();
             switch (action)
             {
-                case "______":
-                case "________":
-                case "_______":
-                case "__________":
-                case "_________":
-                    roomChoice = __;
+                case "infirmary":
+                case "Infirmary":
+                case "infrmry":
+                case "infirm":
+                case "doctor":
+                    roomChoice = 9;
                     break;
-                case "___________":
-                case "_":
-                case "__":
-                case "___":
-                    roomChoice = __;
+                case "go back":
+                case "Back":
+                case "back":
+                case "Go Back":
                     break;
             }
         }
