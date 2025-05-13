@@ -93,17 +93,31 @@
             Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void GuardsBarracks()//Room5
+        static void GuardsBarracks()//Room5 SSSSSSS
+        {
+            Console.WriteLine();
+            Console.WriteLine("you made it to room 5 \n do you want to go to room 9 or 10");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "infirmary":
+                case "Infirmary":
+                case "infrmry":
+                case "infirm":
+                case "doctor":
+                    roomChoice = 9;
+                    break;
+                case "sewers":
+                    roomChoice = 3;
+                    break;
+            }
+        }
+        static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
-        static void Showers()//Room6
-        {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
-        }
-        static void Lab()//Room7
+        static void Lab()//Room7 SSSSSSSSSSSSSSSSSSS
         {
             Console.WriteLine("");
             roomChoice = Convert.ToInt32(Console.ReadLine());
