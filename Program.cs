@@ -145,28 +145,31 @@
                 case "Back":
                 case "back":
                 case "Go Back":
+
                     break;
             }
         }
         static void Lab()//Room7 SSSSSSSSSSSSSSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to room _ \n do you want to go to room _ or _");
+            Console.WriteLine("you made it to the Lab \n do you want to go to the\nTraining yard\nGo back");
             action = Console.ReadLine();
             switch (action)
             {
-                case "______":
-                case "________":
-                case "_______":
-                case "__________":
-                case "_________":
-                    roomChoice = __;
+                case "Training yard":
+                case "Trainingyard":
+                case "TrainingYard":
+                case "trainingyard":
+                case "training yard":
+                case "yard":
+                case "Yard":
+                    roomChoice = 10;
                     break;
-                case "___________":
-                case "_":
-                case "__":
-                case "___":
-                    roomChoice = __;
+                case "Back":
+                case "back":
+                case "Go Back":
+                case "go back":
+                    
                     break;
             }
         }
