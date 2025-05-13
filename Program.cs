@@ -87,13 +87,19 @@ namespace Studio1Project
             switch (action)
             {
                 case "cell":
+                    prev = roomChoice;
                     roomChoice = 1;
                     break;
                 case "guard barracks":
+                    prev = roomChoice;
                     roomChoice = 5;
                     break;
                 case "kitchen":
+                    prev = roomChoice;
                     roomChoice =4;
+                    break;
+                case "back":
+                    roomChoice = prev;
                     break;
             }
         }
@@ -104,13 +110,19 @@ namespace Studio1Project
             switch (action)
             {
                 case "cell":
+                    prev = roomChoice;
                     roomChoice = 1;
                     break;
                 case "showers":
+                    prev = roomChoice;
                     roomChoice =6;
                     break;
                 case "lab room":
+                    prev = roomChoice;
                     roomChoice = 7;
+                    break;
+                case "back":
+                    roomChoice = prev;
                     break;
             }
         }
@@ -121,10 +133,15 @@ namespace Studio1Project
             switch (action)
             {
                 case "dungeon hall":
+                    prev = roomChoice;
                     roomChoice = 2;
                     break;
                 case "pantry storage":
+                    prev = roomChoice;
                     roomChoice = 8;
+                    break;
+                case "back":
+                    roomChoice = prev;
                     break;
             }
         }
@@ -264,8 +281,26 @@ namespace Studio1Project
         }
         static void Courtyard()//Room11
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to room 11 \n do you want to go to room 13, 14, 8, 9 or 10");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "Gatehouse":
+                    roomChoice = 13;
+                    break;
+                case "Tower Base":
+                    roomChoice = 14;
+                    break;
+                case "Pantry Storage":
+                    roomChoice = 8;
+                    break;
+                case "Infirmary":
+                    roomChoice = 9;
+                    break;
+                case "Training Yard":
+                    roomChoice = 10;
+                    break;
+            }
         }
         static void GateHouse()//Room12 EXIT
         {
