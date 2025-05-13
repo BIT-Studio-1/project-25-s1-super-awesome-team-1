@@ -1,8 +1,10 @@
-﻿namespace Studio1Project
+﻿using System.Runtime.Versioning;
+
+namespace Studio1Project
 {
     internal class Program
     {
-        private static int roomChoice,heath=100,stamina=100;
+        private static int roomChoice,heath=100,stamina=100,prev;
         private static string action = "";
         private static List<string> inv = new List<string>();
         static void Main(string[] args)
@@ -110,42 +112,69 @@
         }
         static void Pantry()//Room8 Albert
         {
-            Console.WriteLine("");
+            Console.WriteLine("You entered the lab you can got to the \nkitchen \ncourtyard\n or back");
             action = Console.ReadLine();
             switch (action)
             {
                 case "kitchen":
+                    prev= roomChoice;
                     roomChoice = 4;
                     break;
                 case "courtyard":
+                    prev = roomChoice;
                     roomChoice = 11;
                     break;
                 case "back":
+
                     break;
+            }
         }
         static void Infirmary()//Room9 Albert
         {
-                Console.WriteLine("");
+            Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nshowers\n courtyard  \n or back");
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "gaurdbarracks":
+                    prev = roomChoice;
+                    roomChoice = 5;
+                    break;
+                case "showers":
+                    prev = roomChoice;
+                    roomChoice = 6;
+                    break;
+                case "courtyard":
+                    prev = roomChoice;
+                    roomChoice = 11;
+                    break;
+                case "back":
+                    roomChoice = prev;
+                    break;
+            }
+        }
+
+        static void TrainingYard()//Room10 Albert
+        {
+                Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
                 action = Console.ReadLine();
                 switch (action)
                 {
+                    case "lab":
+                    prev = roomChoice;
+                    roomChoice = 7;
+                        break;
                     case "gaurdbarracks":
+                        prev = roomChoice;
                         roomChoice = 5;
                         break;
-                    case "showers":
-                        roomChoice = 6;
-                        break;
                     case "courtyard":
+                        prev = roomChoice;
                         roomChoice = 11;
                         break;
                     case "back":
+                        roomChoice= prev;
                         break;
                 }
-
-                static void TrainingYard()//Room10 Albert
-        {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
         static void Courtyard()//Room11
         {
