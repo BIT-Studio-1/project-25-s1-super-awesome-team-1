@@ -1,0 +1,158 @@
+->: To go fowards
+<-: To backtrack
+
+
+[Room 1] Prison Cell
+Paths:
+→ Room 2: Dungeon Hall (pickpocket guard key or brute force)
+→ Room 3: Hidden Sewers (loosen floor grate)
+
+Comments:
+Bed (contains a shiv)
+Loose stone (reveals sewer grate)
+Sleeping guard (can be robbed)
+
+Backtrack: None — starting point
+
+
+
+[Room 2] Dungeon Hall
+Paths:
+→ Room 4: Kitchen / Canteen
+→ Room 5: Guards' Barracks
+← Room 1: Prison Cell
+
+Comments:
+Torch sconces (can be used as weapon/light)
+Chains on walls (player sees chains...)
+
+
+
+[Room 3] Hidden Sewers (stealth path)
+Paths:
+→ Room 6: Showers
+→ Room 7: Lab / Experiment Room
+← Room 1: Prison Cell
+
+Comments:
+Slime creature (non-lethal hazard)
+Rusted maintenance panel (can be pried open for tools)
+
+
+
+[Room 4] Kitchen / Canteen
+Paths:
+→ Room 8: Pantry Storage (NEW – secret tunnel inside)
+← Room 2: Dungeon Hall
+
+Comments:
+Knives & utensils (usable as weapons)
+
+
+
+[Room 5] Guards’ Barracks
+Paths:
+→ Room 9: Infirmary
+→ Room 10: Training Yard (NEW – open practice area, risky)
+← Room 2: Dungeon Hall
+
+Comments:
+Footlocker (find uniform/disguise)
+Dice-playing guards (eavesdrop?)
+
+
+
+[Room 6] Showers
+Paths:
+→ Room 9: Infirmary (through ceiling vent)
+← Room 3: Hidden Sewers
+
+Comments:
+Loose panel in ceiling → vent crawlspace
+
+
+
+[Room 7] Lab / Experiment Room
+Paths:
+→ Room 10: Training Yard (NEW – shared access point)
+← Room 3: Hidden Sewers
+
+Comments:
+Caged creature (could be freed, player dies?)
+Experiment logs (lore dump or code clue)
+Chemical vials (can be used to melt locks or something?)
+
+
+
+[Room 8] Pantry Storage
+Paths:
+→ Room 11: Courtyard (through hidden dumbwaiter shaft)
+← Room 4: Kitchen
+
+Comments:
+Crates (concealment or loot or nothing)
+Secret tunnel entrance behind shelf
+Rope (can use later at Tower)
+
+
+
+[Room 9] Infirmary
+Paths:
+→ Room 11: Courtyard
+← Room 5: Guards’ Barracks
+← Room 6: Showers
+
+Comments:
+Healing supplies
+Medical notes (clue about dragon or tower risk)
+
+
+
+[Room 10] Training Yard
+Paths:
+→ Room 11: Courtyard
+← Room 5: Guards’ Barracks
+← Room 7: Lab
+
+Comments:
+Weapon racks (can gear up — high risk)
+Patrolling captain (optional mini-boss)
+Wooden scaffolding (can climb to roof path or hide)
+
+
+
+[Room 11] Courtyard
+Paths:
+→ Room 13: Gatehouse / Exit
+→ Room 14: Tower Base
+← Room 8: Pantry Storage
+← Room 9: Infirmary
+← Room 10: Training Yard
+
+Comments:
+Patrolling guards
+
+
+
+[Room 13] Gatehouse / Exit (requires key)
+Paths:
+← Room 11: Courtyard
+← Room 12 (optional — not yet added)
+
+Comments:
+Locked gate (Use warden key)
+Puzzle?
+Escape
+
+
+
+[Room 14] Tower Base (dead end)
+Paths:
+← Room 11: Courtyard
+
+Comments:
+Journal detailing previous escape attempt (foreshadowing death)
+
+Outcome:
+Jump = death
+Escape if rope was acquired
