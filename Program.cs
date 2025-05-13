@@ -153,7 +153,7 @@ namespace Studio1Project
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to room _ \n do you want to go to room _ or _");
+            Console.WriteLine("you made it to the Showers \n do you want to go to the Infirmary or back");
             action = Console.ReadLine();
             switch (action)
             {
