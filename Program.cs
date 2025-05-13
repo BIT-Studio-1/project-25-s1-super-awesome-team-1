@@ -81,7 +81,16 @@
         static void DungeonHall()//
         {
             Console.WriteLine("you made it to room 2 \n do you want to go to room 2 or 3");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            action = Console.ReadLine();
+            switch (action)
+            {
+                case "cell":
+                    roomChoice = 1;
+                    break;
+                case "guard barracks":
+                    roomChoice = 5;
+                    break;
+            }
         }
         static void Sewers()//room 3
         {
