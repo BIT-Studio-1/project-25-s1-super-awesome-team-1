@@ -14,10 +14,10 @@ namespace Studio1Project
             PrisonCell();
             do
             {
-
+                
                 switch (roomChoice)
                 {
-
+                    
                     case 1:
                         PrisonCell();
                         break;
@@ -68,7 +68,7 @@ namespace Studio1Project
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("you made it to room 1 \n do you want to go to \nhall \nsewers");
+            Console.WriteLine("You enter the Cell \n do you want to go to \nhall \nsewers");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -251,20 +251,13 @@ namespace Studio1Project
         }
         static void Infirmary()//Room9 Albert
         {
+            string[] items = ["health potion"];
             Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nshowers\n courtyard  \n or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "pickup":
-                    if (inv.Contains("health Potion") == false)
-                    {
-                        inv.Add("health Potion");
-                    }
-                    else
-                    {
-                        Console.WriteLine("you have already picked up the potion");
-                    }
-                    
+                    pickup(items);
                     break;
                 case "show":
                     inventoryShow();
@@ -350,6 +343,10 @@ namespace Studio1Project
             {
                 Console.WriteLine(item);
             }
+        }
+        static void pickup(ref string[] items)
+        {
+
         }
 
     }
