@@ -68,7 +68,7 @@ namespace Studio1Project
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("You enter the Cell \n do you want to go to \nhall \nsewers");
+            Console.WriteLine("You wake up in a prison cell \ndo you want to go to \n- hall \n- sewers");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -86,6 +86,7 @@ namespace Studio1Project
                     showCommands();
                     break;
                 case "sleep":
+                    //include energy increase
                     Console.WriteLine("Sleeping helped you regain some energy!!");
                     sleepCounter = sleepCounter + 1;
                     if (sleepCounter > 10) 
@@ -94,12 +95,15 @@ namespace Studio1Project
                         //roomChoice = 9999;
                     }
                     break;
+                case "show energy":
+                    showEnergyLevels();
+                    break;
             }
         }
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? \ncell \nguard barracks \nkitchen \nback");
+            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? \n-cell \n-guard barracks \n-kitchen \n-back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -123,7 +127,7 @@ namespace Studio1Project
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell \nshowers \nlab room \nback");
+            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? \n-cell \n-showers \n-lab room \n-back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -149,7 +153,7 @@ namespace Studio1Project
         }
         static void Kitchen()//Room4
         {
-            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next? dungeon hall, pantry storage or back");
+            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next? \n-dungeon hall \n-pantry storage \n-back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -270,7 +274,7 @@ namespace Studio1Project
             switch (action)
             {
                 case "pickup":
-                    pickup(items);
+                    //pickup(items);
                     break;
                 case "show":
                     inventoryShow();
@@ -366,10 +370,12 @@ namespace Studio1Project
 
         static void showCommands()
         {
-            Console.WriteLine("Type one of the following commands or select a room");
-            Console.WriteLine("show inventory");
+            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow health");
+        }
 
-            Console.WriteLine("");
+        static void showEnergyLevels()
+        {
+            Console.WriteLine($"Health: {heath} \nStamina: {stamina}");
         }
 
         public static void combat()
