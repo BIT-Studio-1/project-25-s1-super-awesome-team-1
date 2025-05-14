@@ -14,6 +14,7 @@ namespace Studio1Project
             PrisonCell();
             do
             {
+
                 switch (roomChoice)
                 {
 
@@ -225,7 +226,7 @@ namespace Studio1Project
         }
         static void Pantry()//Room8 Albert
         {
-            Console.WriteLine("You entered the lab you can got to the \nkitchen \ncourtyard\n or back");
+            Console.WriteLine("You entered the pantry you can got to the \nkitchen \ncourtyard\n or back");
             action = Console.ReadLine();
             switch (action)
             {
@@ -249,10 +250,18 @@ namespace Studio1Project
             switch (action)
             {
                 case "pickup":
-                    inv.Add("health Potion");
+                    if (inv.Contains("health Potion") == false)
+                    {
+                        inv.Add("health Potion");
+                    }
+                    else
+                    {
+                        Console.WriteLine("you have already picked up the potion");
+                    }
+                    
                     break;
                 case "show":
-                    invintoryShow();
+                    inventoryShow();
                     break;
                 case "gaurdbarracks":
                     prev = roomChoice;
@@ -329,7 +338,7 @@ namespace Studio1Project
             roomChoice = Convert.ToInt32(Console.ReadLine());
         }
 
-        static void invintoryShow()
+        static void inventoryShow()//Albert
         {
             foreach (string item in inv )
             {
