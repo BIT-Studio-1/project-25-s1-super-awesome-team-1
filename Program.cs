@@ -68,11 +68,8 @@ namespace Studio1Project
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
-<<<<<<< HEAD
-            Console.WriteLine("you made it to room 1 \n Where do you want to go next? hall or sewers?");
-=======
             Console.WriteLine("you made it to room 1 \n do you want to go to \nhall \nsewers");
->>>>>>> bf1798c9df255f74efbb81a3a31b2b94f0b46ea7
+
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -82,21 +79,19 @@ namespace Studio1Project
                     break;
                 case "sewers":
                     roomChoice =3;
-<<<<<<< HEAD
-                    break;   
-=======
-                    break;
+                    break;       
                 case "test":
                     roomChoice = Convert.ToInt32(Console.ReadLine());
                     break;
->>>>>>> bf1798c9df255f74efbb81a3a31b2b94f0b46ea7
-
+                case "help":
+                    showCommands();
+                    break;
             }
         }
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? cell, guard barracks, kitchen or back");
+            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? \ncell \nguard barracks \nkitchen \nback");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -120,7 +115,7 @@ namespace Studio1Project
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell, showers, lab room or back");
+            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell \nshowers \nlab room \nback");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -360,6 +355,13 @@ namespace Studio1Project
             {
                 Console.WriteLine(item);
             }
+        }
+
+        static void showCommands()
+        {
+            Console.WriteLine("Type one of the following commands or select a room");
+            Console.WriteLine("show inventory");
+            Console.WriteLine("");
         }
 
     }
