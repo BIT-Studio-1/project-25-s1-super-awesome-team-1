@@ -68,7 +68,11 @@ namespace Studio1Project
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
+<<<<<<< HEAD
             Console.WriteLine("you made it to room 1 \n Where do you want to go next? hall or sewers?");
+=======
+            Console.WriteLine("you made it to room 1 \n do you want to go to \nhall \nsewers");
+>>>>>>> bf1798c9df255f74efbb81a3a31b2b94f0b46ea7
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -78,7 +82,14 @@ namespace Studio1Project
                     break;
                 case "sewers":
                     roomChoice =3;
+<<<<<<< HEAD
                     break;   
+=======
+                    break;
+                case "test":
+                    roomChoice = Convert.ToInt32(Console.ReadLine());
+                    break;
+>>>>>>> bf1798c9df255f74efbb81a3a31b2b94f0b46ea7
 
             }
         }
@@ -315,19 +326,19 @@ namespace Studio1Project
             action = Console.ReadLine().ToLower();
             switch (action)
             {
-                case "Gatehouse":
+                case "gatehouse":
                     roomChoice = 13;
                     break;
-                case "Tower Base":
+                case "tower base":
                     roomChoice = 14;
                     break;
-                case "Pantry Storage":
+                case "pantry storage":
                     roomChoice = 8;
                     break;
-                case "Infirmary":
+                case "infirmary":
                     roomChoice = 9;
                     break;
-                case "Training Yard":
+                case "training yard":
                     roomChoice = 10;
                     break;
             }
