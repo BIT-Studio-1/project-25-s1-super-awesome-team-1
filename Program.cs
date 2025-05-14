@@ -85,7 +85,7 @@ namespace Studio1Project
         static void DungeonHall()//Room 2
         {
             Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next?");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "cell":
@@ -108,7 +108,7 @@ namespace Studio1Project
         static void Sewers()//room 3
         {
             Console.WriteLine("you made it to the sewers.\n  Where do you want to go next?");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "cell":
@@ -131,7 +131,7 @@ namespace Studio1Project
         static void Kitchen()//Room4
         {
             Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next?");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "dungeon hall":
@@ -151,7 +151,7 @@ namespace Studio1Project
         {
             Console.WriteLine();
             Console.WriteLine("you made it to the Guards Barracks \n do you want to go to the Training Yard or Infirmary or Go Back");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "infirmary":
@@ -180,7 +180,7 @@ namespace Studio1Project
         {
             Console.WriteLine();
             Console.WriteLine("you made it to the Showers \n do you want to go to the Infirmary or Go Back");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "infirmary":
@@ -203,7 +203,7 @@ namespace Studio1Project
         {
             Console.WriteLine();
             Console.WriteLine("you made it to the Lab \n do you want to go to the Training yard or Go Back");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "Training yard":
@@ -227,7 +227,7 @@ namespace Studio1Project
         static void Pantry()//Room8 Albert
         {
             Console.WriteLine("You entered the pantry you can got to the \nkitchen \ncourtyard\n or back");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "kitchen":
@@ -246,7 +246,7 @@ namespace Studio1Project
         static void Infirmary()//Room9 Albert
         {
             Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nshowers\n courtyard  \n or back");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "pickup":
@@ -284,7 +284,7 @@ namespace Studio1Project
         static void TrainingYard()//Room10 Albert
         {
                 Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
-                action = Console.ReadLine();
+                action = Console.ReadLine().ToLower();
                 switch (action)
                 {
                     case "lab":
@@ -307,7 +307,7 @@ namespace Studio1Project
         static void Courtyard()//Room11
         {
             Console.WriteLine("you made it to room 11 \n do you want to go to room 13, 14, 8, 9 or 10");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "Gatehouse":
