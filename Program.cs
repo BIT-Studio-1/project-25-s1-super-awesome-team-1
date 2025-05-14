@@ -69,6 +69,10 @@ namespace Studio1Project
         static void PrisonCell()//room 1 (main room)
         {
             Console.WriteLine("you made it to room 1 \n do you want to go to \nhall \nsewers");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01f4f0c3d4d5ac32c34ac211ad01faed79d0aa09
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -78,6 +82,7 @@ namespace Studio1Project
                     break;
                 case "sewers":
                     roomChoice =3;
+<<<<<<< HEAD
                     break;   
 
 
@@ -86,12 +91,21 @@ namespace Studio1Project
                     break;
 
 
+=======
+                    break;       
+                case "test":
+                    roomChoice = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case "help":
+                    showCommands();
+                    break;
+>>>>>>> 01f4f0c3d4d5ac32c34ac211ad01faed79d0aa09
             }
         }
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? cell, guard barracks, kitchen or back");
+            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? \ncell \nguard barracks \nkitchen \nback");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -115,7 +129,7 @@ namespace Studio1Project
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell, showers, lab room or back");
+            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell \nshowers \nlab room \nback");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -357,6 +371,13 @@ namespace Studio1Project
             }
         }
 
+<<<<<<< HEAD
+        static void showCommands()
+        {
+            Console.WriteLine("Type one of the following commands or select a room");
+            Console.WriteLine("show inventory");
+            Console.WriteLine("");
+=======
         public static void combat()
         {
 
@@ -399,6 +420,7 @@ namespace Studio1Project
 
             }
             Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
+>>>>>>> 96536e2926ae9137a522da778b9ff0ea637fbd44
         }
 
     }
