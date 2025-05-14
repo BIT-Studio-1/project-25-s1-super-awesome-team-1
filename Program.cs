@@ -73,21 +73,24 @@ namespace Studio1Project
             switch (action)
             {
                 case "hall":
+                case "halll":
                     roomChoice = 2;
                     break;
                 case "sewers":
                     roomChoice =3;
-                    break;
+                    break;   
                 case "test":
                     roomChoice = Convert.ToInt32(Console.ReadLine());
+                    break;      
+                case "help":
+                    showCommands();
                     break;
-
             }
         }
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next?");
+            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? \ncell \nguard barracks \nkitchen \nback");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -96,6 +99,7 @@ namespace Studio1Project
                     roomChoice = 1;
                     break;
                 case "guard barracks":
+                case "gaurd barracks":
                     prev = roomChoice;
                     roomChoice = 5;
                     break;
@@ -110,7 +114,7 @@ namespace Studio1Project
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell, showers, lab room or back");
+            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell \nshowers \nlab room \nback");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -347,6 +351,57 @@ namespace Studio1Project
         static void pickup(ref string[] items)
         {
 
+        }
+
+
+        static void showCommands()
+        {
+            Console.WriteLine("Type one of the following commands or select a room");
+            Console.WriteLine("show inventory");
+            Console.WriteLine(""); 
+        }
+        public static void combat()
+        {
+
+            int health = 100;
+            int stamina = 100;
+            int healthcost = 10; //interchangeable amount idk what yet
+            int staminacost = 10; //interchangeable amount idk what yet
+
+            while (health > 0 && stamina > 0)
+            {
+                Console.WriteLine("Do you want to fight (yes/no): ");
+                string choice = Console.ReadLine().ToLower();
+
+                if (choice == "yes")
+                {
+                    if (stamina >= staminacost)
+                    {
+                        stamina -= staminacost;
+                        health -= healthcost;
+                        Console.WriteLine("you successfully beat your opponent");
+                        Console.WriteLine($"You lost {staminacost} stamina and {healthcost} health.");
+                        Console.WriteLine($"You now have {stamina} stamina and {health} health.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("not enough stamina");
+                    }
+                }
+                else if (choice == "no")
+                {
+                    Console.WriteLine("You Choose to flee");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Type 'yes' or 'no'.");
+                }
+
+                health = Math.Max(0, health);
+                stamina = Math.Max(0, stamina);
+
+            }
+            Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
         }
 
     }
