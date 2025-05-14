@@ -69,11 +69,7 @@ namespace Studio1Project
         static void PrisonCell()//room 1 (main room)
         {
             Console.WriteLine("you made it to room 1 \n do you want to go to \nhall \nsewers");
-<<<<<<< HEAD
-=======
-
->>>>>>> 01f4f0c3d4d5ac32c34ac211ad01faed79d0aa09
-            action = Console.ReadLine().ToLower();
+             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "hall":
@@ -82,24 +78,14 @@ namespace Studio1Project
                     break;
                 case "sewers":
                     roomChoice =3;
-<<<<<<< HEAD
                     break;   
-
-
-                case "test":
-                    roomChoice = Convert.ToInt32(Console.ReadLine());
-                    break;
-
-
-=======
-                    break;       
                 case "test":
                     roomChoice = Convert.ToInt32(Console.ReadLine());
                     break;
                 case "help":
                     showCommands();
                     break;
->>>>>>> 01f4f0c3d4d5ac32c34ac211ad01faed79d0aa09
+
             }
         }
 
@@ -331,15 +317,15 @@ namespace Studio1Project
         }
         static void Courtyard()//Room11
         {
-            Console.WriteLine("you made it to room 11 \n do you want to go to room 13, 14, 8, 9 or 10");
+            Console.WriteLine("you made it to the Courtyard do you want to go to the \n Gatehouse \nTower base \n Pantry storage \n Infirmary \n Training yard \n or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "gatehouse":
-                    roomChoice = 13;
+                    roomChoice = 12;
                     break;
                 case "tower base":
-                    roomChoice = 14;
+                    roomChoice = 13;
                     break;
                 case "pantry storage":
                     roomChoice = 8;
@@ -354,15 +340,29 @@ namespace Studio1Project
         }
         static void GateHouse()//Room12 EXIT
         {
-            Console.WriteLine("");
-            roomChoice = 9999;
+            Console.WriteLine("you made it to the Gatehouse do you want to go to the \n Courtyard \n or back");
+            action = Console.ReadLine().ToLower();
+            switch (action)
+            {
+                case "courtyard":
+                    roomChoice = 11;
+                    break;
+
+                //Needs solution to the exit
+
+            }
         }
         static void TowerBase()//Room13
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to the Towerbase do you want to go to the \n Courtyard \n or back");
+            action = Console.ReadLine().ToLower();
+            switch (action)
+            {
+                case "courtyard":
+                    roomChoice = 11;
+                    break;
+            }
         }
-
         static void inventoryShow()//Albert
         {
             foreach (string item in inv )
@@ -371,13 +371,14 @@ namespace Studio1Project
             }
         }
 
-<<<<<<< HEAD
+
         static void showCommands()
         {
             Console.WriteLine("Type one of the following commands or select a room");
             Console.WriteLine("show inventory");
             Console.WriteLine("");
-=======
+        }
+
         public static void combat()
         {
 
@@ -420,7 +421,6 @@ namespace Studio1Project
 
             }
             Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
->>>>>>> 96536e2926ae9137a522da778b9ff0ea637fbd44
         }
 
     }
