@@ -107,19 +107,22 @@ namespace Studio1Project
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next?");
+            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? cell, showers, lab room or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "cell":
+                case "celll":
                     prev = roomChoice;
                     roomChoice = 1;
                     break;
                 case "showers":
+                case "showerss":
                     prev = roomChoice;
                     roomChoice =6;
                     break;
                 case "lab room":
+                case "labroom":
                     prev = roomChoice;
                     roomChoice = 7;
                     break;
