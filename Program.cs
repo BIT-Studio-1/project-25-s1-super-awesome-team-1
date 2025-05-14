@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 
 namespace Studio1Project
@@ -8,6 +9,7 @@ namespace Studio1Project
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" };
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
@@ -247,13 +249,13 @@ namespace Studio1Project
         }
         static void Infirmary()//Room9 Albert
         {
-            string[] items = ["health potion"];
+           
             Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nshowers\n courtyard  \n or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "pickup":
-                    //pickup(items);
+                    pickup(ref infirmaryItems);
                     break;
                 case "show":
                     inventoryShow();
@@ -349,14 +351,35 @@ namespace Studio1Project
         }
         static void inventoryShow()//Albert
         {
+            Console.WriteLine("====================");
+            Console.WriteLine("Items in inventory");
             foreach (string item in inv )
             {
                 Console.WriteLine(item);
             }
         }
-        static void pickup(ref string[] items)
+        static void pickup(ref string[] items)//pickup items
         {
+            Console.Clear();
+            string item="";
 
+            Console.WriteLine("what item do you want to pick up");
+            foreach (string i in items)
+            {
+                Console.WriteLine(i);
+            }
+            item = Console.ReadLine();
+            if (items.Contains(item) == true)
+            {
+                inv.Add(item);
+                items = items.Where(x => x != item).ToArray();
+
+            }
+            else {
+                Console.WriteLine("item not exists");
+            }
+            Console.WriteLine($"you picked up {item}");
+            Thread.Sleep(1000);
         }
 
         static void showCommands()
