@@ -5,7 +5,7 @@ namespace Studio1Project
 {
     internal class Program
     {
-        private static int roomChoice,heath=100,stamina=100,prev = 1;
+        private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
         static void Main(string[] args)
@@ -14,10 +14,10 @@ namespace Studio1Project
             PrisonCell();
             do
             {
-
+                
                 switch (roomChoice)
                 {
-
+                    
                     case 1:
                         PrisonCell();
                         break;
@@ -68,8 +68,9 @@ namespace Studio1Project
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("you made it to room 1 \n do you want to go to \nhall \nsewers");
-             action = Console.ReadLine().ToLower();
+            Console.WriteLine("You enter the Cell \n do you want to go to \nhall \nsewers");
+            action = Console.ReadLine().ToLower();
+
             switch (action)
             {
                 case "hall":
@@ -81,11 +82,19 @@ namespace Studio1Project
                     break;   
                 case "test":
                     roomChoice = Convert.ToInt32(Console.ReadLine());
-                    break;
+                    break;      
                 case "help":
                     showCommands();
                     break;
-
+                case "sleep":
+                    Console.WriteLine("Sleeping helped you regain some energy!!");
+                    sleepCounter = sleepCounter + 1;
+                    if (sleepCounter > 10) 
+                    {
+                        Console.WriteLine("You win!");
+                        //roomChoice = 9999;
+                    }
+                    break;
             }
         }
 
@@ -256,20 +265,13 @@ namespace Studio1Project
         }
         static void Infirmary()//Room9 Albert
         {
+            string[] items = ["health potion"];
             Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nshowers\n courtyard  \n or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "pickup":
-                    if (inv.Contains("health Potion") == false)
-                    {
-                        inv.Add("health Potion");
-                    }
-                    else
-                    {
-                        Console.WriteLine("you have already picked up the potion");
-                    }
-                    
+                    pickup(items);
                     break;
                 case "show":
                     inventoryShow();
@@ -370,12 +372,16 @@ namespace Studio1Project
                 Console.WriteLine(item);
             }
         }
+        static void pickup(ref string[] items)
+        {
 
+        }
 
         static void showCommands()
         {
             Console.WriteLine("Type one of the following commands or select a room");
             Console.WriteLine("show inventory");
+
             Console.WriteLine("");
         }
 
