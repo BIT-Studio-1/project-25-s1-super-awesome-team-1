@@ -68,7 +68,7 @@ namespace Studio1Project
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("You wake up in a prison cell \ndo you want to go to \n- hall \n- sewers");
+            Console.WriteLine("You wake up in a prison cell \nYou see a sleeping guard sitting on a chair in front of the cell. Also you notice a loose stone in the back. do you want to go to \n- hall \n- sewers");
             action = Console.ReadLine().ToLower();
 
             switch (action)
@@ -79,7 +79,10 @@ namespace Studio1Project
                     break;
                 case "sewers":
                     roomChoice =3;
-                    break;   
+                    break;
+                case "back":
+                    roomChoice = prev;
+                    break;
                 case "test":
                     roomChoice = Convert.ToInt32(Console.ReadLine());
                     break;      
@@ -93,7 +96,7 @@ namespace Studio1Project
                     if (sleepCounter > 10) 
                     {
                         Console.WriteLine("You win!");
-                        //roomChoice = 9999;
+                        roomChoice = 9999;
                     }
                     break;
                 case "show energy":
