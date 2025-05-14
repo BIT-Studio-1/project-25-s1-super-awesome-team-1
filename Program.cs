@@ -70,6 +70,7 @@ namespace Studio1Project
         {
             Console.WriteLine("You wake up in a prison cell \ndo you want to go to \n- hall \n- sewers");
             action = Console.ReadLine().ToLower();
+
             switch (action)
             {
                 case "hall":
@@ -322,15 +323,15 @@ namespace Studio1Project
         }
         static void Courtyard()//Room11
         {
-            Console.WriteLine("you made it to room 11 \n do you want to go to room 13, 14, 8, 9 or 10");
+            Console.WriteLine("you made it to the Courtyard do you want to go to the \n Gatehouse \nTower base \n Pantry storage \n Infirmary \n Training yard \n or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "gatehouse":
-                    roomChoice = 13;
+                    roomChoice = 12;
                     break;
                 case "tower base":
-                    roomChoice = 14;
+                    roomChoice = 13;
                     break;
                 case "pantry storage":
                     roomChoice = 8;
@@ -345,15 +346,29 @@ namespace Studio1Project
         }
         static void GateHouse()//Room12 EXIT
         {
-            Console.WriteLine("");
-            roomChoice = 9999;
+            Console.WriteLine("you made it to the Gatehouse do you want to go to the \n Courtyard \n or back");
+            action = Console.ReadLine().ToLower();
+            switch (action)
+            {
+                case "courtyard":
+                    roomChoice = 11;
+                    break;
+
+                //Needs solution to the exit
+
+            }
         }
         static void TowerBase()//Room13
         {
-            Console.WriteLine("");
-            roomChoice = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("you made it to the Towerbase do you want to go to the \n Courtyard \n or back");
+            action = Console.ReadLine().ToLower();
+            switch (action)
+            {
+                case "courtyard":
+                    roomChoice = 11;
+                    break;
+            }
         }
-
         static void inventoryShow()//Albert
         {
             foreach (string item in inv )
@@ -365,8 +380,6 @@ namespace Studio1Project
         {
 
         }
-
-
 
         static void showCommands()
         {
@@ -420,7 +433,6 @@ namespace Studio1Project
 
             }
             Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
-
         }
 
     }
