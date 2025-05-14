@@ -133,7 +133,7 @@ namespace Studio1Project
         }
         static void Kitchen()//Room4
         {
-            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next?");
+            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next? dungeon hall, pantry storage or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
