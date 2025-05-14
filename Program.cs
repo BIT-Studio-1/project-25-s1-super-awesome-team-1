@@ -5,7 +5,7 @@ namespace Studio1Project
 {
     internal class Program
     {
-        private static int roomChoice,heath=100,stamina=100,prev = 1;
+        private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
         static void Main(string[] args)
@@ -85,6 +85,15 @@ namespace Studio1Project
                     break;
                 case "help":
                     showCommands();
+                    break;
+                case "sleep":
+                    Console.WriteLine("Sleeping helped you regain some energy!!");
+                    sleepCounter = sleepCounter + 1;
+                    if (sleepCounter > 10) 
+                    {
+                        Console.WriteLine("You win!");
+                        //roomChoice = 9999;
+                    }
                     break;
             }
         }
@@ -357,13 +366,14 @@ namespace Studio1Project
             }
         }
 
-<<<<<<< HEAD
+
         static void showCommands()
         {
             Console.WriteLine("Type one of the following commands or select a room");
             Console.WriteLine("show inventory");
             Console.WriteLine("");
-=======
+        }
+
         public static void combat()
         {
 
@@ -406,7 +416,7 @@ namespace Studio1Project
 
             }
             Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
->>>>>>> 96536e2926ae9137a522da778b9ff0ea637fbd44
+
         }
 
     }
