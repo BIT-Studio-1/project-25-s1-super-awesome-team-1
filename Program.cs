@@ -363,22 +363,15 @@ namespace Studio1Project
         }
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e1f46c74fc8c779fb75734ded4fa2277796a941
         static void showCommands()
         {
             Console.WriteLine("Type one of the following commands or select a room");
             Console.WriteLine("show inventory");
-<<<<<<< HEAD
+
             Console.WriteLine("");
         }
 
-=======
-            Console.WriteLine(""); 
-        }
->>>>>>> 0e1f46c74fc8c779fb75734ded4fa2277796a941
         public static void combat()
         {
 
@@ -421,10 +414,7 @@ namespace Studio1Project
 
             }
             Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
-<<<<<<< HEAD
 
-=======
->>>>>>> 0e1f46c74fc8c779fb75734ded4fa2277796a941
         }
 
     }
