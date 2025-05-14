@@ -68,7 +68,7 @@ namespace Studio1Project
         static void PrisonCell()//room 1 (main room)
         {
             Console.WriteLine("you made it to room 1 \n do you want to go to room 2 or 3");
-            action = Console.ReadLine();
+            action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "hall":
@@ -274,7 +274,7 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
-                Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
+                Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
                 action = Console.ReadLine();
                 switch (action)
                 {
@@ -297,15 +297,15 @@ namespace Studio1Project
         }
         static void Courtyard()//Room11
         {
-            Console.WriteLine("you made it to room 11 \n do you want to go to room 12, 13, 8, 9 or 10");
+            Console.WriteLine("you made it to room 11 \n do you want to go to room 13, 14, 8, 9 or 10");
             action = Console.ReadLine();
             switch (action)
             {
                 case "Gatehouse":
-                    roomChoice = 12;
+                    roomChoice = 13;
                     break;
                 case "Tower Base":
-                    roomChoice = 13;
+                    roomChoice = 14;
                     break;
                 case "Pantry Storage":
                     roomChoice = 8;
@@ -320,25 +320,13 @@ namespace Studio1Project
         }
         static void GateHouse()//Room12 EXIT
         {
-            Console.WriteLine("you made it to room 12 \n do you want to go to room 11");
-            action = Console.ReadLine();
-            switch (action)
-            {
-                case "Courtyard":
-                    roomChoice = 11;
-                    break;
-            }
+            Console.WriteLine("");
+            roomChoice = 9999;
         }
         static void TowerBase()//Room13
         {
-            Console.WriteLine("you made it to room 13 \n do you want to go to room 11");
-            action = Console.ReadLine();
-            switch (action)
-            {
-                case "Courtyard":
-                    roomChoice = 11;
-                    break;
-            }
+            Console.WriteLine("");
+            roomChoice = Convert.ToInt32(Console.ReadLine());
         }
 
         static void invintoryShow()
