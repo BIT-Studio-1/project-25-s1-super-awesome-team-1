@@ -62,11 +62,39 @@ namespace Studio1Project
             }while (roomChoice != 9999);
         }
 
+        // Dictionary for rooms
+        static Dictionary<string, string[]> rooms = new Dictionary<string, string[]>
+    {
+        { "hallway", new string[] { "hallway", "corridor", "passage", "hall", "h/y" } },
+        { "sewers", new string[] { "sewers", "drain", "underground" } },
+        { "library", new string[] { "library", "books", "study", "" } },
+        { "dungeon", new string[] { "dungeon", "prison", "jail", "cell", "start" } },
+        { "showers", new string[] { "shower", "shwer", "shwr", "sh" } },
+        { "lab", new string[] { "lab", "labs", "laboratory", "labrm", "l/r" } },
+        { "infirmary", new string[] { "infirmary", "infrm", "medical", "meds", "hospital", "clinic", "sick bay", "sickbay", "med bay", "first aid", "doctor", "doc" } },
+        { "guard barracks", new string[] { "guard", "barracks", "garrison", "security", "guards", "barrack", "watchmen", "g/b" } },
+        { "kitchen", new string[] { "kitchen", "cooking", "galley", "pantry", "mess", "k/c" } },
+        { "training yard", new string[] { "training yard", "drill", "practice", "exercise", "training", "yard", "t/y" } },
+        { "tower", new string[] { "tower", "watchtower", "spire", "lookout" } },
+        { "courtyard", new string[] { "courtyard", "plaza", "quad", "c/y" } },
+        { "gatehouse", new string[] { "gatehouse", "gate", "gateway", "finish" } },
+    };
+
+        // Method for processing user input
+        static void ProcessCommand(string input)
+        {
+            foreach (var room in rooms)
+            {
+                if (room.Value.Any(keyword => input.Contains(keyword)))
+                {
+                    Console.WriteLine($"You move to the {room.Key}.");
+                    return; // Exit after finding the room
+                }
+            }
 
 
-
-        //All of the rooms 
-        static void PrisonCell()//room 1 (main room)
+            //All of the rooms 
+            static void PrisonCell()//room 1 (main room)
         {
             Console.WriteLine("you made it to room 1 \n do you want to go to room 2 or 3");
             action = Console.ReadLine().ToLower();
@@ -248,7 +276,7 @@ namespace Studio1Project
         }
         static void Infirmary()//Room9 Albert
         {
-            Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nshowers\n courtyard  \n or back");
+            Console.WriteLine("You entered the Infirmary you can got to the \nguardbarracks \nshowers\n courtyard  \n or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -266,7 +294,7 @@ namespace Studio1Project
                 case "show":
                     inventoryShow();
                     break;
-                case "gaurdbarracks":
+                case "guardbarracks":
                     prev = roomChoice;
                     roomChoice = 5;
                     break;
