@@ -79,7 +79,7 @@ namespace Studio1Project
                     roomChoice =3;
                     break;
                 case "test":
-                    roomChoice = Console.ReadLine();
+                    roomChoice = Convert.ToInt32(Console.ReadLine());
                     break;
 
             }
