@@ -68,23 +68,24 @@ namespace Studio1Project
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("you made it to room 1 \n do you want to go to room 2 or 3");
+            Console.WriteLine("you made it to room 1 \n Where do you want to go next? hall or sewers?");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
                 case "hall":
+                case "halll":
                     roomChoice = 2;
                     break;
                 case "sewers":
                     roomChoice =3;
-                    break;
+                    break;   
 
             }
         }
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next?");
+            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? cell, guard barracks, kitchen or back");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -93,6 +94,7 @@ namespace Studio1Project
                     roomChoice = 1;
                     break;
                 case "guard barracks":
+                case "gaurd barracks":
                     prev = roomChoice;
                     roomChoice = 5;
                     break;
