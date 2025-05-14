@@ -1,4 +1,5 @@
-﻿using System.Runtime.Versioning;
+﻿using System.Reflection;
+using System.Runtime.Versioning;
 
 namespace Studio1Project
 {
@@ -247,6 +248,12 @@ namespace Studio1Project
             action = Console.ReadLine();
             switch (action)
             {
+                case "pickup":
+                    inv.Add("health Potion");
+                    break;
+                case "show":
+                    invintoryShow();
+                    break;
                 case "gaurdbarracks":
                     prev = roomChoice;
                     roomChoice = 5;
@@ -331,6 +338,14 @@ namespace Studio1Project
                 case "Courtyard":
                     roomChoice = 11;
                     break;
+            }
+        }
+
+        static void invintoryShow()
+        {
+            foreach (string item in inv )
+            {
+                Console.WriteLine(item);
             }
         }
 
