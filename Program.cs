@@ -219,7 +219,11 @@ namespace Studio1Project
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to the Showers \n do you want to go to the Infirmary or Go Back");
+            Console.WriteLine("As you climb the slimy ladder, you emerge into the old prison showers. The stone floor is slick with moss, and water still drips from rusted pipes overhead.");
+            Console.WriteLine("The air is cold and smells.");
+            Console.WriteLine("You hear a faint shuffling sound echoing down the tiled corridor, but when you look, there’s nothing there.");
+            Console.WriteLine();
+
             action = Console.ReadLine().ToLower();
             switch (action)
             {
