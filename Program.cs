@@ -67,7 +67,7 @@ namespace Studio1Project
             //All of the rooms 
             static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("You wake up in a prison cell \nYou see a sleeping guard sitting on a chair in front of the cell. Also you notice a loose stone in the back. do you want to go to \n- hall \n- sewers");
+            Console.WriteLine("You wake up in a prison cell \nYou see a sleeping guard sitting on a chair in front of the cell. As you look around, you notice a loose stone in the back leading to the sewers. do you want to go to \n- hall \n- sewers");
             action = Console.ReadLine().ToLower();
 
             switch (action)
@@ -176,20 +176,43 @@ namespace Studio1Project
         static void GuardsBarracks()//Room5 SSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("you made it to the Guards Barracks \n do you want to go to the Training Yard or Infirmary or Go Back");
+            Console.WriteLine("You ease the heavy door open with a creak. Inside, the Guards’ Barracks are dimly lit, with flickering torches casting long shadows over the rows of bunk beds.");
+            Console.WriteLine("The smell of sweat and steel clings to the air. Swords, armor pieces, and half-eaten food lie scattered across the room.");
+            Console.WriteLine("It seems the guards left in a hurry—or didn’t leave at all.");
+            Console.WriteLine();
+            Console.WriteLine("You notice two exits: a reinforced door leading to the **Training Yard**, and another to the **Infirmary**.");
+            Console.WriteLine("What do you do?");
+            Console.WriteLine("- go to infirmary");
+            Console.WriteLine("- go to training yard");
+            Console.WriteLine("- search room");
+            Console.WriteLine("- go back");
+
             action = Console.ReadLine().ToLower();
-            switch (action)
+                        
+            switch (action) 
             {
                 case "infirmary":
+                case "go to infirmary":
                     prev = roomChoice;
                     roomChoice = 9;
                     break;
                 case "training yard":
+                case "go to training yard":
                     prev = roomChoice;
                     roomChoice = 10;
                     break;
                 case "back":
+                case "go back":
                     roomChoice = prev;
+                    break;
+                case "search room":
+                    Console.WriteLine("On one of the beds, you spot a mostly-intact **Guard’s Uniform**. Might come in handy.");
+                    break;
+                case "show inventory":
+                    inventoryShow();
+                    break;
+                default:
+                    Console.WriteLine("You pause for a moment, listening. Was that a footstep?");
                     break;
             }
         }
