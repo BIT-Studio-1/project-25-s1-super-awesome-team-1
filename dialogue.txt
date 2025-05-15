@@ -1,0 +1,30 @@
+This was gathered from chatGPT btw
+feel free to change
+
+
+// room 1
+Console.WriteLine("You awaken on cold stone, your wrists aching from rusted shackles now broken loose.");
+    Console.WriteLine("A dim torch flickers outside the bars. A guard snores loudly in a chair just beyond reach.");
+    Console.WriteLine("As your eyes adjust, you notice a loose stone at the back wall—beneath it, a dark tunnel descends into the unknown.");
+
+
+
+
+
+// room 5
+Console.WriteLine("You ease the heavy door open with a creak. Inside, the Guards’ Barracks are dimly lit, with flickering torches casting long shadows over the rows of bunk beds.");
+    Console.WriteLine("The smell of sweat and steel clings to the air. Swords, armor pieces, and half-eaten food lie scattered across the room.");
+    Console.WriteLine("It seems the guards left in a hurry—or didn’t leave at all.");
+
+// room 6
+Console.WriteLine();
+    Console.WriteLine("You step into the old prison showers. The stone floor is slick with moss, and water still drips from rusted pipes overhead.");
+    Console.WriteLine("The air is cold and smells faintly of mildew and blood. Something about this place feels... wrong.");
+    Console.WriteLine("You hear a faint shuffling sound echoing down the tiled corridor, but when you look, there’s nothing there.");
+    Console.WriteLine();
+
+     Console.WriteLine("Where do you want to go?");
+    Console.WriteLine("- go to infirmary");
+    Console.WriteLine("- go back");
+    Console.WriteLine("- search area");
+    Console.WriteLine("- show inventory");
