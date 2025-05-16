@@ -175,48 +175,66 @@ namespace Studio1Project
         }
         static void GuardsBarracks()//Room5 SSSSSSS
         {
+            Console.WriteLine("You push the heavy wooden door open. It groans on rusted hinges, but the corridor beyond remains silent.");
+            Console.WriteLine("The barracks are dim. Torches flicker low, casting restless shadows that dance across rows of unmade bunks and battered lockers.");
+            Console.WriteLine("The smell hits you first — sweat, oil, and something long past edible. A half-eaten loaf lies beside a dented helmet.");
+            Console.WriteLine("You see no guards... but the clutter tells you they were here not long ago.");
             Console.WriteLine();
-            Console.WriteLine("You ease the heavy door open with a creak. Inside, the Guards’ Barracks are dimly lit, with flickering torches casting\nlong shadows over the rows of bunk beds.");
-            Console.WriteLine("The smell of sweat and steel clings to the air. Swords, armor pieces, and half-eaten food lie scattered across the room.");
-            Console.WriteLine("It seems the guards are on patrol.");
-            Console.WriteLine();
-            Console.WriteLine("You notice two exits: a reinforced door leading to the **Training Yard**, and another to the **Infirmary**.");
-            Console.WriteLine("What do you do?");
-            Console.WriteLine("- go to infirmary");
-            Console.WriteLine("- go to training yard");
-            Console.WriteLine("- search room");
-            Console.WriteLine("- go back");
 
-            action = Console.ReadLine().ToLower();
-                        
-            switch (action) 
+            bool validInput = false;
+            while (!validInput)
             {
-                case "infirmary":
-                case "go to infirmary":
-                    prev = roomChoice;
-                    roomChoice = 9;
-                    break;
-                case "training yard":
-                case "go to training yard":
-                case "t/y":
-                    prev = roomChoice;
-                    roomChoice = 10;
-                    break;
-                case "back":
-                case "go back":
-                    roomChoice = prev;
-                    break;
-                case "search room":
-                    Console.WriteLine("On one of the beds, you spot a mostly-intact **Guard’s Uniform**. Might come in handy.");
-                    break;
-                case "show inventory":
-                    inventoryShow();
-                    break;
-                default:
-                    Console.Clear();
-                    Console.WriteLine("You pause for a moment, listening. Was that a footstep?");
-                    Thread.Sleep(1000);
-                    break;
+                Console.WriteLine("There are two doors: one marked with the red cross of the **Infirmary**, the other leads out to the **Training Yard**.");
+                Console.WriteLine("You could also take a moment to look around the barracks.");
+                Console.WriteLine();
+                Console.WriteLine("What do you do?");
+                Console.WriteLine("- Go to Infirmary");
+                Console.WriteLine("- Go to Training Yard");
+                Console.WriteLine("- Search Room");
+                Console.WriteLine("- Go Back");
+                Console.WriteLine();
+
+                action = Console.ReadLine().ToLower();
+
+                switch (action)
+                {
+                    case "infirmary":
+                    case "go to infirmary":
+                        prev = roomChoice;
+                        roomChoice = 9;
+                        validInput = true;
+                        break;
+                    case "training yard":
+                    case "go to training yard":
+                    case "t/y":
+                        prev = roomChoice;
+                        roomChoice = 10;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "go back":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "search room":
+                    case "search":
+                        Console.WriteLine();
+                        Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
+                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact **Guard’s Uniform**. Might come in handy for blending in.");
+                        Console.WriteLine("Type 'show inventory' to check what you're carrying.");
+                        Console.WriteLine();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("You stand still, listening. Was that a creak? Or just the wind?");
+                        Thread.Sleep(1000);
+                        Console.WriteLine();
+                        break;
+                }
             }
         }
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
