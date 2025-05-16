@@ -176,9 +176,9 @@ namespace Studio1Project
         static void GuardsBarracks()//Room5 SSSSSSS
         {
             Console.WriteLine();
-            Console.WriteLine("You ease the heavy door open with a creak. Inside, the Guards’ Barracks are dimly lit, with flickering torches casting long shadows over the rows of bunk beds.");
+            Console.WriteLine("You ease the heavy door open with a creak. Inside, the Guards’ Barracks are dimly lit, with flickering torches casting\nlong shadows over the rows of bunk beds.");
             Console.WriteLine("The smell of sweat and steel clings to the air. Swords, armor pieces, and half-eaten food lie scattered across the room.");
-            Console.WriteLine("It seems the guards left in a hurry—or didn’t leave at all.");
+            Console.WriteLine("It seems the guards are on patrol.");
             Console.WriteLine();
             Console.WriteLine("You notice two exits: a reinforced door leading to the **Training Yard**, and another to the **Infirmary**.");
             Console.WriteLine("What do you do?");
@@ -198,6 +198,7 @@ namespace Studio1Project
                     break;
                 case "training yard":
                 case "go to training yard":
+                case "t/y":
                     prev = roomChoice;
                     roomChoice = 10;
                     break;
@@ -212,7 +213,9 @@ namespace Studio1Project
                     inventoryShow();
                     break;
                 default:
+                    Console.Clear();
                     Console.WriteLine("You pause for a moment, listening. Was that a footstep?");
+                    Thread.Sleep(1000);
                     break;
             }
         }
