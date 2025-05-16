@@ -3,9 +3,43 @@ feel free to change
 
 
 // room 1
+
+// 1-1
 Console.WriteLine("You awaken on cold stone, your wrists aching from rusted shackles now broken loose.");
-    Console.WriteLine("A dim torch flickers outside the bars. A guard snores loudly in a chair just beyond reach.");
-    Console.WriteLine("As your eyes adjust, you notice a loose stone at the back wall—beneath it, a dark tunnel descends into the unknown.");
+Console.WriteLine("A dim torch flickers outside the bars. A guard snores loudly in a chair just beyond reach.");
+Console.WriteLine("As your eyes adjust, you notice a loose stone at the back wall—beneath it, a dark tunnel descends into the unknown.");
+// 1-2	
+Console.WriteLine("You awaken on a cold, damp floor. Chains hang loosely from the stone walls. A flickering torch illuminates a lone guard, slouched and snoring outside your cell.");
+Console.WriteLine("A faint draft brushes your cheek. There's a loose stone in the back wall – possibly a way to the sewers.");
+Console.WriteLine("Where do you want to go?");
+Console.WriteLine("- hall");
+Console.WriteLine("- sewers");
+
+// 1-3
+Console.Clear();
+    Console.WriteLine("A distant drip echoes in the silence as your eyes blink open. Cold stone presses against your back.");
+    Console.WriteLine("The faint glow of a torch outside your cell casts long, flickering shadows across damp walls.");
+    Console.WriteLine("A guard — slouched and snoring — blocks the only door. His helmet tilted, chin resting on his chest.");
+    Console.WriteLine("As you sit up, you notice something odd: a stone in the far wall is cracked and loose, just enough to be pried open.");
+    Console.WriteLine("Maybe it leads somewhere… maybe it’s your only chance.");
+    Console.WriteLine();
+    Console.WriteLine("Where do you go?");
+    Console.WriteLine("- Hall");
+    Console.WriteLine("- Sewers");
+    Console.WriteLine();
+	 case "sleep":
+            Console.WriteLine("You close your eyes and drift into uneasy sleep. It's not much, but it helps.");
+            sleepCounter++;
+
+// room 2
+// 2-1
+Console.WriteLine("You step cautiously into the dungeon hall. The air is thick with mildew, and the distant clink of chains echoes around you.");
+Console.WriteLine("Shadows shift across the stone walls – best not to linger.");
+Console.WriteLine("Where do you want to go?");
+Console.WriteLine("- cell");
+Console.WriteLine("- guard barracks");
+Console.WriteLine("- kitchen");
+Console.WriteLine("- back");
 
 
 
