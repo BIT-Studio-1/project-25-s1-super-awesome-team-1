@@ -109,7 +109,9 @@ namespace Studio1Project
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("you made it the dungeon hall.\n Where do you want to go next? \n-cell \n-guard barracks \n-kitchen \n-back");
+            Console.WriteLine("You quietly step into the dimly lit dungeon hall. Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
+            Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
+            Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -127,6 +129,7 @@ namespace Studio1Project
                     roomChoice =4;
                     break;
                 case "back":
+                case "return"
                     roomChoice = prev;
                     break;
             }
