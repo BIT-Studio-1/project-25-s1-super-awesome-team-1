@@ -67,7 +67,9 @@ namespace Studio1Project
             //All of the rooms 
             static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("You wake up in a prison cell \nYou see a sleeping guard sitting on a chair in front of the cell. As you look around, you notice a loose stone in the back leading to the sewers. do you want to go to \n- hall \n- sewers");
+            Console.WriteLine("You wake up in a prison cell.");
+            Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+            Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
             action = Console.ReadLine().ToLower();
 
             switch (action)
@@ -90,6 +92,7 @@ namespace Studio1Project
                     break;
                 case "sleep":
                     //include energy increase
+                    Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
                     Console.WriteLine("Sleeping helped you regain some energy!!");
                     sleepCounter = sleepCounter + 1;
                     if (sleepCounter > 10) 
