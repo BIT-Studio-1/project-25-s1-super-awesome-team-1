@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Studio1Project
 {
@@ -69,113 +71,125 @@ namespace Studio1Project
             static void PrisonCell()//room 1 (main room)
         {
             Console.WriteLine("You wake up in a prison cell.");
-            Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
-            Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
-            action = Console.ReadLine().ToLower();
-
-            switch (action)
+            
+            bool validInput = false;
+            while (!validInput)
             {
-                case "hall":
-                case "halll":
-                case "open cell":
-                    if (inv.Contains("cell keys")) {
-                        roomChoice = 2;
-                    } else
-                    {
-                        Console.WriteLine("Your cell is locked! You cannot enter the hall.");
-                        roomChoice = 1;
-                    }
-                    break;
-                case "sewers":
-                    roomChoice =3;
-                    break;
-                case "back":
-                    roomChoice = prev;
-                    break;
-                case "test":
-                    roomChoice = Convert.ToInt32(Console.ReadLine());
-                    break;
-                case "pickup":
-                    pickup(ref cellItems);
-                    roomChoice = 1;
-                    break;
-                case "help":
-                    showCommands();
-                    roomChoice = 1;
-                    break;
-                case "sleep":
-                    //include energy increase
-                    Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
-                    Thread.Sleep(2000);
-                    Console.WriteLine("Sleeping helped you regain some energy!!");
-                    sleepCounter = sleepCounter + 1;
-                    roomChoice = 1;
-                    if (sleepCounter > 10) 
-                    {
-                        Console.WriteLine("You win!");
-                        roomChoice = 9999;
-                    }
-                    break;
-                case "show energy":
-                    showEnergyLevels();
-                    roomChoice = 1;
-                    break;
-                case "show inventory":
-                case "inv":
-                    inventoryShow();
-                    roomChoice = 1;
-                    break;
-                default:
-                    Console.WriteLine("Try something else!");
-                    roomChoice = 1;
-                    break;
+                Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
+                action = Console.ReadLine().ToLower();
+
+                switch (action)
+                {
+                    case "hall":
+                    case "halll":
+                    case "open cell":
+                        if (inv.Contains("cell keys"))
+                        {
+                            roomChoice = 2;
+                            validInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Your cell is locked! You cannot enter the hall.");
+                            roomChoice = 1;
+                        }
+                        break;
+                    case "sewers":
+                        roomChoice = 3;
+                        validInput = true;
+                        break;
+                    case "back":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "test":
+                        roomChoice = Convert.ToInt32(Console.ReadLine());
+                        validInput = true;
+                        break;
+                    case "pickup":
+                        pickup(ref cellItems);
+                        break;
+                    case "help":
+                        showCommands();
+                        break;
+                    case "sleep":
+                        //include energy increase
+                        Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("Sleeping helped you regain some energy!!");
+                        sleepCounter = sleepCounter + 1;
+                        if (sleepCounter > 10)
+                        {
+                            Console.WriteLine("You win!");
+                            roomChoice = 9999;
+                        }
+                        break;
+                    case "show energy":
+                        showEnergyLevels();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Try something else!");
+                        break;
+                }
             }
         }
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("You quietly step into the dimly lit dungeon hall. Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
-            Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
-            Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            Console.WriteLine("You quietly step into the dimly lit dungeon hall.");
+            
+
+            bool validInput = false;
+            while (!validInput)
             {
-                case "cell":
-                    prev = roomChoice;
-                    roomChoice = 1;
-                    break;
-                case "guard barracks":
-                case "gaurd barracks":
-                case "left":
-                    prev = roomChoice;
-                    roomChoice = 5;
-                    break;
-                case "kitchen":
-                case "forward":
-                    prev = roomChoice;
-                    roomChoice =4;
-                    break;
-                case "back":
-                case "return":
-                    roomChoice = prev;
-                    break;
-                case "help":
-                    showCommands();
-                    roomChoice = 2;
-                    break;
-                case "show energy":
-                    showEnergyLevels();
-                    roomChoice = 2;
-                    break;
-                case "show inventory":
-                case "inv":
-                    inventoryShow();
-                    roomChoice = 2;
-                    break;
-                default:
-                    Console.WriteLine("Try something else!");
-                    roomChoice = 2;
-                    break;
+                Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
+                Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
+                Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+                action = Console.ReadLine().ToLower();
+                switch (action)
+                {
+                    case "cell":
+                        prev = roomChoice;
+                        roomChoice = 1;
+                        validInput = true;
+                        break;
+                    case "guard barracks":
+                    case "gaurd barracks":
+                    case "left":
+                        prev = roomChoice;
+                        roomChoice = 5;
+                        validInput = true;
+                        break;
+                    case "kitchen":
+                    case "forward":
+                        prev = roomChoice;
+                        roomChoice = 4;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "return":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "help":
+                        showCommands();
+                        break;
+                    case "show energy":
+                        showEnergyLevels();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Try something else!");
+                        break;
+                }
             }
         }
         static void Sewers()//room 3
