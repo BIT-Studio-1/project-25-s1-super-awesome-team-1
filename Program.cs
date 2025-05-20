@@ -360,9 +360,9 @@ namespace Studio1Project
         static void Pantry()//Room8 Albert
         {
             Console.WriteLine();
-            Console.WriteLine("You step into the pantry. The air is thick with the scent of dried herbs, aged meat, and old flour.");
+            Console.WriteLine("You step into the pantry. The air is thick with the scent of dried herbs, aged meat, and flour.");
             Console.WriteLine("Wooden shelves sag under the weight of preserved goods, though many have been picked over.");
-            Console.WriteLine("Scraps of labels and cracked jars suggest someone raided this place recently.");
+            Console.WriteLine("Scraps of labels and cracked jars suggest someone or something has raided this place recently.");
             Console.WriteLine();
 
             bool validInput = false;
@@ -383,6 +383,7 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "courtyard":
+                    case "c/y":
                         prev = roomChoice;
                         roomChoice = 11;
                         validInput = true;
@@ -398,8 +399,6 @@ namespace Studio1Project
                         Console.WriteLine("You scan the shelves, digging through empty jars and broken crates...");
                         Thread.Sleep(1000);
                         Console.WriteLine("Nothing useful — just crumbs and cobwebs. Someone’s already cleaned this place out.");
-                        Console.WriteLine("What now?");
-                        action = Console.ReadLine().ToLower();
                         break;
                     case "show inventory":
                     case "inv":
@@ -416,37 +415,62 @@ namespace Studio1Project
         }
         static void Infirmary()//Room9 Albert
         {
-           
-            Console.WriteLine("You entered the Infirmary you can got to the \ngaurdbarracks \nshowers\n courtyard  \n or back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+
+            Console.WriteLine();
+            Console.WriteLine("You step quietly into the infirmary. The walls are lined with rusted medical cabinets, some hanging open, their contents long looted.");
+            Console.WriteLine("The scent of alcohol and old blood hangs in the air, mixing with something faintly sweet — herbs, perhaps.");
+            Console.WriteLine("A torn cot leans against the wall, and broken vials crunch underfoot as you move.");
+            Console.WriteLine();
+
+            bool validInput = false;
+
+            while (!validInput)
             {
-                case "pickup":
-                    pickup(ref infirmaryItems);
-                    break;
-                case "show":
-                    inventoryShow();
-                    break;
-                case "guardbarracks":
-                    prev = roomChoice;
-                    roomChoice = 5;
-                    break;
-                case "showers":
-                    prev = roomChoice;
-                    roomChoice = 6;
-                    break;
-                case "courtyard":
-                    prev = roomChoice;
-                    roomChoice = 11;
-                    break;
-                case "back":
-                    roomChoice = prev;
-                    break;
-                case "show inventory":
-                case "inv":
-                    inventoryShow();
-                    Thread.Sleep(2000);
-                    break;
+                Console.WriteLine("There’s a narrow iron door half-hinged open, leading back into the sweat-soaked air of the **Guards’ Barracks**.");
+                Console.WriteLine("Beyond the flickering lantern light, a tiled corridor veers off toward the **Showers**, echoing with the faint sound of dripping water.");
+                Console.WriteLine("A heavier, creaking wooden door opens to the **Courtyard**, where cool air stirs through the cracks.");
+                Console.WriteLine("Or... you could always double back the way you came, if none of this feels right.");
+                Console.WriteLine();
+
+                action = Console.ReadLine().ToLower();
+
+                switch (action)
+                {
+                    case "guard barracks":
+                    case "guards barracks":
+                    case "go to guard barracks":
+                        prev = roomChoice;
+                        roomChoice = 5;
+                        validInput = true;
+                        break;
+                    case "showers":
+                        prev = roomChoice;
+                        roomChoice = 6;
+                        validInput = true;
+                        break;
+                    case "courtyard":
+                        prev = roomChoice;
+                        roomChoice = 11;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "go back":
+                        GoBack();
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        Thread.Sleep(2000);
+                        break;
+                    case "pickup":
+                        pickup(ref infirmaryItems);
+                        break;
+                    default:
+                        Console.WriteLine("The flickering lantern casts eerie shadows across the walls.");
+                        break;
+                }
             }
         }
 
@@ -520,10 +544,6 @@ namespace Studio1Project
                     if (inv.Contains("Gatehouse Key"))
                     {
                         roomChoice = 9999;
-                    }
-                    else
-                    {
-                        roomChoice = 12;
                     }
                     break;
                 case "show inventory":
