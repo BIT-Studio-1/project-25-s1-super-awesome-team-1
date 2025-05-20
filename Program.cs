@@ -9,7 +9,7 @@ namespace Studio1Project
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited= new string [0];
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited= {"?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?", "?"};
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
@@ -20,43 +20,55 @@ namespace Studio1Project
                 {
                     
                     case 1:
-
+                        roomsVisited[0] = "Prison cell";
                         PrisonCell();
                         break;
                     case 2:
+                        roomsVisited[1] = "Hallway";
                         DungeonHall();
                         break;
                     case 3:
+                        roomsVisited[2] = "Sewers";
                         Sewers();
                         break;
                     case 4:
+                        roomsVisited[3] = "kitchen";
                         Kitchen();
                         break;
                     case 5:
+                        roomsVisited[4] = "Guards Barracks";
                         GuardsBarracks();
                         break;
                     case 6:
+                        roomsVisited[5] = "Showers";
                         Showers();
                         break;
                     case 7:
+                        roomsVisited[6] = "Lab";
                         Lab(); 
                         break;
                     case 8:
+                        roomsVisited[7] = "Pantry";
                         Pantry();
                         break;
                     case 9:
+                        roomsVisited[8] = "Infirmary";
                         Infirmary();
                         break;
                     case 10:
+                        roomsVisited[9] = "Training Yard";
                         TrainingYard();
                         break;
                     case 11:
+                        roomsVisited[10] = "Courtyard";
                         Courtyard();
                         break;
                     case 12:
+                        roomsVisited[11] = "Gate House";
                         GateHouse();
                         break;
                     case 13:
+                        roomsVisited[12] = "Tower Base";
                         TowerBase();
                         break;
 
@@ -88,7 +100,10 @@ namespace Studio1Project
                     break;
                 case "test":
                     roomChoice = Convert.ToInt32(Console.ReadLine());
-                    break;      
+                    break;
+                case "map":
+                    showMap();
+                    break;
                 case "help":
                     showCommands();
                     break;
@@ -99,7 +114,6 @@ namespace Studio1Project
                     sleepCounter = sleepCounter + 1;
                     if (sleepCounter > 10) 
                     {
-                        Console.WriteLine("You win!");
                         roomChoice = 9999;
                     }
                     break;
@@ -449,7 +463,13 @@ namespace Studio1Project
         }
         static void showMap()
         {
-
+            foreach (string room in roomsVisited) 
+            {
+            if (room != null)
+                {
+                    Console.WriteLine(room);
+                }
+            }
         }
 
         public static void combat()
