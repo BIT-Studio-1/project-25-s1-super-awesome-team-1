@@ -253,12 +253,13 @@ namespace Studio1Project
         static void Kitchen()//Room4
         {
             Console.WriteLine("You step into the prison kitchen. Grease stains mark the floor, and a single pot boils unattended, filling the air with a sour, meaty smell.");
-            Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
-            Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
+            
 
             bool validInput = false;
             while (!validInput)
             {
+                Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
+                Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
                 action = Console.ReadLine().ToLower();
                 switch (action)
                 {
