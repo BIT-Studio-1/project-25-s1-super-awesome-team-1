@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Studio1Project
 {
@@ -9,7 +11,8 @@ namespace Studio1Project
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited= {"?", "??????", "???????", "???????", "????????????????", "????????", "???", "??????", "?????????", "?????????????", "?????????", "?????????????" };
+
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited= {"?", "??????", "???????", "???????", "????????????????", "????????", "???", "??????", "?????????", "?????????????", "?????????", "?????????????" };
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
@@ -81,118 +84,227 @@ namespace Studio1Project
             //All of the rooms 
             static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("You wake up in a prison cell.");
-            Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
-            Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
-            action = Console.ReadLine().ToLower();
-
-            switch (action)
+            Console.WriteLine("You find yourself in a prison cell.");
+            
+            bool validInput = false;
+            while (!validInput)
             {
-                case "hall":
-                case "halll":
-                    roomChoice = 2;
-                    break;
-                case "sewers":
-                    roomChoice =3;
-                    break;
-                case "back":
-                    roomChoice = prev;
-                    break;
-                case "test":
-                    roomChoice = Convert.ToInt32(Console.ReadLine());
-                    break;
-                case "map":
-                    showMap();
-                    break;
-                case "help":
-                    showCommands();
-                    break;
-                case "sleep":
-                    //include energy increase
-                    Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
-                    Console.WriteLine("Sleeping helped you regain some energy!!");
-                    sleepCounter = sleepCounter + 1;
-                    if (sleepCounter > 10) 
-                    {
-                        roomChoice = 9999;
-                    }
-                    break;
-                case "show energy":
-                    showEnergyLevels();
-                    break;
+                Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
+                action = Console.ReadLine().ToLower();
+
+                switch (action)
+                {
+                    case "hall":
+                    case "halll":
+                    case "open cell":
+                        if (inv.Contains("cell keys"))
+                        {
+                            roomChoice = 2;
+                            validInput = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Your cell is locked! You cannot enter the hall.");
+                            roomChoice = 1;
+                        }
+                        break;
+                    case "sewers":
+                        roomChoice = 3;
+                        validInput = true;
+                        break;
+                    case "back":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "test":
+                        roomChoice = Convert.ToInt32(Console.ReadLine());
+                        validInput = true;
+                        break;
+                    case "pickup":
+                        pickup(ref cellItems);
+                        break;
+                    case "help":
+                        showCommands();
+                        break;
+                    case "sleep":
+                        //include energy increase
+                        Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("Sleeping helped you regain some energy!!");
+                        sleepCounter = sleepCounter + 1;
+                        if (sleepCounter > 10)
+                        {
+                            Console.WriteLine("You win!");
+                            roomChoice = 9999;
+                        }
+                        break;
+                    case "show energy":
+                        showEnergyLevels();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Try something else!");
+                        break;
+                }
             }
         }
 
         static void DungeonHall()//Room 2
         {
-            Console.WriteLine("You quietly step into the dimly lit dungeon hall. Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
-            Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
-            Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            Console.WriteLine("You quietly step into the dimly lit dungeon hall.");
+            bool validInput = false;
+            while (!validInput)
             {
-                case "cell":
-                    prev = roomChoice;
-                    roomChoice = 1;
-                    break;
-                case "guard barracks":
-                case "gaurd barracks":
-                    prev = roomChoice;
-                    roomChoice = 5;
-                    break;
-                case "kitchen":
-                    prev = roomChoice;
-                    roomChoice =4;
-                    break;
-                case "back":
-                case "return":
-                    roomChoice = prev;
-                    break;
+                Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
+                Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
+                Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+                action = Console.ReadLine().ToLower();
+                switch (action)
+                {
+                    case "cell":
+                        prev = roomChoice;
+                        roomChoice = 1;
+                        validInput = true;
+                        break;
+                    case "guard barracks":
+                    case "gaurd barracks":
+                    case "left":
+                        prev = roomChoice;
+                        roomChoice = 5;
+                        validInput = true;
+                        break;
+                    case "kitchen":
+                    case "forward":
+                        prev = roomChoice;
+                        roomChoice = 4;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "return":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "help":
+                        showCommands();
+                        break;
+                    case "show energy":
+                        showEnergyLevels();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Try something else!");
+                        break;
+                }
             }
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? \n-cell \n-showers \n-lab room \n-back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            Console.WriteLine("You drop down into the sewers, landing with a wet splash. The tunnel stinks of rot and mold.");
+            
+
+            bool validInput = false;
+            while (!validInput)
             {
-                case "cell":
-                case "celll":
-                    prev = roomChoice;
-                    roomChoice = 1;
-                    break;
-                case "showers":
-                case "showerss":
-                    prev = roomChoice;
-                    roomChoice =6;
-                    break;
-                case "lab room":
-                case "labroom":
-                    prev = roomChoice;
-                    roomChoice = 7;
-                    break;
-                case "back":
-                    roomChoice = prev;
-                    break;
+                Console.WriteLine("To your **left**, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
+                Console.WriteLine("To your **right**, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
+                Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
+                action = Console.ReadLine().ToLower();
+                switch (action)
+                {
+                    case "cell":
+                    case "celll":
+                    case "tunnel":
+                        prev = roomChoice;
+                        roomChoice = 1;
+                        validInput = true;
+                        break;
+                    case "showers":
+                    case "showerss":
+                    case "left":
+                    case "washroom":
+                    case "wash room":
+                        prev = roomChoice;
+                        roomChoice = 6;
+                        validInput = true;
+                        break;
+                    case "lab room":
+                    case "labroom":
+                    case "right":
+                        prev = roomChoice;
+                        roomChoice = 7;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "return":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "help":
+                        showCommands();
+                        break;
+                    case "show energy":
+                        showEnergyLevels();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Try something else!");
+                        break;
+                }
             }
         }
         static void Kitchen()//Room4
         {
-            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next? \n-dungeon hall \n-pantry storage \n-back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            Console.WriteLine("You step into the prison kitchen. Grease stains mark the floor, and a single pot boils unattended, filling the air with a sour, meaty smell.");
+            
+
+            bool validInput = false;
+            while (!validInput)
             {
-                case "dungeon hall":
-                    prev = roomChoice;
-                    roomChoice = 2;
-                    break;
-                case "pantry storage":
-                    prev = roomChoice;
-                    roomChoice = 8;
-                    break;
-                case "back":
-                    roomChoice = prev;
-                    break;
+                Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
+                Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
+                action = Console.ReadLine().ToLower();
+                switch (action)
+                {
+                    case "dungeon hall":
+                        prev = roomChoice;
+                        roomChoice = 2;
+                        validInput = true;
+                        break;
+                    case "pantry storage":
+                    case "left":
+                        prev = roomChoice;
+                        roomChoice = 8;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "return":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "help":
+                        showCommands();
+                        break;
+                    case "show energy":
+                        showEnergyLevels();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Try something else!");
+                        break;
+                }
             }
         }
         static void GuardsBarracks()//Room5 SSSSSSS
@@ -454,12 +566,16 @@ namespace Studio1Project
 
         static void showCommands()
         {
-            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow health");
+            Console.WriteLine("***************************************************************************");
+            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy");
+            Console.WriteLine("***************************************************************************\n\n");
         }
 
         static void showEnergyLevels()
         {
+            Console.WriteLine("***************************************************************************");
             Console.WriteLine($"Health: {heath} \nStamina: {stamina}");
+            Console.WriteLine("***************************************************************************\n\n");
         }
         static void showMap()
         {
