@@ -89,6 +89,7 @@ namespace Studio1Project
                     break;      
                 case "help":
                     showCommands();
+                    roomChoice = 1;
                     break;
                 case "sleep":
                     //include energy increase
@@ -96,6 +97,7 @@ namespace Studio1Project
                     Thread.Sleep(2000);
                     Console.WriteLine("Sleeping helped you regain some energy!!");
                     sleepCounter = sleepCounter + 1;
+                    roomChoice = 1;
                     if (sleepCounter > 10) 
                     {
                         Console.WriteLine("You win!");
@@ -104,6 +106,11 @@ namespace Studio1Project
                     break;
                 case "show energy":
                     showEnergyLevels();
+                    roomChoice = 1;
+                    break;
+                default:
+                    Console.WriteLine("Try something else!");
+                    roomChoice = 1;
                     break;
             }
         }
@@ -122,16 +129,21 @@ namespace Studio1Project
                     break;
                 case "guard barracks":
                 case "gaurd barracks":
+                case "left":
                     prev = roomChoice;
                     roomChoice = 5;
                     break;
                 case "kitchen":
+                case "forward":
                     prev = roomChoice;
                     roomChoice =4;
                     break;
                 case "back":
                 case "return":
                     roomChoice = prev;
+                    break;
+                default:
+                    Console.WriteLine("Try something else!");
                     break;
             }
         }
@@ -452,12 +464,16 @@ namespace Studio1Project
 
         static void showCommands()
         {
+            Console.WriteLine("***************************************************************************");
             Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow health");
+            Console.WriteLine("***************************************************************************\n\n");
         }
 
         static void showEnergyLevels()
         {
+            Console.WriteLine("***************************************************************************");
             Console.WriteLine($"Health: {heath} \nStamina: {stamina}");
+            Console.WriteLine("***************************************************************************\n\n");
         }
 
         public static void combat()
