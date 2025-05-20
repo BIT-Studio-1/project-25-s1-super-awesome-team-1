@@ -10,7 +10,7 @@ namespace Studio1Project
         private static string action = "";
         private static List<string> inv = new List<string>();
         private static string[] infirmaryItems = { "health potion", "energy stim", "note" };
-        private static string[] cellItems = { "keys" };
+        private static string[] cellItems = { "cell keys" };
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
@@ -77,7 +77,14 @@ namespace Studio1Project
             {
                 case "hall":
                 case "halll":
-                    roomChoice = 2;
+                case "open cell":
+                    if (inv.Contains("cell keys")) {
+                        roomChoice = 2;
+                    } else
+                    {
+                        Console.WriteLine("Your cell is locked! You cannot enter the hall.");
+                        roomChoice = 1;
+                    }
                     break;
                 case "sewers":
                     roomChoice =3;
@@ -87,7 +94,11 @@ namespace Studio1Project
                     break;
                 case "test":
                     roomChoice = Convert.ToInt32(Console.ReadLine());
-                    break;      
+                    break;
+                case "pickup":
+                    pickup(ref cellItems);
+                    roomChoice = 1;
+                    break;
                 case "help":
                     showCommands();
                     roomChoice = 1;
@@ -107,6 +118,11 @@ namespace Studio1Project
                     break;
                 case "show energy":
                     showEnergyLevels();
+                    roomChoice = 1;
+                    break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
                     roomChoice = 1;
                     break;
                 default:
@@ -149,6 +165,11 @@ namespace Studio1Project
                     break;
                 case "show energy":
                     showEnergyLevels();
+                    roomChoice = 2;
+                    break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
                     roomChoice = 2;
                     break;
                 default:
@@ -198,6 +219,11 @@ namespace Studio1Project
                     showEnergyLevels();
                     roomChoice = 3;
                     break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
+                    roomChoice = 3;
+                    break;
                 default:
                     Console.WriteLine("Try something else!");
                     roomChoice = 3;
@@ -231,6 +257,11 @@ namespace Studio1Project
                     break;
                 case "show energy":
                     showEnergyLevels();
+                    roomChoice = 4;
+                    break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
                     roomChoice = 4;
                     break;
                 default:
