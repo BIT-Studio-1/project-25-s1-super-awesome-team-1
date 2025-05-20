@@ -10,6 +10,7 @@ namespace Studio1Project
         private static string action = "";
         private static List<string> inv = new List<string>();
         private static string[] infirmaryItems = { "health potion", "energy stim", "note" };
+        private static string[] cellItems = { "keys" };
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
@@ -142,8 +143,17 @@ namespace Studio1Project
                 case "return":
                     roomChoice = prev;
                     break;
+                case "help":
+                    showCommands();
+                    roomChoice = 2;
+                    break;
+                case "show energy":
+                    showEnergyLevels();
+                    roomChoice = 2;
+                    break;
                 default:
                     Console.WriteLine("Try something else!");
+                    roomChoice = 2;
                     break;
             }
         }
@@ -180,6 +190,18 @@ namespace Studio1Project
                 case "tunnel":
                     roomChoice = prev;
                     break;
+                case "help":
+                    showCommands();
+                    roomChoice = 3;
+                    break;
+                case "show energy":
+                    showEnergyLevels();
+                    roomChoice = 3;
+                    break;
+                default:
+                    Console.WriteLine("Try something else!");
+                    roomChoice = 3;
+                    break;
             }
         }
         static void Kitchen()//Room4
@@ -202,6 +224,18 @@ namespace Studio1Project
                 case "back":
                 case "return":
                     roomChoice = prev;
+                    break;
+                case "help":
+                    showCommands();
+                    roomChoice = 4;
+                    break;
+                case "show energy":
+                    showEnergyLevels();
+                    roomChoice = 4;
+                    break;
+                default:
+                    Console.WriteLine("Try something else!");
+                    roomChoice = 4;
                     break;
             }
         }
