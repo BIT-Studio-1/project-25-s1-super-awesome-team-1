@@ -9,10 +9,10 @@ namespace Studio1Project
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" };
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note", "Guard's Uniform" };
         static void Main(string[] args)
         {
-            Console.WriteLine("welcome to the game");
+            Console.WriteLine("welcome to the game"); // ascii art goes here
             PrisonCell();
             do
             {
@@ -129,7 +129,7 @@ namespace Studio1Project
                     roomChoice =4;
                     break;
                 case "back":
-                case "return"
+                case "return":
                     roomChoice = prev;
                     break;
             }
@@ -181,6 +181,7 @@ namespace Studio1Project
         }
         static void GuardsBarracks()//Room5 SSSSSSS
         {
+            Console.Clear();
             Console.WriteLine("You push the heavy wooden door open. It groans on rusted hinges, but the corridor beyond remains silent.");
             Console.WriteLine("The barracks are dim. Torches flicker low, casting restless shadows that dance across rows of unmade bunks and battered lockers.");
             Console.WriteLine("The smell hits you first — sweat, oil, and something long past edible. A half-eaten loaf lies beside a dented helmet.");
@@ -201,11 +202,12 @@ namespace Studio1Project
                 Console.WriteLine();
 
                 action = Console.ReadLine().ToLower();
-
+                Console.Clear();
                 switch (action)
                 {
                     case "infirmary":
                     case "go to infirmary":
+                    case "1":
                         prev = roomChoice;
                         roomChoice = 9;
                         validInput = true;
@@ -213,26 +215,32 @@ namespace Studio1Project
                     case "training yard":
                     case "go to training yard":
                     case "t/y":
+                    case "2":
                         prev = roomChoice;
                         roomChoice = 10;
                         validInput = true;
                         break;
                     case "back":
                     case "go back":
+                    case "4":
                         roomChoice = prev;
                         validInput = true;
                         break;
                     case "search room":
                     case "search":
+                    case "3":
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
-                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact **Guard’s Uniform**. Might come in handy for blending in.");
+                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact **Guard’s Uniform**. You search the pockets and find a **Key**.");
                         Console.WriteLine("Type 'show inventory' to check what you're carrying.");
                         Console.WriteLine();
+                        inv.Add("Gatehouse Key");
+                        Thread.Sleep(5000);
                         break;
                     case "show inventory":
                     case "inv":
                         inventoryShow();
+                        Thread.Sleep(2000);
                         break;
                     default:
                         Console.WriteLine();
@@ -245,32 +253,79 @@ namespace Studio1Project
         }
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
+            Console.Clear();
+            Console.WriteLine("You grip the rusted ladder rungs and climb up, feet slipping slightly on the damp metal.");
+            Console.WriteLine("A cold draft hits you as you emerge into a crumbling shower room. Water drips steadily from cracked pipes above, echoing through the tiled space.");
+            Console.WriteLine("The walls are stained with age and mold, and the sour smell of mildew clings to the air.");
+            Console.WriteLine("Light from a window overhead casts strange shadows between the rows of broken stalls.");
             Console.WriteLine();
-            Console.WriteLine("As you climb the slimy ladder, you emerge into the old prison showers. The stone floor is slick with moss, and water still drips from rusted pipes overhead.");
-            Console.WriteLine("The air is cold and smells.");
-            Console.WriteLine("You hear a faint shuffling sound echoing down the tiled corridor, but when you look, there’s nothing there.");
+            Console.WriteLine("Somewhere in the distance, you hear a metallic clang... then silence.");
             Console.WriteLine();
 
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            bool validInput = false;
+            while (!validInput)
             {
-                case "infirmary":
-                    prev = roomChoice;
-                    roomChoice = 9;
-                    break;             
-                case "back":
-                    roomChoice=prev;
-                    break;
-                case "show inventory":
-                    inventoryShow();
-                    break;
+                Console.WriteLine("There’s a narrow iron door half-hinged open, marked faintly with the red cross of the **Infirmary**.");
+                Console.WriteLine("You could also climb back down into the sewers, if you’d rather not linger here any longer.");
+                Console.WriteLine();
+                Console.WriteLine("From here, you can:");
+                Console.WriteLine("- Go to Infirmary");
+                Console.WriteLine("- Go Back");
+                Console.WriteLine("- Show Inventory");
+                Console.WriteLine();
+
+                action = Console.ReadLine().ToLower();
+                Console.Clear();
+                switch (action)
+                {
+                    case "infirmary":
+                    case "infirm":
+                    case "go to infirmary":
+                    case "goto infirmary":
+                        prev = roomChoice;
+                        roomChoice = 9;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "go back":
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "search room":
+                    case "search":
+                        Console.WriteLine();
+                        Console.WriteLine("You move cautiously between the cracked stalls and broken tiles, checking behind pipes and under benches.");
+                        Console.WriteLine("Slippery moss clings to your boots. The floor creaks in protest, and for a moment, you think you spot movement—but it's just a shadow.");
+                        Console.WriteLine($"After a few minutes of careful searching, you find..."); 
+                        Thread.Sleep(2000);  
+                        Console.WriteLine("Nothing of use.");              
+                        Console.WriteLine("Just rusted plumbing, mold, and the faint feeling that someone *was* here long before you.");
+                        Thread.Sleep(2000);
+                        Console.WriteLine();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        Thread.Sleep(2000);
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("You pause, heart beating faster. The sound returns—scraping, distant, not quite real.");
+                        Console.WriteLine("You glance toward the showers again. Nothing. But something about this place sets your nerves on edge.");
+                        Thread.Sleep(1000);
+                        Console.WriteLine();
+                        break;
+                }
             }
         }
         static void Lab()//Room7 SSSSSSSSSSSSSSSSSSS
         {
             Console.WriteLine();
             Console.WriteLine("you made it to the Lab \n do you want to go to the Training yard or Go Back");
+
             action = Console.ReadLine().ToLower();
+
+            bool validInput = false;
             switch (action)
             {
                 case "training yard":
@@ -387,6 +442,9 @@ namespace Studio1Project
                 case "courtyard":
                     roomChoice = 11;
                     break;
+                case "exit":
+                    roomChoice = 9999;
+                    break;
 
                 //Needs solution to the exit
 
@@ -411,6 +469,7 @@ namespace Studio1Project
             {
                 Console.WriteLine(item);
             }
+            Console.WriteLine("====================");
         }
         static void pickup(ref string[] items)//pickup items
         {
