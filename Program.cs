@@ -129,14 +129,17 @@ namespace Studio1Project
                     roomChoice =4;
                     break;
                 case "back":
-                case "return"
+                case "return":
                     roomChoice = prev;
                     break;
             }
         }
         static void Sewers()//room 3
         {
-            Console.WriteLine("you made it to the sewers.\n  Where do you want to go next? \n-cell \n-showers \n-lab room \n-back");
+            Console.WriteLine("You drop down into the sewers, landing with a wet splash. The tunnel stinks of rot and mold.");
+            Console.WriteLine("To your **left**, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
+            Console.WriteLine("To your **right**, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
+            Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -147,15 +150,19 @@ namespace Studio1Project
                     break;
                 case "showers":
                 case "showerss":
+                case "left":
                     prev = roomChoice;
                     roomChoice =6;
                     break;
                 case "lab room":
                 case "labroom":
+                case "right":
                     prev = roomChoice;
                     roomChoice = 7;
                     break;
                 case "back":
+                case "return":
+                case "tunnel":
                     roomChoice = prev;
                     break;
             }
