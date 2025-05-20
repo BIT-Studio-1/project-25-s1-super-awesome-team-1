@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.ComponentModel.Design;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
@@ -11,20 +12,13 @@ namespace Studio1Project
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-<<<<<<< HEAD
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note", "Guard's Uniform" };
-        static void Main(string[] args)
-        {
-            Console.WriteLine("welcome to the game"); // ascii art goes here
-            PrisonCell();
-=======
 
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited= {"?", "??????", "???????", "???????", "????????????????", "????????", "???", "??????", "?????????", "?????????????", "?????????", "?????????????" };
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited= {"?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
             roomChoice = 1;
->>>>>>> 5bd2cbdce4f0f7180aa5e98a4c02f424c4bbdb6f
+
             do
             {
                 switch (roomChoice)
@@ -135,6 +129,9 @@ namespace Studio1Project
                     case "help":
                         showCommands();
                         break;
+                    case "map":
+                        showMap();
+                        break;
                     case "sleep":
                         //include energy increase
                         Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
@@ -167,25 +164,6 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-<<<<<<< HEAD
-                case "cell":
-                    prev = roomChoice;
-                    roomChoice = 1;
-                    break;
-                case "guard barracks":
-                case "gaurd barracks":
-                    prev = roomChoice;
-                    roomChoice = 5;
-                    break;
-                case "kitchen":
-                    prev = roomChoice;
-                    roomChoice =4;
-                    break;
-                case "back":
-                case "return":
-                    roomChoice = prev;
-                    break;
-=======
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
                 Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
@@ -218,6 +196,9 @@ namespace Studio1Project
                     case "help":
                         showCommands();
                         break;
+                    case "map":
+                        showMap();
+                        break;
                     case "show energy":
                         showEnergyLevels();
                         break;
@@ -229,7 +210,6 @@ namespace Studio1Project
                         Console.WriteLine("Try something else!");
                         break;
                 }
->>>>>>> 5bd2cbdce4f0f7180aa5e98a4c02f424c4bbdb6f
             }
         }
         static void Sewers()//room 3
@@ -277,6 +257,9 @@ namespace Studio1Project
                     case "help":
                         showCommands();
                         break;
+                    case "map":
+                        showMap();
+                        break;
                     case "show energy":
                         showEnergyLevels();
                         break;
@@ -321,6 +304,9 @@ namespace Studio1Project
                         break;
                     case "help":
                         showCommands();
+                        break;
+                    case "map":
+                        showMap();
                         break;
                     case "show energy":
                         showEnergyLevels();
@@ -392,6 +378,9 @@ namespace Studio1Project
                         inventoryShow();
                         Thread.Sleep(2000);
                         break;
+                    case "map":
+                        showMap();
+                        break;
                     default:
                         Console.WriteLine();
                         Console.WriteLine("You stand still, listening. Was that a creak? Or just the wind?");
@@ -455,6 +444,9 @@ namespace Studio1Project
                         inventoryShow();
                         Thread.Sleep(2000);
                         break;
+                    case "map":
+                        showMap();
+                        break;
                     default:
                         GoBack();
                         Console.WriteLine();
@@ -504,6 +496,9 @@ namespace Studio1Project
                     case "inv":
                         inventoryShow();
                         Thread.Sleep(2000);
+                        break;
+                    case "map":
+                        showMap();
                         break;
                     default:
                         Console.WriteLine();
@@ -560,6 +555,9 @@ namespace Studio1Project
                     case "inv":
                         inventoryShow();
                         Thread.Sleep(2000);
+                        break;
+                    case "map":
+                        showMap();
                         break;
                     default:
                         Console.WriteLine();
@@ -620,6 +618,9 @@ namespace Studio1Project
                         inventoryShow();
                         Thread.Sleep(2000);
                         break;
+                    case "map":
+                        showMap();
+                        break;
                     case "pickup":
                         pickup(ref infirmaryItems);
                         break;
@@ -656,6 +657,9 @@ namespace Studio1Project
                     inventoryShow();
                     Thread.Sleep(2000);
                     break;
+                case "map":
+                    showMap();
+                    break;
             }
         }
         static void Courtyard()//Room11
@@ -684,6 +688,9 @@ namespace Studio1Project
                     inventoryShow();
                     Thread.Sleep(2000);
                     break;
+                case "map":
+                    showMap();
+                    break;
             }
         }
         static void GateHouse()//Room12 EXIT
@@ -701,16 +708,21 @@ namespace Studio1Project
                     {
                         roomChoice = 9999;
                     }
+                    else
+                    {
+                        Console.WriteLine("You dont seam to have the ket to open the lock");
+                    }
                     break;
+                    
                 case "show inventory":
-                case "inv":
-                    inventoryShow();
-                    Thread.Sleep(2000);
-                    break;
+                        case "inv":
+                            inventoryShow();
+                            Thread.Sleep(2000);
+                            break;
 
-                    //Needs solution to the exit
+                            //Needs solution to the exit
 
-            }
+                        }
         }
         static void TowerBase()//Room13
         {
@@ -779,15 +791,8 @@ namespace Studio1Project
             Console.WriteLine("***************************************************************************\n\n");
         }
         static void showMap()
-        {
-            Console.WriteLine($"     ........................                              ........................                              ........................\r\n     ..                    ..                              ..                    ..                              ..                    ..\r\n     ..      {roomsVisited[0]}          ..................................      {roomsVisited[1]}       ..................................       {roomsVisited[3]}       ..\r\n     ..                    ..................................                    ..................................                    ..\r\n     ..                    ..                              ..                    ..                              ..                    ..\r\n     ........................                              ........................                              ........................\r\n               ...                                                   ....                                                  ...           \r\n               ...                                                    ..                                                    ..           \r\n               ...                                                    ..                                                    ..           \r\n               ...                                                    ..                                                    ..           \r\n               ...                                                    ..                                                    ..           \r\n               ...                                                    ..                                                    ..           \r\n               ...                                                    ..                                                    ..           \r\n               ...                                                    ..                                                    ..           \r\n               ....                                                  ....                                                  ...           \r\n     ........................   ........................  ........................                              ........................\r\n     ..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n     ..        {roomsVisited[2]}        .......       {roomsVisited[5]}        ..  ..    {roomsVisited[4]}   ..                              .         {roomsVisited[7]}        ..\r\n     ..                    .......                    ..  ..                    ..                              .                     ..\r\n     ..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n     ........................   ........................  ........................                              ........................\r\n               ....                   ....                   .....       ....                                              ...          \r\n               ...                     ..                   ....         ...                                                ..          \r\n               ...                     ..                 ....          ...                                                 ..          \r\n               ...                     ..                ..            ..                                                   ..          \r\n               ...                     ..              ..             ..                                                    ..          \r\n               ...                     ..            ...             ...                                                    ..          \r\n               ....                   ....        .....             ..                                                      ..           \r\n     ........................   .........................          ...                                           ........................\r\n     ..                    ..   ...                    ..        ....                                            .                     ..\r\n     ..          {roomsVisited[6]}         ..   ...     {roomsVisited[8]}        ....     ....                                             .       {roomsVisited[10]}       ..\r\n     ..                    ..   ...                    ...........................................................                     ..\r\n     ..                    ..   ...                    ..     ...                                                .                     ..\r\n     ........................   .........................    ...                                               ..........................\r\n                ....                                       ....                                             ......   ....        ....\r\n                 ....                                     ....                                          .......     ...           ...\r\n                   ....                                  ....                                       .......        ...             ...\r\n                    ....                                 ..                                      ......           ...               ...\r\n                      ....                              ..                                   ......              ...                ...\r\n                        ....                          ...                                .......                 ..                  ...\r\n                         ...                         ...                             .......                    ..                    ...\r\n                           ...                      ....                          ......                       ..                      ...\r\n                            ...                    ...                        ......                          ..                       ....\r\n                             ....                 ...                     .......                            ...                        ...\r\n                              ....              ....                   ......                               ....                         ...\r\n                                .... ........................      ......                        ........................      ........................\r\n                                  .....                    ..  .......                           .                     ..      ..                    ..\r\n                                   ....    {roomsVisited[9]}     .........                             .       {roomsVisited[12]}      ..      ..      {roomsVisited[11]}      ..\r\n                                     ..                    ....                                  .                     ..      ..                    ..\r\n                                     ..                    ..                                    ..                    ..      ..                    ..\r\n                                     ........................                                    ........................      ........................\r\n");
-            foreach (string room in roomsVisited) 
             {
-            if (room != null)
-                {
-                    Console.WriteLine(room);
-                }
-            }
+            Console.WriteLine($"........................                              ........................                              ........................\r\n..                    ..                              ..                    ..                              ..                    ..\r\n..      {roomsVisited[0]}          ..................................      {roomsVisited[1]}       ..................................      {roomsVisited[3]}       ..\r\n..                    ..................................                    ..................................                    ..\r\n..                    ..                              ..                    ..                              ..                    ..\r\n........................                              ........................                              ........................\r\n          ...                                                   ....                                                  ...           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ....                                                  ....                                                  ...           \r\n........................   ........................  ........................                              ........................\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n..       {roomsVisited[2]}       .......      {roomsVisited[5]}       ..  ..   {roomsVisited[4]}  ..                              .        {roomsVisited[7]}       ..\r\n..                    .......                    ..  ..                    ..                              .                     ..\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n........................   ........................  ........................                              ........................\r\n          ....                   ....                   .....       ....                                              ...          \r\n          ...                     ..                   ....         ...                                                ..          \r\n          ...                     ..                 ....          ...                                                 ..          \r\n          ...                     ..                ..            ..                                                   ..          \r\n          ...                     ..              ..             ..                                                    ..          \r\n          ...                     ..            ...             ...                                                    ..          \r\n          ....                   ....        .....             ..                                                      ..           \r\n........................   .........................          ...                                           ........................\r\n..                    ..   ...                    ..        ....                                            .                     ..\r\n..         {roomsVisited[6]}        ..   ...    {roomsVisited[8]}       ....     ....                                             .      {roomsVisited[10]}      ..\r\n..                    ..   ...                    ...........................................................                     ..\r\n..                    ..   ...                    ..     ...                                                .                     ..\r\n........................   .........................    ...                                               ..........................\r\n           ....                                       ....                                             ......   ....        ....\r\n            ....                                     ....                                          .......     ...           ...\r\n              ....                                  ....                                       .......        ...             ...\r\n               ....                                 ..                                      ......           ...               ...\r\n                 ....                              ..                                   ......              ...                ...\r\n                   ....                          ...                                .......                 ..                  ...\r\n                    ...                         ...                             .......                    ..                    ...\r\n                      ...                      ....                          ......                       ..                      ...\r\n                       ...                    ...                        ......                          ..                       ....\r\n                        ....                 ...                     .......                            ...                        ...\r\n                         ....              ....                   ......                               ....                         ...\r\n                           .... ........................      ......                        ........................      ........................\r\n                             .....                    ..  .......                           .                     ..      ..                    ..\r\n                              ....   {roomsVisited[9]}    .........                             .      {roomsVisited[12]}     ..      ..     {roomsVisited[11]}     ..\r\n                                ..                    ....                                  .                     ..      ..                    ..\r\n                                ..                    ..                                    ..                    ..      ..                    ..\r\n                                ........................                                    ........................      ........................");
         }
 
         public static void combat()
