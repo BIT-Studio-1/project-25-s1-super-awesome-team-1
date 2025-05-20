@@ -194,12 +194,6 @@ namespace Studio1Project
                 Console.WriteLine("There are two doors: one marked with the red cross of the **Infirmary**, the other leads out to the **Training Yard**.");
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
-                Console.WriteLine("What do you do?");
-                Console.WriteLine("- Go to Infirmary");
-                Console.WriteLine("- Go to Training Yard");
-                Console.WriteLine("- Search Room");
-                Console.WriteLine("- Go Back");
-                Console.WriteLine();
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -207,28 +201,27 @@ namespace Studio1Project
                 {
                     case "infirmary":
                     case "go to infirmary":
-                    case "1":
+                    case "goto infirmary":
+                    case "infirm":
                         prev = roomChoice;
                         roomChoice = 9;
                         validInput = true;
                         break;
                     case "training yard":
                     case "go to training yard":
+                    case "goto training yard":
                     case "t/y":
-                    case "2":
                         prev = roomChoice;
                         roomChoice = 10;
                         validInput = true;
                         break;
                     case "back":
                     case "go back":
-                    case "4":
                         roomChoice = prev;
                         validInput = true;
                         break;
                     case "search room":
                     case "search":
-                    case "3":
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
                         Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact **Guard’s Uniform**. You search the pockets and find a **Key**.");
@@ -265,13 +258,8 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There’s a narrow iron door half-hinged open, marked faintly with the red cross of the **Infirmary**.");
+                Console.WriteLine("There’s a narrow iron door half-hinged open, marked faintly with the red cross of the Infirmary.");
                 Console.WriteLine("You could also climb back down into the sewers, if you’d rather not linger here any longer.");
-                Console.WriteLine();
-                Console.WriteLine("From here, you can:");
-                Console.WriteLine("- Go to Infirmary");
-                Console.WriteLine("- Go Back");
-                Console.WriteLine("- Show Inventory");
                 Console.WriteLine();
 
                 action = Console.ReadLine().ToLower();
@@ -310,7 +298,7 @@ namespace Studio1Project
                         break;
                     default:
                         Console.WriteLine();
-                        Console.WriteLine("You pause, heart beating faster. The sound returns—scraping, distant, not quite real.");
+                        Console.WriteLine("You pause, heart beating faster.");
                         Console.WriteLine("You glance toward the showers again. Nothing. But something about this place sets your nerves on edge.");
                         Thread.Sleep(1000);
                         Console.WriteLine();
@@ -320,21 +308,33 @@ namespace Studio1Project
         }
         static void Lab()//Room7 SSSSSSSSSSSSSSSSSSS
         {
+            Console.Clear();
+            Console.WriteLine("You step into the laboratory through a heavy steel door that groans against its hinges.");
+            Console.WriteLine("Dust dances in the stale air, lit by flickering overhead lights. Rows of broken vials, shattered beakers, and rusted equipment clutter the counters.");
+            Console.WriteLine("A thick chemical smell still lingers—acrid and sharp. This place hasn’t been used in a long time… or maybe it has, just not for science.");
             Console.WriteLine();
-            Console.WriteLine("you made it to the Lab \n do you want to go to the Training yard or Go Back");
 
-            action = Console.ReadLine().ToLower();
+            
 
             bool validInput = false;
-            switch (action)
+            while (!validInput)
             {
-                case "training yard":
-                    prev = roomChoice;
-                    roomChoice = 10;
-                    break;
-                case "back":
-                    roomChoice = prev;
-                    break;
+                Console.WriteLine("There’s a door leading to the **Training Yard**, its reinforced window cracked but intact.");
+                Console.WriteLine("You could also return to the **Sewers**, retracing your steps through the underground passage.");
+                Console.WriteLine();
+
+                action = Console.ReadLine().ToLower();
+
+                switch (action)
+                {
+                    case "training yard":
+                        prev = roomChoice;
+                        roomChoice = 10;
+                        break;
+                    case "back":
+                        roomChoice = prev;
+                        break;
+                }
             }
         }
         static void Pantry()//Room8 Albert
