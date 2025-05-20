@@ -93,6 +93,7 @@ namespace Studio1Project
                 case "sleep":
                     //include energy increase
                     Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
+                    Thread.Sleep(2000);
                     Console.WriteLine("Sleeping helped you regain some energy!!");
                     sleepCounter = sleepCounter + 1;
                     if (sleepCounter > 10) 
@@ -151,6 +152,8 @@ namespace Studio1Project
                 case "showers":
                 case "showerss":
                 case "left":
+                case "washroom":
+                case "wash room":
                     prev = roomChoice;
                     roomChoice =6;
                     break;
@@ -169,7 +172,9 @@ namespace Studio1Project
         }
         static void Kitchen()//Room4
         {
-            Console.WriteLine("you made it to room the kitchen.\n Where do you want to go next? \n-dungeon hall \n-pantry storage \n-back");
+            Console.WriteLine("You step into the prison kitchen. Grease stains mark the floor, and a single pot boils unattended, filling the air with a sour, meaty smell.");
+            Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
+            Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
             action = Console.ReadLine().ToLower();
             switch (action)
             {
@@ -178,10 +183,12 @@ namespace Studio1Project
                     roomChoice = 2;
                     break;
                 case "pantry storage":
+                case "left":
                     prev = roomChoice;
                     roomChoice = 8;
                     break;
                 case "back":
+                case "return":
                     roomChoice = prev;
                     break;
             }
