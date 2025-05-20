@@ -252,7 +252,6 @@ namespace Studio1Project
             Console.WriteLine("A cold draft hits you as you emerge into a crumbling shower room. Water drips steadily from cracked pipes above, echoing through the tiled space.");
             Console.WriteLine("The walls are stained with age and mold, and the sour smell of mildew clings to the air.");
             Console.WriteLine("Light from a window overhead casts strange shadows between the rows of broken stalls.");
-            Console.WriteLine();
             Console.WriteLine("Somewhere in the distance, you hear a metallic clang... then silence.");
             Console.WriteLine();
 
@@ -325,7 +324,7 @@ namespace Studio1Project
                 Console.WriteLine();
 
                 action = Console.ReadLine().ToLower();
-
+                Console.Clear();
                 switch (action)
                 {
                     case "training yard":
@@ -341,26 +340,78 @@ namespace Studio1Project
                         roomChoice = prev;
                         validInput = true;
                         break;
+                    case "search room":
+                        Console.WriteLine("You sift through the dusty tables and shattered glass. Most things are ruined or unusable...");
+                        Console.WriteLine("After a thorough search, you come up empty-handed.");
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        Thread.Sleep(2000);
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("The hum of broken equipment fills the silence. You hesitate, second-guessing your next move.");
+                        Console.WriteLine();
+                        break;
                 }
             }
         }
         static void Pantry()//Room8 Albert
         {
-            Console.WriteLine("You entered the pantry you can got to the \nkitchen \ncourtyard\n or back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
-            {
-                case "kitchen":
-                    prev= roomChoice;
-                    roomChoice = 4;
-                    break;
-                case "courtyard":
-                    prev = roomChoice;
-                    roomChoice = 11;
-                    break;
-                case "back":
+            Console.WriteLine();
+            Console.WriteLine("You step into the pantry. The air is thick with the scent of dried herbs, aged meat, and old flour.");
+            Console.WriteLine("Wooden shelves sag under the weight of preserved goods, though many have been picked over.");
+            Console.WriteLine("Scraps of labels and cracked jars suggest someone raided this place recently.");
+            Console.WriteLine();
 
-                    break;
+            bool validInput = false;
+            while (!validInput)
+            {
+                Console.WriteLine("To your left, a narrow archway leads back to the **Kitchen** — faint light flickers from a distant torch.");
+                Console.WriteLine("Beyond a storage rack, a battered door swings gently open, revealing a path toward the **Courtyard**.");
+                Console.WriteLine("You can also step back the way you came.");
+                Console.WriteLine();
+
+                action = Console.ReadLine().ToLower();
+
+                switch (action)
+                {
+                    case "kitchen":
+                        prev = roomChoice;
+                        roomChoice = 4;
+                        validInput = true;
+                        break;
+                    case "courtyard":
+                        prev = roomChoice;
+                        roomChoice = 11;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "go back":
+                        GoBack();
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "search room":
+                    case "search":
+                        Console.WriteLine("You scan the shelves, digging through empty jars and broken crates...");
+                        Thread.Sleep(1000);
+                        Console.WriteLine("Nothing useful — just crumbs and cobwebs. Someone’s already cleaned this place out.");
+                        Console.WriteLine("What now?");
+                        action = Console.ReadLine().ToLower();
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        Thread.Sleep(2000);
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("The pantry creaks softly around you. Nothing happens.");
+                        Console.WriteLine();
+                        break;
+                }
             }
         }
         static void Infirmary()//Room9 Albert
@@ -391,6 +442,11 @@ namespace Studio1Project
                 case "back":
                     roomChoice = prev;
                     break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
+                    Thread.Sleep(2000);
+                    break;
             }
         }
 
@@ -415,7 +471,12 @@ namespace Studio1Project
                     case "back":
                         roomChoice= prev;
                         break;
-                }
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
+                    Thread.Sleep(2000);
+                    break;
+            }
         }
         static void Courtyard()//Room11
         {
@@ -438,6 +499,11 @@ namespace Studio1Project
                 case "training yard":
                     roomChoice = 10;
                     break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
+                    Thread.Sleep(2000);
+                    break;
             }
         }
         static void GateHouse()//Room12 EXIT
@@ -450,10 +516,23 @@ namespace Studio1Project
                     roomChoice = 11;
                     break;
                 case "exit":
-                    roomChoice = 9999;
+                case "leave":
+                    if (inv.Contains("Gatehouse Key"))
+                    {
+                        roomChoice = 9999;
+                    }
+                    else
+                    {
+                        roomChoice = 12;
+                    }
+                    break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
+                    Thread.Sleep(2000);
                     break;
 
-                //Needs solution to the exit
+                    //Needs solution to the exit
 
             }
         }
@@ -484,6 +563,7 @@ namespace Studio1Project
                 Console.WriteLine(item);
             }
             Console.WriteLine("====================");
+            Console.WriteLine();
         }
         static void pickup(ref string[] items)//pickup items
         {
