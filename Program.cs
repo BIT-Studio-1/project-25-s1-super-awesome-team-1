@@ -191,7 +191,7 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There are two doors: one marked with the red cross of the **Infirmary**, the other leads out to the **Training Yard**.");
+                Console.WriteLine("There are two doors: one marked with the red cross of the Infirmary, the other leads out to the Training Yard.");
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
 
@@ -217,6 +217,7 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "go back":
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -276,6 +277,9 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "go back":
+                        Console.WriteLine("You pause for a moment, taking one last look around.");
+                        Console.WriteLine("With cautious steps, you retrace your path to the previous area.");
+                        Thread.Sleep(1000);
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -297,10 +301,7 @@ namespace Studio1Project
                         Thread.Sleep(2000);
                         break;
                     default:
-                        Console.WriteLine();
-                        Console.WriteLine("You pause, heart beating faster.");
-                        Console.WriteLine("You glance toward the showers again. Nothing. But something about this place sets your nerves on edge.");
-                        Thread.Sleep(1000);
+                        GoBack();
                         Console.WriteLine();
                         break;
                 }
@@ -319,8 +320,8 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There’s a door leading to the **Training Yard**, its reinforced window cracked but intact.");
-                Console.WriteLine("You could also return to the **Sewers**, retracing your steps through the underground passage.");
+                Console.WriteLine("There’s a door leading to the Training Yard, its reinforced window cracked but intact.");
+                Console.WriteLine("You could also return to the Sewers, retracing your steps through the underground passage.");
                 Console.WriteLine();
 
                 action = Console.ReadLine().ToLower();
@@ -328,11 +329,17 @@ namespace Studio1Project
                 switch (action)
                 {
                     case "training yard":
+                    case "go to training yard":
+                    case "goto training yard":
+                    case "t/y":
                         prev = roomChoice;
                         roomChoice = 10;
                         break;
                     case "back":
+                    case "sewers":
+                        GoBack();
                         roomChoice = prev;
+                        validInput = true;
                         break;
                 }
             }
@@ -460,6 +467,13 @@ namespace Studio1Project
                     roomChoice = 11;
                     break;
             }
+        }
+        static void GoBack()
+        {
+            Console.WriteLine("You cast a final glance at your surroundings before slipping away.");
+            Console.WriteLine("Every step echoes your decision to return the way you came.");
+            Console.WriteLine();
+            Thread.Sleep(1000);
         }
         static void inventoryShow()//Albert
         {
