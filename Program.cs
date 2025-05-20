@@ -9,18 +9,18 @@ namespace Studio1Project
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" };
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited= new string [0];
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
-            PrisonCell();
+            roomChoice = 1;
             do
             {
-                
                 switch (roomChoice)
                 {
                     
                     case 1:
+
                         PrisonCell();
                         break;
                     case 2:
@@ -62,6 +62,8 @@ namespace Studio1Project
 
                 }
             }while (roomChoice != 9999);
+            Console.WriteLine("you win");
+            Thread.Sleep(1000);
         }
 
             //All of the rooms 
@@ -129,7 +131,7 @@ namespace Studio1Project
                     roomChoice =4;
                     break;
                 case "back":
-                case "return"
+                case "return":
                     roomChoice = prev;
                     break;
             }
@@ -444,6 +446,10 @@ namespace Studio1Project
         static void showEnergyLevels()
         {
             Console.WriteLine($"Health: {heath} \nStamina: {stamina}");
+        }
+        static void showMap()
+        {
+
         }
 
         public static void combat()
