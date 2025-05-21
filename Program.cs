@@ -264,6 +264,9 @@ namespace Studio1Project
                 switch (action)
                 {
                     case "dungeon hall":
+                    case "hall":
+                    case "behind":
+                    case "corridor":
                         prev = roomChoice;
                         roomChoice = 2;
                         validInput = true;
