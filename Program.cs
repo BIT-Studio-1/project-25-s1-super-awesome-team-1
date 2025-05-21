@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using System.Threading;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Studio1Project
@@ -76,10 +77,44 @@ namespace Studio1Project
                         roomsVisited[12] = "Tower Base";
                         TowerBase();
                         break;
-
+                    case 9999:
+                        Console.WriteLine("You win! Do you want to play again? y/n");
+                        action = Console.ReadLine();
+                        if (action == "y")
+                        {
+                            roomChoice = 1;
+                            heath = 100;
+                            stamina = 100;
+                            prev = 1;
+                            sleepCounter = 0;
+                            inv.Clear();
+                            infirmaryItems = new string[] { "health potion", "energy stim", "note" };
+                            cellItems = new string[]{ "cell keys"};
+                            roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+                            break;
+                        } else
+                        {
+                            Console.WriteLine("bye");
+                            Thread.Sleep(2000);
+                            return;
+                        }
+                    case 9998:
+                        Console.WriteLine("You lose! Do you want to play again? y/n");
+                        action = Console.ReadLine();
+                        if (action == "y")
+                        {
+                            roomChoice = 1;
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("bye");
+                            Thread.Sleep(2000);
+                            return;
+                        }
                 }
-            }while (roomChoice != 9999 && roomChoice!= 9998);
-            Console.WriteLine("you win");
+            }while (roomChoice != 0);
+            
             Thread.Sleep(1000);
         }
 
