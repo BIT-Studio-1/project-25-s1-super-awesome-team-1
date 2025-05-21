@@ -886,6 +886,12 @@ namespace Studio1Project
 
             while (!validInput)
             {
+
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step back inside through the door.");
+                Console.WriteLine("You might also take a moment to inspect the area more closely.");
+                Console.WriteLine();
+
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
                 switch (action)
@@ -914,39 +920,86 @@ namespace Studio1Project
             int towerFloor = 1;
             bool jump = false;
 
-            while (towerFloor > 0&& !jump)
+            while (towerFloor > 0 && !jump)
             {
                 string option = "";
 
-                while (towerFloor != 6)
+                while (towerFloor < 6 && towerFloor > 0)
                 {
-                    Console.WriteLine("Would you like to climb or go back");
-                    option = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine($"You stand on floor {towerFloor} of the tower. The stone stairs spiral tightly in both directions.");
+                    Console.WriteLine("Do you want to climb further or head back down?");
+                    Console.Write(">> ");
+                    option = Console.ReadLine().ToLower();
 
                     switch (option)
                     {
                         case "climb":
                         case "up":
+                        case "climb up":
                         case "climb tower":
                             towerFloor++;
                             stamina -= 5;
-                            Console.WriteLine($"You climb to the next floor of the tower and slowly tire out [Floor: {towerFloor}]");
+                            Console.WriteLine($"You ascend to floor {towerFloor}, your legs growing heavier with each step.");
                             Console.WriteLine($"Stamina: {stamina}");
                             break;
                         case "down":
-                        case "back":
-                        case "go back":
                         case "go down":
+                        case "go back":
                         case "return":
-                            Console.WriteLine($"You climb back to the previous floor");
-                            towerFloor--;
+                        case "back":
+                            if (towerFloor > 1)
+                            {
+                                towerFloor--;
+                                Console.WriteLine($"You descend cautiously to floor {towerFloor}, the stairwell dark and narrow.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You’re already at the base of the tower—you can’t go any lower.");
+                            }
+                            break;
+                        default:
+                            Console.WriteLine("The silence in the tower grows heavier as you hesitate.");
                             break;
                     }
                 }
-                Console.WriteLine("You reach the top of the tower and look over the edge. You see the wall and what looks like a river");
-                Console.WriteLine("You think you can make the jump over the wall and into the river but it looks risky, or you can go back down.");
-                option = Console.ReadLine();
 
+                if (towerFloor == 6)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("At last, you reach the top of the tower. The cold wind bites at your skin as you step onto the open rooftop.");
+                    Console.WriteLine("Below, far beyond the castle wall, a river glimmers in the fading light—just within reach.");
+                    Console.WriteLine("It’s a long drop. You might make it... or you might not.");
+                    Console.WriteLine("Do you take the leap, or retreat back into the tower?");
+                    Console.Write(">> ");
+
+                    string playerChoice = Console.ReadLine().ToLower();
+
+                    switch (playerChoice)
+                    {
+                        case "jump":
+                        case "leap":
+                        case "jump off":
+                        case "leap off":
+                            Console.WriteLine();
+                            Console.WriteLine("You take a deep breath, close your eyes—and leap.");
+                            Console.WriteLine("The air roars in your ears. For a moment, it feels like flying...");
+                            Console.WriteLine("Then everything fades to black.");
+                            jump = true;
+                            break;
+                        case "go down":
+                        case "down":
+                        case "back":
+                        case "return":
+                            Console.WriteLine("You turn away from the edge, heart pounding. Not today.");
+                            towerFloor--;
+                            break;
+
+                        default:
+                            Console.WriteLine("The wind howls, waiting for your choice...");
+                            break;
+                    }
+                }
             }
         }
 
