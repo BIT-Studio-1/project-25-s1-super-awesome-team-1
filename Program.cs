@@ -7,23 +7,34 @@ using static System.Formats.Asn1.AsnWriter;
 
 namespace Studio1Project
 {
+    public struct Weapon
+    {
+        public string name;
+        public int minDamage;
+        public int maxDamage;
+        public int block;
+        public int staminaCost;
+    }
     internal class Program
     {
-
-        private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
+        private static int roomChoice=1, heath = 100, stamina = 100, prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = {"cell keys"}, roomsVisited= {"?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        private static Weapon playerWeapon;
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
         static void Main(string[] args)
         {
-            
-            roomChoice = 1;
+            playerWeapon.name = "fists";
+            playerWeapon.minDamage = 2;
+            playerWeapon.maxDamage = 10;
+            playerWeapon.block = 0;
+            playerWeapon.staminaCost = 10;
 
             do
             {
                 switch (roomChoice)
                 {
-                    
+
                     case 1:
                         roomsVisited[0] = "Cell";
                         PrisonCell();
@@ -50,7 +61,7 @@ namespace Studio1Project
                         break;
                     case 7:
                         roomsVisited[6] = "Lab";
-                        Lab(); 
+                        Lab();
                         break;
                     case 8:
                         roomsVisited[7] = "Pantry";
@@ -78,16 +89,16 @@ namespace Studio1Project
                         break;
 
                 }
-            }while (roomChoice != 9999 && roomChoice!= 9998);
+            } while (roomChoice != 9999 && roomChoice != 9998);
             Console.WriteLine("you win");
             Thread.Sleep(1000);
         }
 
-            //All of the rooms 
-            static void PrisonCell()//room 1 (main room)
+        //All of the rooms 
+        static void PrisonCell()//room 1 (main room)
         {
             Console.WriteLine("You find yourself in a prison cell.");
-            
+
             bool validInput = false;
             while (!validInput)
             {
@@ -151,9 +162,9 @@ namespace Studio1Project
                     case "inv":
                         inventoryShow();
                         break;
-                    //case "test fight":
-                    //    combat();
-                    //    break;
+                    case "test fight":
+                        combat(10,100,1,1);
+                        break;
                     default:
                         Console.WriteLine("Try something else!");
                         break;
@@ -218,7 +229,7 @@ namespace Studio1Project
         static void Sewers()//room 3
         {
             Console.WriteLine("You drop down into the sewers, landing with a wet splash. The tunnel stinks of rot and mold.");
-            
+
 
             bool validInput = false;
             while (!validInput)
@@ -279,7 +290,7 @@ namespace Studio1Project
         static void Kitchen()//Room4
         {
             Console.WriteLine("You step into the prison kitchen. Grease stains mark the floor, and a single pot boils unattended, filling the air with a sour, meaty smell.");
-            
+
 
             bool validInput = false;
             while (!validInput)
@@ -434,9 +445,9 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine("You move cautiously between the cracked stalls and broken tiles, checking behind pipes and under benches.");
                         Console.WriteLine("Slippery moss clings to your boots. The floor creaks in protest, and for a moment, you think you spot movement—but it's just a shadow.");
-                        Console.WriteLine($"After a few minutes of careful searching, you find..."); 
-                        Thread.Sleep(2000);  
-                        Console.WriteLine("Nothing of use.");              
+                        Console.WriteLine($"After a few minutes of careful searching, you find...");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("Nothing of use.");
                         Console.WriteLine("Just rusted plumbing, mold, and the faint feeling that someone *was* here long before you.");
                         Thread.Sleep(2000);
                         Console.WriteLine();
@@ -633,31 +644,31 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
-                Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
-                action = Console.ReadLine().ToLower();
+            Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
+            action = Console.ReadLine().ToLower();
             switch (action)
-                {
-                 case "lab":
+            {
+                case "lab":
                     prev = roomChoice;
                     roomChoice = 7;
-                 break;
-                    case "gaurdbarracks":
-                        prev = roomChoice;
-                        roomChoice = 5;
-                 break;
-                    case "courtyard":
-                        prev = roomChoice;
-                        roomChoice = 11;
-                 break;
-                    case "back":
-                        roomChoice= prev;
-                 break;
-                    case "show inventory":
-                    case "inv":
+                    break;
+                case "gaurdbarracks":
+                    prev = roomChoice;
+                    roomChoice = 5;
+                    break;
+                case "courtyard":
+                    prev = roomChoice;
+                    roomChoice = 11;
+                    break;
+                case "back":
+                    roomChoice = prev;
+                    break;
+                case "show inventory":
+                case "inv":
                     inventoryShow();
                     Thread.Sleep(2000);
-                 break;
-                    case "map":
+                    break;
+                case "map":
                     showMap();
                     break;
             }
@@ -743,7 +754,7 @@ namespace Studio1Project
         {
             Console.WriteLine("====================");
             Console.WriteLine("Items in inventory");
-            foreach (string item in inv )
+            foreach (string item in inv)
             {
                 Console.WriteLine(item);
             }
@@ -753,7 +764,7 @@ namespace Studio1Project
         static void pickup(ref string[] items)//pickup items
         {
             Console.Clear();
-            string item="";
+            string item = "";
 
             Console.WriteLine("what item do you want to pick up");
             foreach (string i in items)
@@ -788,7 +799,7 @@ namespace Studio1Project
             Console.WriteLine("***************************************************************************\n\n");
         }
         static void showMap()
-            {
+        {
             Console.WriteLine($"........................                              ........................                              ........................\r\n..                    ..                              ..                    ..                              ..                    ..\r\n..      {roomsVisited[0]}          ..................................      {roomsVisited[1]}       ..................................      {roomsVisited[3]}       ..\r\n..                    ..................................                    ..................................                    ..\r\n..                    ..                              ..                    ..                              ..                    ..\r\n........................                              ........................                              ........................\r\n          ...                                                   ....                                                  ...           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ....                                                  ....                                                  ...           \r\n........................   ........................  ........................                              ........................\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n..       {roomsVisited[2]}       .......      {roomsVisited[5]}       ..  ..   {roomsVisited[4]}  ..                              .        {roomsVisited[7]}       ..\r\n..                    .......                    ..  ..                    ..                              .                     ..\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n........................   ........................  ........................                              ........................\r\n          ....                   ....                   .....       ....                                              ...          \r\n          ...                     ..                   ....         ...                                                ..          \r\n          ...                     ..                 ....          ...                                                 ..          \r\n          ...                     ..                ..            ..                                                   ..          \r\n          ...                     ..              ..             ..                                                    ..          \r\n          ...                     ..            ...             ...                                                    ..          \r\n          ....                   ....        .....             ..                                                      ..           \r\n........................   .........................          ...                                           ........................\r\n..                    ..   ...                    ..        ....                                            .                     ..\r\n..         {roomsVisited[6]}        ..   ...    {roomsVisited[8]}       ....     ....                                             .      {roomsVisited[10]}      ..\r\n..                    ..   ...                    ...........................................................                     ..\r\n..                    ..   ...                    ..     ...                                                .                     ..\r\n........................   .........................    ...                                               ..........................\r\n           ....                                       ....                                             ......   ....        ....\r\n            ....                                     ....                                          .......     ...           ...\r\n              ....                                  ....                                       .......        ...             ...\r\n               ....                                 ..                                      ......           ...               ...\r\n                 ....                              ..                                   ......              ...                ...\r\n                   ....                          ...                                .......                 ..                  ...\r\n                    ...                         ...                             .......                    ..                    ...\r\n                      ...                      ....                          ......                       ..                      ...\r\n                       ...                    ...                        ......                          ..                       ....\r\n                        ....                 ...                     .......                            ...                        ...\r\n                         ....              ....                   ......                               ....                         ...\r\n                           .... ........................      ......                        ........................      ........................\r\n                             .....                    ..  .......                           .                     ..      ..                    ..\r\n                              ....   {roomsVisited[9]}    .........                             .      {roomsVisited[12]}     ..      ..     {roomsVisited[11]}     ..\r\n                                ..                    ....                                  .                     ..      ..                    ..\r\n                                ..                    ..                                    ..                    ..      ..                    ..\r\n                                ........................                                    ........................      ........................");
         }
 
@@ -836,17 +847,38 @@ namespace Studio1Project
         //    }
         //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
         //}
-        //public static void combat() {
-        //    string combatChoice = "";
-        //    Console.WriteLine("");
-        //    do while 
-        //        {
+        public static void combat(int enemyHealth, int enemyDef,int enemyMin, int enemyMax)
+        {
+            int userDamage, userDefence, enemyDamage;
+            Random rand = new Random();
+            string combatChoice = "";
 
-        //        }
+            userDefence = 0;
+            Console.WriteLine("");
+            combatChoice = Console.ReadLine();
+            if (combatChoice == "attack")
+            {
+                userDamage = rand.Next(playerWeapon.minDamage, playerWeapon.maxDamage) - enemyDef;
+                stamina = stamina - playerWeapon.staminaCost;
+                if (userDamage > 0)
+                {
+                    enemyHealth = enemyHealth - userDamage;
+                }
+                Console.WriteLine(enemyHealth);
+            }
+            else if (combatChoice == "defend")
+            {
+                userDefence = playerWeapon.block;
+            }
+            enemyDamage = rand.Next(enemyMin, enemyMax) - userDefence;
+            stamina = stamina - playerWeapon.staminaCost;
+            if (enemyDamage > 0)
+            {
+                enemyHealth = enemyHealth - enemyDamage;
+            }
 
-        
-        
-        //}
+
+        }
 
     }
 }
