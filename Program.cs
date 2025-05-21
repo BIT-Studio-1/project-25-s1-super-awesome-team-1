@@ -151,6 +151,9 @@ namespace Studio1Project
                     case "inv":
                         inventoryShow();
                         break;
+                    case "test fight":
+                        combat();
+                        break;
                     default:
                         Console.WriteLine("Try something else!");
                         break;
@@ -461,8 +464,6 @@ namespace Studio1Project
             Console.WriteLine("A thick chemical smell still lingers—acrid and sharp. This place hasn’t been used in a long time… or maybe it has, just not for science.");
             Console.WriteLine();
 
-            
-
             bool validInput = false;
             while (!validInput)
             {
@@ -634,29 +635,29 @@ namespace Studio1Project
         {
                 Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
                 action = Console.ReadLine().ToLower();
-                switch (action)
+            switch (action)
                 {
-                    case "lab":
+                 case "lab":
                     prev = roomChoice;
                     roomChoice = 7;
-                        break;
+                 break;
                     case "gaurdbarracks":
                         prev = roomChoice;
                         roomChoice = 5;
-                        break;
+                 break;
                     case "courtyard":
                         prev = roomChoice;
                         roomChoice = 11;
-                        break;
+                 break;
                     case "back":
                         roomChoice= prev;
-                        break;
-                case "show inventory":
-                case "inv":
+                 break;
+                    case "show inventory":
+                    case "inv":
                     inventoryShow();
                     Thread.Sleep(2000);
-                    break;
-                case "map":
+                 break;
+                    case "map":
                     showMap();
                     break;
             }
@@ -703,25 +704,22 @@ namespace Studio1Project
                     break;
                 case "exit":
                 case "leave":
+                case "escape":
                     if (inv.Contains("Gatehouse Key"))
                     {
                         roomChoice = 9999;
                     }
                     else
                     {
-                        Console.WriteLine("You dont seam to have the ket to open the lock");
+                        Console.WriteLine("You don't have the key to open the gate");
                     }
                     break;
-                    
                 case "show inventory":
-                        case "inv":
-                            inventoryShow();
-                            Thread.Sleep(2000);
-                            break;
-
-                            //Needs solution to the exit
-
-                        }
+                case "inv":
+                    inventoryShow();
+                    Thread.Sleep(2000);
+                    break;
+            }
         }
         static void TowerBase()//Room13
         {
