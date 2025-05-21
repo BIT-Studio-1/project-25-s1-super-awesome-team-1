@@ -180,7 +180,6 @@ namespace Studio1Project
                         showMap();
                         break;
                     case "sleep":
-                        //include energy increase
                         Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
                         Thread.Sleep(2000);
                         Console.WriteLine("Sleeping helped you regain some energy!!");
@@ -847,7 +846,7 @@ namespace Studio1Project
         static void showCommands()
         {
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch");
+            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
             Console.WriteLine("***************************************************************************\n\n");
         }
 
