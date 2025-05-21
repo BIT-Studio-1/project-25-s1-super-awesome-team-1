@@ -3,26 +3,41 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using System.Text;
+using System.Threading;
+using Microsoft.VisualBasic;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Studio1Project
 {
+    public struct Weapon
+    {
+        public string name;
+        public int minDamage;
+        public int maxDamage;
+        public int block;
+        public int staminaCost;
+    }
     internal class Program
     {
-        private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
+        private static int roomChoice=1, health = 100, stamina = 100, prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited= {"?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        private static Weapon playerWeapon;
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
         static void Main(string[] args)
         {
-            Console.WriteLine("welcome to the game");
-            roomChoice = 1;
+            playerWeapon.name = "fists";
+            playerWeapon.minDamage = 2;
+            playerWeapon.maxDamage = 10;
+            playerWeapon.block = 5;
+            playerWeapon.staminaCost = 10;
 
             do
             {
                 switch (roomChoice)
                 {
-                    
+
                     case 1:
                         roomsVisited[0] = "Cell";
                         PrisonCell();
@@ -49,7 +64,7 @@ namespace Studio1Project
                         break;
                     case 7:
                         roomsVisited[6] = "Lab";
-                        Lab(); 
+                        Lab();
                         break;
                     case 8:
                         roomsVisited[7] = "Pantry";
@@ -75,29 +90,59 @@ namespace Studio1Project
                         roomsVisited[12] = "Tower Base";
                         TowerBase();
                         break;
-
+                    case 9999:
+                        Console.WriteLine("You win! Do you want to play again? y/n");
+                        action = Console.ReadLine();
+                        if (action == "y")
+                        {
+                            reset();
+                            break;
+                        } else
+                        {
+                            Console.WriteLine("bye");
+                            Thread.Sleep(2000);
+                            return;
+                        }
+                    case 9998:
+                        Console.WriteLine("You lose! Do you want to play again? y/n");
+                        action = Console.ReadLine();
+                        if (action == "y")
+                        {
+                            reset();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("bye");
+                            Thread.Sleep(2000);
+                            return;
+                        }
                 }
-            }while (roomChoice != 9999);
-            Console.WriteLine("you win");
+
+            }while (roomChoice != 0);
+
             Thread.Sleep(1000);
         }
 
-            //All of the rooms 
-            static void PrisonCell()//room 1 (main room)
+        //All of the rooms 
+        static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("You find yourself in a prison cell.");
-            
+
+            Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps. The air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
+            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable. Each room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries. With your mission in mind you start exploring your surroundings...\n\n");
             bool validInput = false;
             while (!validInput)
             {
                 Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
-                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n\n");
                 action = Console.ReadLine().ToLower();
 
                 switch (action)
                 {
                     case "hall":
                     case "halll":
+                    case "hallway":
+                    case "dungeon hall":
                     case "open cell":
                         if (inv.Contains("cell keys"))
                         {
@@ -115,8 +160,13 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
+<<<<<<< HEAD
                     case "return":
                     case "go back":
+=======
+                    case "go back":
+                        GoBack();
+>>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
@@ -129,17 +179,18 @@ namespace Studio1Project
                         pickup(ref cellItems);
                         break;
                     case "help":
+                    case "h":
                         showCommands();
                         break;
                     case "map":
                         showMap();
                         break;
                     case "sleep":
-                        //include energy increase
                         Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
                         Thread.Sleep(2000);
                         Console.WriteLine("Sleeping helped you regain some energy!!");
                         sleepCounter = sleepCounter + 1;
+                        stamina = stamina + 10;
                         if (sleepCounter > 10)
                         {
                             Console.WriteLine("You win!");
@@ -154,7 +205,7 @@ namespace Studio1Project
                         inventoryShow();
                         break;
                     case "test fight":
-                        combat();
+                        combat(10,1,1,1);
                         break;
                     default:
                         Console.WriteLine("Try something else!");
@@ -196,6 +247,10 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
+<<<<<<< HEAD
+=======
+                        GoBack();
+>>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
@@ -222,7 +277,7 @@ namespace Studio1Project
         static void Sewers()//room 3
         {
             Console.WriteLine("You drop down into the sewers, landing with a wet splash. The tunnel stinks of rot and mold.");
-            
+
 
             bool validInput = false;
             while (!validInput)
@@ -259,6 +314,10 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
+<<<<<<< HEAD
+=======
+                        GoBack();
+>>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
@@ -285,7 +344,7 @@ namespace Studio1Project
         static void Kitchen()//Room4
         {
             Console.WriteLine("You step into the prison kitchen. Grease stains mark the floor, and a single pot boils unattended, filling the air with a sour, meaty smell.");
-            
+
 
             bool validInput = false;
             while (!validInput)
@@ -296,6 +355,10 @@ namespace Studio1Project
                 switch (action)
                 {
                     case "dungeon hall":
+                    case "hall":
+                    case "hallway":
+                    case "behind":
+                    case "corridor":
                         prev = roomChoice;
                         roomChoice = 2;
                         validInput = true;
@@ -309,12 +372,20 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
+<<<<<<< HEAD
+=======
+                        GoBack();
+>>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
                         break;
                     case "help":
                         showCommands();
+                        break;
+                    case "eat":
+                        Console.WriteLine("You approach the bubbling pot and take a taste of the food inside. It helps you regain some energy!\n\n");
+                        stamina = stamina + 5;
                         break;
                     case "map":
                         showMap();
@@ -345,7 +416,7 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There are two doors: one marked with the red cross of the Infirmary, the other leads out to the Training Yard.");
+                Console.WriteLine("There are three doors: one marked with the red cross of the Infirmary, the other one leading out to the Training Yard. The last one seems to lead in to a hallway.");
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
 
@@ -367,6 +438,14 @@ namespace Studio1Project
                     case "t/y":
                         prev = roomChoice;
                         roomChoice = 10;
+                        validInput = true;
+                        break;
+                    case "dungeon hall":
+                    case "hall":
+                    case "hallway":
+                    case "corridor":
+                        prev = roomChoice;
+                        roomChoice = 2;
                         validInput = true;
                         break;
                     case "back":
@@ -405,7 +484,6 @@ namespace Studio1Project
         }
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
-            Console.Clear();
             Console.WriteLine("You grip the rusted ladder rungs and climb up, feet slipping slightly on the damp metal.");
             Console.WriteLine("A cold draft hits you as you emerge into a crumbling shower room. Water drips steadily from cracked pipes above, echoing through the tiled space.");
             Console.WriteLine("The walls are stained with age and mold, and the sour smell of mildew clings to the air.");
@@ -445,9 +523,9 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine("You move cautiously between the cracked stalls and broken tiles, checking behind pipes and under benches.");
                         Console.WriteLine("Slippery moss clings to your boots. The floor creaks in protest, and for a moment, you think you spot movement—but it's just a shadow.");
-                        Console.WriteLine($"After a few minutes of careful searching, you find..."); 
-                        Thread.Sleep(2000);  
-                        Console.WriteLine("Nothing of use.");              
+                        Console.WriteLine($"After a few minutes of careful searching, you find...");
+                        Thread.Sleep(2000);
+                        Console.WriteLine("Nothing of use.");
                         Console.WriteLine("Just rusted plumbing, mold, and the faint feeling that someone *was* here long before you.");
                         Thread.Sleep(2000);
                         Console.WriteLine();
@@ -653,6 +731,7 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
+<<<<<<< HEAD
             Console.Clear();
 
             Console.WriteLine();
@@ -727,6 +806,35 @@ namespace Studio1Project
                         Thread.Sleep(1000);
                         break;
                 }
+=======
+            Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
+            action = Console.ReadLine().ToLower();
+            switch (action)
+            {
+                case "lab":
+                    prev = roomChoice;
+                    roomChoice = 7;
+                    break;
+                case "gaurdbarracks":
+                    prev = roomChoice;
+                    roomChoice = 5;
+                    break;
+                case "courtyard":
+                    prev = roomChoice;
+                    roomChoice = 11;
+                    break;
+                case "back":
+                    roomChoice = prev;
+                    break;
+                case "show inventory":
+                case "inv":
+                    inventoryShow();
+                    Thread.Sleep(2000);
+                    break;
+                case "map":
+                    showMap();
+                    break;
+>>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
             }
         }
         static void Courtyard()//Room11
@@ -1014,7 +1122,7 @@ namespace Studio1Project
         {
             Console.WriteLine("====================");
             Console.WriteLine("Items in inventory");
-            foreach (string item in inv )
+            foreach (string item in inv)
             {
                 Console.WriteLine(item);
             }
@@ -1024,7 +1132,7 @@ namespace Studio1Project
         static void pickup(ref string[] items)//pickup items
         {
             Console.Clear();
-            string item="";
+            string item = "";
 
             Console.WriteLine("what item do you want to pick up");
             foreach (string i in items)
@@ -1048,63 +1156,184 @@ namespace Studio1Project
         static void showCommands()
         {
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy");
+            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
             Console.WriteLine("***************************************************************************\n\n");
         }
 
         static void showEnergyLevels()
         {
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine($"Health: {heath} \nStamina: {stamina}");
+            Console.WriteLine($"Health: {health} \nStamina: {stamina}");
             Console.WriteLine("***************************************************************************\n\n");
         }
         static void showMap()
-            {
+        {
             Console.WriteLine($"........................                              ........................                              ........................\r\n..                    ..                              ..                    ..                              ..                    ..\r\n..      {roomsVisited[0]}          ..................................      {roomsVisited[1]}       ..................................      {roomsVisited[3]}       ..\r\n..                    ..................................                    ..................................                    ..\r\n..                    ..                              ..                    ..                              ..                    ..\r\n........................                              ........................                              ........................\r\n          ...                                                   ....                                                  ...           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ....                                                  ....                                                  ...           \r\n........................   ........................  ........................                              ........................\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n..       {roomsVisited[2]}       .......      {roomsVisited[5]}       ..  ..   {roomsVisited[4]}  ..                              .        {roomsVisited[7]}       ..\r\n..                    .......                    ..  ..                    ..                              .                     ..\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n........................   ........................  ........................                              ........................\r\n          ....                   ....                   .....       ....                                              ...          \r\n          ...                     ..                   ....         ...                                                ..          \r\n          ...                     ..                 ....          ...                                                 ..          \r\n          ...                     ..                ..            ..                                                   ..          \r\n          ...                     ..              ..             ..                                                    ..          \r\n          ...                     ..            ...             ...                                                    ..          \r\n          ....                   ....        .....             ..                                                      ..           \r\n........................   .........................          ...                                           ........................\r\n..                    ..   ...                    ..        ....                                            .                     ..\r\n..         {roomsVisited[6]}        ..   ...    {roomsVisited[8]}       ....     ....                                             .      {roomsVisited[10]}      ..\r\n..                    ..   ...                    ...........................................................                     ..\r\n..                    ..   ...                    ..     ...                                                .                     ..\r\n........................   .........................    ...                                               ..........................\r\n           ....                                       ....                                             ......   ....        ....\r\n            ....                                     ....                                          .......     ...           ...\r\n              ....                                  ....                                       .......        ...             ...\r\n               ....                                 ..                                      ......           ...               ...\r\n                 ....                              ..                                   ......              ...                ...\r\n                   ....                          ...                                .......                 ..                  ...\r\n                    ...                         ...                             .......                    ..                    ...\r\n                      ...                      ....                          ......                       ..                      ...\r\n                       ...                    ...                        ......                          ..                       ....\r\n                        ....                 ...                     .......                            ...                        ...\r\n                         ....              ....                   ......                               ....                         ...\r\n                           .... ........................      ......                        ........................      ........................\r\n                             .....                    ..  .......                           .                     ..      ..                    ..\r\n                              ....   {roomsVisited[9]}    .........                             .      {roomsVisited[12]}     ..      ..     {roomsVisited[11]}     ..\r\n                                ..                    ....                                  .                     ..      ..                    ..\r\n                                ..                    ..                                    ..                    ..      ..                    ..\r\n                                ........................                                    ........................      ........................");
         }
 
-        public static void combat()
+        //resets all the variables, lists, .... to restart the game
+        static void reset()
         {
+            roomChoice = 1;
+            heath = 100;
+            stamina = 100;
+            prev = 1;
+            sleepCounter = 0;
+            inv.Clear();
+            infirmaryItems = new string[] { "health potion", "energy stim", "note" };
+            cellItems = new string[] { "cell keys" };
+            roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        }
 
-            int health = 100;
-            int stamina = 100;
-            int healthcost = 10; //interchangeable amount idk what yet
-            int staminacost = 10; //interchangeable amount idk what yet
+        //public static void combat()
+        //{
 
-            while (health > 0 && stamina > 0)
+        //    int health = 100;
+        //    int stamina = 100;
+        //    int healthcost = 10; //interchangeable amount idk what yet
+        //    int staminacost = 10; //interchangeable amount idk what yet
+        //    string choice ="";
+
+        //    while (health > 0 && stamina > 0 || choice !="no")
+        //    {
+        //        Console.WriteLine("Do you want to fight (yes/no): ");
+        //        choice = Console.ReadLine().ToLower();
+
+        //        if (choice == "yes")
+        //        {
+        //            if (stamina >= staminacost)
+        //            {
+        //                stamina -= staminacost;
+        //                health -= healthcost;
+        //                Console.WriteLine("you successfully beat your opponent");
+        //                Console.WriteLine($"You lost {staminacost} stamina and {healthcost} health.");
+        //                Console.WriteLine($"You now have {stamina} stamina and {health} health.");
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("not enough stamina");
+        //            }
+        //        }
+        //        else if (choice == "no")
+        //        {
+        //            Console.WriteLine("You Choose to flee");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Invalid input. Type 'yes' or 'no'.");
+        //        }
+
+        //        health = Math.Max(0, health);
+        //        stamina = Math.Max(0, stamina);
+
+        //    }
+        //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
+        //}
+        public static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
+        {
+            int userDamage, userDefence, enemyDamage;
+            Random rand = new Random();
+            string combatChoice = "";
+            Console.WriteLine("You have entered combat");
+            while (health > 0 && stamina > 0 && combatChoice != "run" && enemyHealth > 0)
             {
-                Console.WriteLine("Do you want to fight (yes/no): ");
-                string choice = Console.ReadLine().ToLower();
-
-                if (choice == "yes")
+                userDefence = 0;
+                Console.WriteLine("What action do you want to take ");
+                combatChoice = Console.ReadLine().ToLower();
+                switch (combatChoice)
                 {
-                    if (stamina >= staminacost)
-                    {
-                        stamina -= staminacost;
-                        health -= healthcost;
-                        Console.WriteLine("you successfully beat your opponent");
-                        Console.WriteLine($"You lost {staminacost} stamina and {healthcost} health.");
-                        Console.WriteLine($"You now have {stamina} stamina and {health} health.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("not enough stamina");
-                    }
-                }
-                else if (choice == "no")
-                {
-                    Console.WriteLine("You Choose to flee");
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Type 'yes' or 'no'.");
-                }
+                    case "attack"://might add heavy and light attacks
+                    case "defend":
+                        if (combatChoice == "attack")
+                        {
+                            userDamage = rand.Next(playerWeapon.minDamage, playerWeapon.maxDamage) - enemyDef;
+                            stamina = stamina - playerWeapon.staminaCost;
+                            if (userDamage > 0)
+                            {
+                                Console.WriteLine($"You dealt {userDamage} to the enemy");
+                                enemyHealth = enemyHealth - userDamage;
+                            }
+                            else
+                            {
+                                Console.WriteLine("your attack was blocked");
+                            }
+                        }
+                        else if (combatChoice == "defend")
+                        {
+                            Console.WriteLine("you braced for the attack");
+                            userDefence = playerWeapon.block;
+                        }
+                        enemyDamage = rand.Next(enemyMin, enemyMax) - userDefence;
+                        if (enemyDamage > 0)
+                        {
+                            health = health - enemyDamage;
+                        }
+                        break;
+                    case "heal":
+                        Console.WriteLine("do you want to heal health or stamina");
+                        do
+                        {
+                            combatChoice = Console.ReadLine().ToLower();
+                            if (combatChoice == "stamina")
+                            {
+                                if (inv.Contains("energy stim"))
+                                {
+                                    stamina += 25;
+                                    inv.Remove("energy stim");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("you dont have any energy stims");
+                                }
+                            }
+                            else if (combatChoice == "health")
+                            {
+                                if (inv.Contains("health potion"))
+                                {
+                                    health += 25;
+                                    inv.Remove("health potion");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("you don't have any health potions");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please enter **Health** or **Stamina**");
+                            }
+                        } while (combatChoice != "health" && combatChoice != "stamina");
+                        break;
 
-                health = Math.Max(0, health);
-                stamina = Math.Max(0, stamina);
+                    case "status":
+                        showEnergyLevels();
+                        Console.WriteLine($"Enemy Health Remaining {enemyHealth}");
+                        Console.WriteLine("***************************************************************************\n\n");
+                        break;
+                    case "run":
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Please enter a valid input either\n**Attack**\n**Defend**\n**Run**\n**Heal**\n**Show Inventory**");
+                        break;
 
+                }
             }
-            Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
+            if (enemyHealth == 0) {
+                Console.WriteLine("YOU WIN");
+                Thread.Sleep(1000);
+                return "win"; }
+            else { 
+                Console.WriteLine("YOU LOSE");
+                Thread.Sleep(1000); 
+                return "lose"; }
+            
+            
+
+
         }
 
     }
