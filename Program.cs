@@ -115,7 +115,10 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
+                    case "return":
+                    case "go back":
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "test":
@@ -256,8 +259,8 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "help":
@@ -306,8 +309,8 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "help":
@@ -367,9 +370,10 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
+                    case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "search room":
@@ -430,9 +434,10 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
+                    case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "search room":
@@ -492,8 +497,8 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "search room":
@@ -552,8 +557,8 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "search room":
@@ -623,8 +628,8 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "show inventory":
@@ -698,8 +703,8 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-                        GoBack();
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "search room":
@@ -740,7 +745,7 @@ namespace Studio1Project
                 Console.WriteLine("There’s a barely visible grate behind a thorny bush — the passage to the Pantry.");
                 Console.WriteLine("A heavy oak door marked with a faded red cross leads into the Infirmary.");
                 Console.WriteLine("The Training Yard lies just beyond a sagging wooden gate, its hinges creaking in the breeze.");
-                Console.WriteLine("A winding stone path leads up to the Watch Tower, its silhouette sharp against the sky.");
+                Console.WriteLine("A winding stone path leads up to the Ancient Tower, its silhouette sharp against the sky.");
                 Console.WriteLine("Another narrow path disappears toward the looming Gatehouse, where freedom might yet be possible.");
                 Console.WriteLine();
 
@@ -806,55 +811,145 @@ namespace Studio1Project
         }
         static void GateHouse()//Room12 EXIT
         {
-            Console.WriteLine("you made it to the Gatehouse do you want to go to the \n Courtyard \n or back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("You step into the Gatehouse — a stone chamber looming with rusted chains and gear levers, once used to raise the portcullis.");
+            Console.WriteLine("Dust blankets every surface, and faded banners hang limp on the walls, whispering of long-forgotten glory.");
+            Console.WriteLine();
+
+            bool validInput = false;
+
+            while (!validInput)
             {
-                case "courtyard":
-                    roomChoice = 11;
-                    break;
-                case "back":
-                case "return":
-                case "go back":
-                    GoBack();
-                    roomChoice = prev;
-                    break;
-                case "exit":
-                case "leave":
-                case "escape":
-                    if (inv.Contains("Gatehouse Key"))
-                    {
-                        roomChoice = 9999;
-                    }
-                    else
-                    {
-                        Console.WriteLine("You don't have the key to open the gate");
-                    }
-                    break;
-                case "show inventory":
-                case "inv":
-                    inventoryShow();
-                    Thread.Sleep(2000);
-                    break;
+                
+                Console.WriteLine("Ahead, the Castle’s main gate stands sealed — an imposing iron door with a thick lock, its keyhole rusted but still intact. It won’t budge without the right key.");
+                Console.WriteLine("Behind you, the corridor stretches back toward the Courtyard, the faint breeze from outside already starting to fade.");
+                Console.WriteLine();
+
+                action = Console.ReadLine().ToLower();
+                Console.Clear();
+                switch (action)
+                {
+                    case "courtyard":
+                        roomChoice = 11;
+                        break;
+                    case "back":
+                    case "return":
+                    case "go back":
+                        roomChoice = prev;
+                        GoBack();
+                        validInput = true;
+                        break;
+                    case "exit":
+                    case "leave":
+                    case "escape":
+                        if (inv.Contains("Gatehouse Key"))
+                        {
+                            roomChoice = 9999;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You don't have the key to open the gate");
+                        }
+                        break;
+                    case "search":
+                    case "search room":
+                        Console.WriteLine("You carefully search the area, eyes scanning every nook and cranny.");
+                        Console.WriteLine("Dust swirls in the stale air, but nothing of value reveals itself.");
+                        Console.WriteLine("It seems this place holds no secrets — at least, not for now.");
+                        Console.WriteLine();
+                        Thread.Sleep(1000);
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        Thread.Sleep(2000);
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("The gatehouse groans with age, but stands firm. The wind outside whispers of freedom... or of danger.");
+                        Thread.Sleep(1000);
+                        break;
+                }
             }
         }
         static void TowerBase()//Room13
         {
-            Console.WriteLine("you made it to the Towerbase do you want to go to the \n Courtyard \n or back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            int towerFloor = 0;
+            Console.WriteLine();
+            Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
+            Console.WriteLine("A narrow, winding path leads back down to the Courtyard, the distant sounds of castle life faint on the breeze.");
+            Console.WriteLine("The heavy wooden door behind you creaks softly, offering a way back inside.");
+            Console.WriteLine();
+
+            bool validInput = false;
+
+            while (!validInput)
             {
-                case "courtyard":
-                    roomChoice = 11;
-                    break;
-                case "back":
-                case "return":
-                case "go back":
-                    GoBack();
-                    roomChoice = prev;
-                    break;
+                action = Console.ReadLine().ToLower();
+                Console.Clear();
+                switch (action)
+                {
+                    case "courtyard":
+                        roomChoice = 11;
+                        break;
+                    case "back":
+                    case "return":
+                    case "go back":
+                        GoBack();
+                        roomChoice = prev;
+                        break;
+                    case "go up":
+                    case "up":
+                    case "climb tower":
+                    case "climb":
+                        TowerClimb();
+                        break;
+
+                }
             }
         }
+        static void TowerClimb()
+        {
+            int towerFloor = 1;
+            bool jump = false;
+
+            while (towerFloor > 0&& !jump)
+            {
+                string option = "";
+
+                while (towerFloor != 6)
+                {
+                    Console.WriteLine("Would you like to climb or go back");
+                    option = Console.ReadLine();
+
+                    switch (option)
+                    {
+                        case "climb":
+                        case "up":
+                        case "climb tower":
+                            towerFloor++;
+                            stamina -= 5;
+                            Console.WriteLine($"You climb to the next floor of the tower and slowly tire out [Floor: {towerFloor}]");
+                            Console.WriteLine($"Stamina: {stamina}");
+                            break;
+                        case "down":
+                        case "back":
+                        case "go back":
+                        case "go down":
+                        case "return":
+                            Console.WriteLine($"You climb back to the previous floor");
+                            towerFloor--;
+                            break;
+                    }
+                }
+                Console.WriteLine("You reach the top of the tower and look over the edge. You see the wall and what looks like a river");
+                Console.WriteLine("You think you can make the jump over the wall and into the river but it looks risky, or you can go back down.");
+                option = Console.ReadLine();
+
+            }
+        }
+
         static void GoBack()
         {
             Console.WriteLine("You cast a final glance at your surroundings before slipping away.");
