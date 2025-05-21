@@ -909,7 +909,7 @@ namespace Studio1Project
                     case "up":
                     case "climb tower":
                     case "climb":
-                        TowerClimb();
+                        TowerClimb(); // need to make it so you die
                         break;
 
                 }
@@ -984,17 +984,17 @@ namespace Studio1Project
                             Console.WriteLine();
                             Console.WriteLine("You take a deep breath, close your eyes—and leap.");
                             Console.WriteLine("The air roars in your ears. For a moment, it feels like flying...");
-                            Console.WriteLine("Then everything fades to black.");
+                            Console.WriteLine("Then everything fades to black."); // need to make it so you die
                             jump = true;
+                            roomChoice = 9999;
                             break;
                         case "go down":
                         case "down":
                         case "back":
                         case "return":
-                            Console.WriteLine("You turn away from the edge, heart pounding. Not today.");
+                            Console.WriteLine("You turn away from the edge, heart pounding. Not today."); 
                             towerFloor--;
                             break;
-
                         default:
                             Console.WriteLine("The wind howls, waiting for your choice...");
                             break;
