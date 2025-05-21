@@ -3,7 +3,9 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using System.Text;
 using System.Threading;
+using Microsoft.VisualBasic;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace Studio1Project
@@ -113,19 +115,21 @@ namespace Studio1Project
             //All of the rooms 
             static void PrisonCell()//room 1 (main room)
         {
-            Console.WriteLine("You find yourself in a prison cell.");
-            
+            Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps. The air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
+            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable. Each room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries. With your mission in mind you start exploring your surroundings...\n\n");
             bool validInput = false;
             while (!validInput)
             {
                 Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
-                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n\n");
                 action = Console.ReadLine().ToLower();
 
                 switch (action)
                 {
                     case "hall":
                     case "halll":
+                    case "hallway":
+                    case "dungeon hall":
                     case "open cell":
                         if (inv.Contains("cell keys"))
                         {
@@ -143,6 +147,8 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
+                    case "go back":
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -154,6 +160,7 @@ namespace Studio1Project
                         pickup(ref cellItems);
                         break;
                     case "help":
+                    case "h":
                         showCommands();
                         break;
                     case "map":
@@ -165,6 +172,7 @@ namespace Studio1Project
                         Thread.Sleep(2000);
                         Console.WriteLine("Sleeping helped you regain some energy!!");
                         sleepCounter = sleepCounter + 1;
+                        stamina = stamina + 10;
                         if (sleepCounter > 10)
                         {
                             Console.WriteLine("You win!");
@@ -220,6 +228,8 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "return":
+                    case "go back":
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -281,6 +291,8 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "return":
+                    case "go back":
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -318,6 +330,7 @@ namespace Studio1Project
                 {
                     case "dungeon hall":
                     case "hall":
+                    case "hallway":
                     case "behind":
                     case "corridor":
                         prev = roomChoice;
@@ -332,11 +345,17 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "return":
+                    case "go back":
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
                     case "help":
                         showCommands();
+                        break;
+                    case "eat":
+                        Console.WriteLine("You approach the bubbling pot and take a taste of the food inside. It helps you regain some energy!\n\n");
+                        stamina = stamina + 5;
                         break;
                     case "map":
                         showMap();
@@ -366,7 +385,7 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There are two doors: one marked with the red cross of the Infirmary, the other leads out to the Training Yard.");
+                Console.WriteLine("There are three doors: one marked with the red cross of the Infirmary, the other one leading out to the Training Yard. The last one seems to lead in to a hallway.");
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
 
@@ -388,6 +407,14 @@ namespace Studio1Project
                     case "t/y":
                         prev = roomChoice;
                         roomChoice = 10;
+                        validInput = true;
+                        break;
+                    case "dungeon hall":
+                    case "hall":
+                    case "hallway":
+                    case "corridor":
+                        prev = roomChoice;
+                        roomChoice = 2;
                         validInput = true;
                         break;
                     case "back":
@@ -807,7 +834,7 @@ namespace Studio1Project
         static void showCommands()
         {
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy");
+            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch");
             Console.WriteLine("***************************************************************************\n\n");
         }
 
