@@ -11,20 +11,12 @@ namespace Studio1Project
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-<<<<<<< HEAD
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note", "Guard's Uniform" };
-        static void Main(string[] args)
-        {
-            Console.WriteLine("welcome to the game"); // ascii art goes here
-            PrisonCell();
-=======
-
         private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited= {"?", "??????", "???????", "???????", "????????????????", "????????", "???", "??????", "?????????", "?????????????", "?????????", "?????????????" };
         static void Main(string[] args)
         {
             Console.WriteLine("welcome to the game");
             roomChoice = 1;
->>>>>>> 5bd2cbdce4f0f7180aa5e98a4c02f424c4bbdb6f
+
             do
             {
                 switch (roomChoice)
@@ -167,25 +159,6 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-<<<<<<< HEAD
-                case "cell":
-                    prev = roomChoice;
-                    roomChoice = 1;
-                    break;
-                case "guard barracks":
-                case "gaurd barracks":
-                    prev = roomChoice;
-                    roomChoice = 5;
-                    break;
-                case "kitchen":
-                    prev = roomChoice;
-                    roomChoice =4;
-                    break;
-                case "back":
-                case "return":
-                    roomChoice = prev;
-                    break;
-=======
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
                 Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
@@ -229,7 +202,6 @@ namespace Studio1Project
                         Console.WriteLine("Try something else!");
                         break;
                 }
->>>>>>> 5bd2cbdce4f0f7180aa5e98a4c02f424c4bbdb6f
             }
         }
         static void Sewers()//room 3
