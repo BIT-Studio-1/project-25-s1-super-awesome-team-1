@@ -9,14 +9,14 @@ namespace Studio1Project
 {
     internal class Program
     {
+
         private static int roomChoice,heath=100,stamina=100,prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
-
         private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited= {"?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
         static void Main(string[] args)
         {
-            Console.WriteLine("welcome to the game");
+            
             roomChoice = 1;
 
             do
@@ -392,7 +392,6 @@ namespace Studio1Project
         }
         static void Showers()//Room6 SSSSSSSSSSSSSSSSS
         {
-            Console.Clear();
             Console.WriteLine("You grip the rusted ladder rungs and climb up, feet slipping slightly on the damp metal.");
             Console.WriteLine("A cold draft hits you as you emerge into a crumbling shower room. Water drips steadily from cracked pipes above, echoing through the tiled space.");
             Console.WriteLine("The walls are stained with age and mold, and the sour smell of mildew clings to the air.");
