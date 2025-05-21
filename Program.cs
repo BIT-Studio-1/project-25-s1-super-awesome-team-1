@@ -17,7 +17,7 @@ namespace Studio1Project
     }
     internal class Program
     {
-        private static int roomChoice=1, heath = 100, stamina = 100, prev = 1, sleepCounter = 0;
+        private static int roomChoice=1, health = 100, stamina = 100, prev = 1, sleepCounter = 0;
         private static string action = "";
         private static List<string> inv = new List<string>();
         private static Weapon playerWeapon;
@@ -27,7 +27,7 @@ namespace Studio1Project
             playerWeapon.name = "fists";
             playerWeapon.minDamage = 2;
             playerWeapon.maxDamage = 10;
-            playerWeapon.block = 0;
+            playerWeapon.block = 5;
             playerWeapon.staminaCost = 10;
 
             do
@@ -163,7 +163,7 @@ namespace Studio1Project
                         inventoryShow();
                         break;
                     case "test fight":
-                        combat(10,100,1,1);
+                        combat(10,1,1,1);
                         break;
                     default:
                         Console.WriteLine("Try something else!");
@@ -795,7 +795,7 @@ namespace Studio1Project
         static void showEnergyLevels()
         {
             Console.WriteLine("***************************************************************************");
-            Console.WriteLine($"Health: {heath} \nStamina: {stamina}");
+            Console.WriteLine($"Health: {health} \nStamina: {stamina}");
             Console.WriteLine("***************************************************************************\n\n");
         }
         static void showMap()
@@ -847,35 +847,109 @@ namespace Studio1Project
         //    }
         //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
         //}
-        public static void combat(int enemyHealth, int enemyDef,int enemyMin, int enemyMax)
+        public static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
         {
             int userDamage, userDefence, enemyDamage;
             Random rand = new Random();
             string combatChoice = "";
-
-            userDefence = 0;
-            Console.WriteLine("");
-            combatChoice = Console.ReadLine();
-            if (combatChoice == "attack")
+            Console.WriteLine("You have entered combat");
+            while (health > 0 && stamina > 0 && combatChoice != "run" && enemyHealth > 0)
             {
-                userDamage = rand.Next(playerWeapon.minDamage, playerWeapon.maxDamage) - enemyDef;
-                stamina = stamina - playerWeapon.staminaCost;
-                if (userDamage > 0)
+                userDefence = 0;
+                Console.WriteLine("What action do you want to take ");
+                combatChoice = Console.ReadLine().ToLower();
+                switch (combatChoice)
                 {
-                    enemyHealth = enemyHealth - userDamage;
+                    case "attack"://might add heavy and light attacks
+                    case "defend":
+                        if (combatChoice == "attack")
+                        {
+                            userDamage = rand.Next(playerWeapon.minDamage, playerWeapon.maxDamage) - enemyDef;
+                            stamina = stamina - playerWeapon.staminaCost;
+                            if (userDamage > 0)
+                            {
+                                Console.WriteLine($"You dealt {userDamage} to the enemy");
+                                enemyHealth = enemyHealth - userDamage;
+                            }
+                            else
+                            {
+                                Console.WriteLine("your attack was blocked");
+                            }
+                        }
+                        else if (combatChoice == "defend")
+                        {
+                            Console.WriteLine("you braced for the attack");
+                            userDefence = playerWeapon.block;
+                        }
+                        enemyDamage = rand.Next(enemyMin, enemyMax) - userDefence;
+                        if (enemyDamage > 0)
+                        {
+                            health = health - enemyDamage;
+                        }
+                        break;
+                    case "heal":
+                        Console.WriteLine("do you want to heal health or stamina");
+                        do
+                        {
+                            combatChoice = Console.ReadLine().ToLower();
+                            if (combatChoice == "stamina")
+                            {
+                                if (inv.Contains("energy stim"))
+                                {
+                                    stamina += 25;
+                                    inv.Remove("energy stim");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("you dont have any energy stims");
+                                }
+                            }
+                            else if (combatChoice == "health")
+                            {
+                                if (inv.Contains("health potion"))
+                                {
+                                    health += 25;
+                                    inv.Remove("health potion");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("you don't have any health potions");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please enter **Health** or **Stamina**");
+                            }
+                        } while (combatChoice != "health" && combatChoice != "stamina");
+                        break;
+
+                    case "status":
+                        showEnergyLevels();
+                        Console.WriteLine($"Enemy Health Remaining {enemyHealth}");
+                        Console.WriteLine("***************************************************************************\n\n");
+                        break;
+                    case "run":
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        break;
+                    default:
+                        Console.WriteLine("Please enter a valid input either\n**Attack**\n**Defend**\n**Run**\n**Heal**\n**Show Inventory**");
+                        break;
+
                 }
-                Console.WriteLine(enemyHealth);
             }
-            else if (combatChoice == "defend")
-            {
-                userDefence = playerWeapon.block;
-            }
-            enemyDamage = rand.Next(enemyMin, enemyMax) - userDefence;
-            stamina = stamina - playerWeapon.staminaCost;
-            if (enemyDamage > 0)
-            {
-                enemyHealth = enemyHealth - enemyDamage;
-            }
+            if (enemyHealth == 0) {
+                Console.WriteLine("YOU WIN");
+                Thread.Sleep(1000);
+                return "win"; }
+            else { 
+                Console.WriteLine("YOU LOSE");
+                Thread.Sleep(1000); 
+                return "lose"; }
+            
+            
 
 
         }
