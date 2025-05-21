@@ -192,7 +192,9 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "return":
+                    case "go back":
                         roomChoice = prev;
+                        GoBack();
                         validInput = true;
                         break;
                     case "help":
@@ -253,6 +255,8 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "return":
+                    case "go back":
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -301,6 +305,8 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "return":
+                    case "go back":
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -331,6 +337,7 @@ namespace Studio1Project
             Console.WriteLine("The smell hits you first — sweat, oil, and something long past edible. A half-eaten loaf lies beside a dented helmet.");
             Console.WriteLine("You see no guards... but the clutter tells you they were here not long ago.");
             Console.WriteLine();
+            Thread.Sleep(1000);
 
             bool validInput = false;
             while (!validInput)
@@ -369,7 +376,7 @@ namespace Studio1Project
                     case "search":
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
-                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact **Guard’s Uniform**. You search the pockets and find a **Key**.");
+                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Uniform. You search the pockets and find a Key.");
                         Console.WriteLine("Type 'show inventory' to check what you're carrying.");
                         Console.WriteLine();
                         inv.Add("Gatehouse Key");
@@ -401,6 +408,7 @@ namespace Studio1Project
             Console.WriteLine("Light from a window overhead casts strange shadows between the rows of broken stalls.");
             Console.WriteLine("Somewhere in the distance, you hear a metallic clang... then silence.");
             Console.WriteLine();
+            Thread.Sleep(1000);
 
             bool validInput = false;
             while (!validInput)
@@ -423,9 +431,7 @@ namespace Studio1Project
                         break;
                     case "back":
                     case "go back":
-                        Console.WriteLine("You pause for a moment, taking one last look around.");
-                        Console.WriteLine("With cautious steps, you retrace your path to the previous area.");
-                        Thread.Sleep(1000);
+                        GoBack();
                         roomChoice = prev;
                         validInput = true;
                         break;
@@ -463,12 +469,13 @@ namespace Studio1Project
             Console.WriteLine("Dust dances in the stale air, lit by flickering overhead lights. Rows of broken vials, shattered beakers, and rusted equipment clutter the counters.");
             Console.WriteLine("A thick chemical smell still lingers—acrid and sharp. This place hasn’t been used in a long time… or maybe it has, just not for science.");
             Console.WriteLine();
+            Thread.Sleep(1000);
 
             bool validInput = false;
             while (!validInput)
             {
                 Console.WriteLine("There’s a door leading to the Training Yard, its reinforced window cracked but intact.");
-                Console.WriteLine("You could also return to the Sewers, retracing your steps through the underground passage.");
+                Console.WriteLine("You could also Go Back the way you came, retracing your steps through the dungeon.");
                 Console.WriteLine();
 
                 action = Console.ReadLine().ToLower();
@@ -483,7 +490,8 @@ namespace Studio1Project
                         roomChoice = 10;
                         break;
                     case "back":
-                    case "sewers":
+                    case "return":
+                    case "go back":
                         GoBack();
                         roomChoice = prev;
                         validInput = true;
@@ -510,22 +518,24 @@ namespace Studio1Project
         }
         static void Pantry()//Room8 Albert
         {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("You step into the pantry. The air is thick with the scent of dried herbs, aged meat, and flour.");
             Console.WriteLine("Wooden shelves sag under the weight of preserved goods, though many have been picked over.");
             Console.WriteLine("Scraps of labels and cracked jars suggest someone or something has raided this place recently.");
             Console.WriteLine();
+            Thread.Sleep(2000);
 
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, a narrow archway leads back to the **Kitchen** — faint light flickers from a distant torch.");
-                Console.WriteLine("Beyond a storage rack, a battered door swings gently open, revealing a path toward the **Courtyard**.");
+                Console.WriteLine("To your left, a narrow archway leads back to the Kitchen — faint light flickers from a distant torch.");
+                Console.WriteLine("Beyond a storage rack, a battered door swings gently open, revealing a path toward the Courtyard.");
                 Console.WriteLine("You can also step back the way you came.");
                 Console.WriteLine();
 
                 action = Console.ReadLine().ToLower();
-
+                Console.Clear();
                 switch (action)
                 {
                     case "kitchen":
@@ -540,6 +550,7 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
+                    case "return":
                     case "go back":
                         GoBack();
                         roomChoice = prev;
@@ -563,13 +574,14 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine("The pantry creaks softly around you. Nothing happens.");
                         Console.WriteLine();
+                        Thread.Sleep(1000);
                         break;
                 }
             }
         }
         static void Infirmary()//Room9 Albert
         {
-
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("You step quietly into the infirmary. The walls are lined with rusted medical cabinets, some hanging open, their contents long looted.");
             Console.WriteLine("The scent of alcohol and old blood hangs in the air, mixing with something faintly sweet — herbs, perhaps.");
@@ -581,13 +593,14 @@ namespace Studio1Project
             while (!validInput)
             {
                 Console.WriteLine("There’s a narrow iron door half-hinged open, leading back into the sweat-soaked air of the **Guards’ Barracks**.");
-                Console.WriteLine("Beyond the flickering lantern light, a tiled corridor veers off toward the **Showers**, echoing with the faint sound of dripping water.");
-                Console.WriteLine("A heavier, creaking wooden door opens to the **Courtyard**, where cool air stirs through the cracks.");
+                Console.WriteLine("Beyond the flickering lantern light, a tiled corridor veers off toward the Showers, echoing with the faint sound of dripping water.");
+                Console.WriteLine("A heavier, creaking wooden door opens to the Courtyard, where cool air stirs through the cracks.");
                 Console.WriteLine("Or... you could always double back the way you came, if none of this feels right.");
                 Console.WriteLine();
+                Thread.Sleep(1000);
 
                 action = Console.ReadLine().ToLower();
-
+                Console.Clear();
                 switch (action)
                 {
                     case "guard barracks":
@@ -608,6 +621,7 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
+                    case "return":
                     case "go back":
                         GoBack();
                         roomChoice = prev;
@@ -626,6 +640,7 @@ namespace Studio1Project
                         break;
                     default:
                         Console.WriteLine("The flickering lantern casts eerie shadows across the walls.");
+                        Thread.Sleep(1000);
                         break;
                 }
             }
@@ -633,64 +648,160 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
-                Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
+            Console.Clear();
+
+            Console.WriteLine();
+            Console.WriteLine("You step into the open Training Yard. Dirt and dust swirl in the wind as the clang of metal echoes faintly from beyond.");
+            Console.WriteLine("Faded dummies line the edges, and broken weapon shafts are scattered across the ground.");
+            Console.WriteLine();
+            Thread.Sleep(1000);
+
+            bool validInput = false;
+
+            while (!validInput)
+            {
+                Console.WriteLine();
+                Console.WriteLine("There’s a gate at the far end, leading back into the Guards’ Barracks, where voices echo faintly through stone walls.");
+                Console.WriteLine("Off to the side, a rusted service hatch opens into the dimly-lit Lab, the air thick with chemicals.");
+                Console.WriteLine("To the east, a heavy wooden door leads to the open Courtyard, where the scent of grass cuts through the dust.");
+                Console.WriteLine("And of course, you could always retrace your steps and leave the yard the way you came.");
+                Console.WriteLine();
+
                 action = Console.ReadLine().ToLower();
-            switch (action)
+                Console.Clear();
+                switch (action)
                 {
-                 case "lab":
-                    prev = roomChoice;
-                    roomChoice = 7;
-                 break;
-                    case "gaurdbarracks":
+                    case "lab room":
+                    case "labroom":
+                        prev = roomChoice;
+                        roomChoice = 7;
+                        validInput = true;
+                        break;
+                    case "guard barracks":
+                    case "guards barracks":
+                    case "go to guard barracks":
+                    case "barracks":
+                    case "barrack":
                         prev = roomChoice;
                         roomChoice = 5;
-                 break;
+                        validInput = true;
+                        break;
                     case "courtyard":
+                    case "c/y":
+                    case "go to courtyard":
+                    case "goto courtyard":
+                    case "yard":
                         prev = roomChoice;
                         roomChoice = 11;
-                 break;
+                        validInput = true;
+                        break;
                     case "back":
-                        roomChoice= prev;
-                 break;
+                    case "return":
+                    case "go back":
+                        GoBack();
+                        roomChoice = prev;
+                        validInput = true;
+                        break;
+                    case "search room":
+                        Console.WriteLine();
+                        Console.WriteLine("You take a moment to search the yard, scanning the ground and checking under broken training dummies.");
+                        Console.WriteLine("Most of what you find is useless — splintered wood, dulled blades, and worn-out gear.");
+                        Thread.Sleep(1000);
+                        break;
                     case "show inventory":
                     case "inv":
-                    inventoryShow();
-                    Thread.Sleep(2000);
-                 break;
+                        inventoryShow();
+                        Thread.Sleep(2000);
+                        break;
                     case "map":
-                    showMap();
-                    break;
+                        showMap();
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("The yard is quiet, save for the breeze. You'll need to pick a direction or do something useful.");
+                        Thread.Sleep(1000);
+                        break;
+                }
             }
         }
         static void Courtyard()//Room11
         {
-            Console.WriteLine("you made it to the Courtyard do you want to go to the \n Gatehouse \nTower base \n Pantry storage \n Infirmary \n Training yard \n or back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine("You step out into the Courtyard. The open sky stretches above — a rare sight down here. Moss clings to crumbling stone walls, and the faint sound of birdsong feels almost surreal.");
+            Console.WriteLine("A broken statue of a knight stands guard in the center, its face worn smooth by time. The air smells of damp earth and old battle.");
+            Console.WriteLine();
+
+            bool validInput = false;
+
+            while (!validInput)
             {
-                case "gatehouse":
-                    roomChoice = 12;
-                    break;
-                case "tower base":
-                    roomChoice = 13;
-                    break;
-                case "pantry storage":
-                    roomChoice = 8;
-                    break;
-                case "infirmary":
-                    roomChoice = 9;
-                    break;
-                case "training yard":
-                    roomChoice = 10;
-                    break;
-                case "show inventory":
-                case "inv":
-                    inventoryShow();
-                    Thread.Sleep(2000);
-                    break;
-                case "map":
-                    showMap();
-                    break;
+
+                Console.WriteLine("There’s a barely visible grate behind a thorny bush — the passage to the Pantry.");
+                Console.WriteLine("A heavy oak door marked with a faded red cross leads into the Infirmary.");
+                Console.WriteLine("The Training Yard lies just beyond a sagging wooden gate, its hinges creaking in the breeze.");
+                Console.WriteLine("A winding stone path leads up to the Watch Tower, its silhouette sharp against the sky.");
+                Console.WriteLine("Another narrow path disappears toward the looming Gatehouse, where freedom might yet be possible.");
+                Console.WriteLine();
+
+                action = Console.ReadLine().ToLower();
+                Console.Clear();
+                switch (action)
+                {
+                    case "gatehouse":
+                    case "exit":
+                    case "gate":
+                        roomChoice = 12;
+                        validInput = true;
+                        break;
+                    case "tower base":
+                    case "tower":
+                    case "watch tower":
+                        roomChoice = 13;
+                        validInput = true;
+                        break;
+                    case "pantry storage":
+                    case "pantry":
+                        roomChoice = 8;
+                        validInput = true;
+                        break;
+                    case "infirmary":
+                    case "infirm":
+                        roomChoice = 9;
+                        validInput = true;
+                        break;
+                    case "training yard":
+                    case "t/y":
+                        roomChoice = 10;
+                        validInput = true;
+                        break;
+                    case "back":
+                    case "return":
+                    case "go back":
+                        roomChoice = prev;
+                        GoBack();
+                        validInput = true;
+                        break;
+                    case "search":
+                    case "search area":
+                    case "search room":
+                        Console.WriteLine("You scour the courtyard, but all that's left are whispers of long-forgotten days.");
+                        break;
+                    case "show inventory":
+                    case "inv":
+                        inventoryShow();
+                        Thread.Sleep(2000);
+                        break;
+                    case "map":
+                        showMap();
+                        break;
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("You pause in the courtyard, listening to the wind rattle the gate. There are many paths here — some leading forward, others perhaps to freedom.");
+                        Thread.Sleep(1000);
+                        Console.WriteLine();
+                        break;
+                }
             }
         }
         static void GateHouse()//Room12 EXIT
@@ -701,6 +812,12 @@ namespace Studio1Project
             {
                 case "courtyard":
                     roomChoice = 11;
+                    break;
+                case "back":
+                case "return":
+                case "go back":
+                    GoBack();
+                    roomChoice = prev;
                     break;
                 case "exit":
                 case "leave":
@@ -729,6 +846,12 @@ namespace Studio1Project
             {
                 case "courtyard":
                     roomChoice = 11;
+                    break;
+                case "back":
+                case "return":
+                case "go back":
+                    GoBack();
+                    roomChoice = prev;
                     break;
             }
         }
