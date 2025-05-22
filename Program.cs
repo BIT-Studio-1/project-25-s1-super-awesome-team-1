@@ -88,7 +88,9 @@ namespace Studio1Project
                         TowerBase();
                         break;
                     case 9999:
-                        Console.WriteLine("You win! Do you want to play again? y/n");
+                        /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Inserted text here makes it centered*/
+                        /*WriteCentered(win);*/ /*------------------This method centers any text if you call it*/
+                        Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -414,7 +416,7 @@ namespace Studio1Project
             Console.WriteLine("The smell hits you first — sweat, oil, and something long past edible. A half-eaten loaf lies beside a dented helmet.");
             Console.WriteLine("You see no guards... but the clutter tells you they were here not long ago.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
             while (!validInput)
@@ -422,6 +424,7 @@ namespace Studio1Project
                 Console.WriteLine("There are three doors: one marked with the red cross of the Infirmary, the other one leading out to the Training Yard. The last one seems to lead in to a hallway.");
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -493,7 +496,7 @@ namespace Studio1Project
             Console.WriteLine("Light from a window overhead casts strange shadows between the rows of broken stalls.");
             Console.WriteLine("Somewhere in the distance, you hear a metallic clang... then silence.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
             while (!validInput)
@@ -501,6 +504,7 @@ namespace Studio1Project
                 Console.WriteLine("There’s a narrow iron door half-hinged open, marked faintly with the red cross of the Infirmary.");
                 Console.WriteLine("You could also climb back down into the sewers, if you’d rather not linger here any longer.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -555,7 +559,7 @@ namespace Studio1Project
             Console.WriteLine("Dust dances in the stale air, lit by flickering overhead lights. Rows of broken vials, shattered beakers, and rusted equipment clutter the counters.");
             Console.WriteLine("A thick chemical smell still lingers—acrid and sharp. This place hasn’t been used in a long time… or maybe it has, just not for science.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
             while (!validInput)
@@ -563,6 +567,7 @@ namespace Studio1Project
                 Console.WriteLine("There’s a door leading to the Training Yard, its reinforced window cracked but intact.");
                 Console.WriteLine("You could also Go Back the way you came, retracing your steps through the dungeon.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -619,6 +624,7 @@ namespace Studio1Project
                 Console.WriteLine("Beyond a storage rack, a battered door swings gently open, revealing a path toward the Courtyard.");
                 Console.WriteLine("You can also step back the way you came.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -673,6 +679,7 @@ namespace Studio1Project
             Console.WriteLine("The scent of alcohol and old blood hangs in the air, mixing with something faintly sweet — herbs, perhaps.");
             Console.WriteLine("A torn cot leans against the wall, and broken vials crunch underfoot as you move.");
             Console.WriteLine();
+            Thread.Sleep(2000);
 
             bool validInput = false;
 
@@ -683,7 +690,7 @@ namespace Studio1Project
                 Console.WriteLine("A heavier, creaking wooden door opens to the Courtyard, where cool air stirs through the cracks.");
                 Console.WriteLine("Or... you could always double back the way you came, if none of this feels right.");
                 Console.WriteLine();
-                Thread.Sleep(1000);
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -739,7 +746,7 @@ namespace Studio1Project
             Console.WriteLine("You step into the open Training Yard. Dirt and dust swirl in the wind as the clang of metal echoes faintly from beyond.");
             Console.WriteLine("Faded dummies line the edges, and broken weapon shafts are scattered across the ground.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
 
@@ -751,6 +758,7 @@ namespace Studio1Project
                 Console.WriteLine("To the east, a heavy wooden door leads to the open Courtyard, where the scent of grass cuts through the dust.");
                 Console.WriteLine("And of course, you could always retrace your steps and leave the yard the way you came.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -817,6 +825,7 @@ namespace Studio1Project
                 Console.WriteLine("You step out into the Courtyard. The open sky stretches above — a rare sight down here. Moss clings to crumbling stone walls, and the faint sound of birdsong feels almost surreal.");
                 Console.WriteLine("A broken statue of a knight stands guard in the center, its face worn smooth by time. The air smells of damp earth and old battle.");
                 Console.WriteLine();
+                Thread.Sleep(2000);
 
                 bool validInput = false;
 
@@ -829,6 +838,7 @@ namespace Studio1Project
                     Console.WriteLine("A winding stone path leads up to the Ancient Tower, its silhouette sharp against the sky.");
                     Console.WriteLine("Another narrow path disappears toward the looming Gatehouse, where freedom might yet be possible.");
                     Console.WriteLine();
+                    Console.Write(">> ");
 
                     action = Console.ReadLine().ToLower();
                     Console.Clear();
@@ -897,6 +907,7 @@ namespace Studio1Project
                 Console.WriteLine("You step into the Gatehouse — a stone chamber looming with rusted chains and gear levers, once used to raise the portcullis.");
                 Console.WriteLine("Dust blankets every surface, and faded banners hang limp on the walls, whispering of long-forgotten glory.");
                 Console.WriteLine();
+                Thread.Sleep(2000);
 
                 bool validInput = false;
 
@@ -906,6 +917,7 @@ namespace Studio1Project
                     Console.WriteLine("Ahead, the Castle’s main gate stands sealed — an imposing iron door with a thick lock, its keyhole rusted but still intact. It won’t budge without the right key.");
                     Console.WriteLine("Behind you, the corridor stretches back toward the Courtyard, the faint breeze from outside already starting to fade.");
                     Console.WriteLine();
+                    Console.Write(">> ");
 
                     action = Console.ReadLine().ToLower();
                     Console.Clear();
@@ -930,9 +942,10 @@ namespace Studio1Project
                             }
                             else
                             {
-                                Console.WriteLine("You don't have the key to open the gate");
+                            Console.WriteLine("You study the keyhole, its shape unmistakable. But no key in your possession fits. Defeated, you turn away, the promise of freedom lingering just beyond your grasp.");
+                            Thread.Sleep(2000);
                             }
-                            break;
+                        break;
                         case "search":
                         case "search room":
                             Console.WriteLine("You carefully search the area, eyes scanning every nook and cranny.");
@@ -961,6 +974,7 @@ namespace Studio1Project
                 Console.WriteLine("A narrow, winding path leads back down to the Courtyard, the distant sounds of castle life faint on the breeze.");
                 Console.WriteLine("The heavy wooden door behind you creaks softly, offering a way back inside.");
                 Console.WriteLine();
+                Thread.Sleep(1500);
 
                 bool validInput = false;
 
@@ -971,6 +985,7 @@ namespace Studio1Project
                     Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step back inside through the door.");
                     Console.WriteLine("You might also take a moment to inspect the area more closely.");
                     Console.WriteLine();
+                    Console.Write(">> ");
 
                     action = Console.ReadLine().ToLower();
                     Console.Clear();
@@ -978,18 +993,21 @@ namespace Studio1Project
                     {
                         case "courtyard":
                             roomChoice = 11;
+                        validInput = true;
                             break;
                         case "back":
                         case "return":
                         case "go back":
                             GoBack();
                             roomChoice = prev;
+                        validInput = true;
                             break;
                         case "go up":
                         case "up":
                         case "climb tower":
                         case "climb":
-                            TowerClimb(); // need to make it so you die
+                            TowerClimb();
+                        validInput = true;
                             break;
 
                     }
@@ -1009,9 +1027,11 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine($"You stand on floor {towerFloor} of the tower. The stone stairs spiral tightly in both directions.");
                         Console.WriteLine("Do you want to climb further or head back down?");
+                        Console.WriteLine();
                         Console.Write(">> ");
-                        option = Console.ReadLine().ToLower();
 
+                        option = Console.ReadLine().ToLower();
+                        Console.Clear();
                         switch (option)
                         {
                             case "climb":
@@ -1020,7 +1040,8 @@ namespace Studio1Project
                             case "climb tower":
                                 towerFloor++;
                                 stamina -= 5;
-                                Console.WriteLine($"You ascend to floor {towerFloor}, your legs growing heavier with each step.");
+                            Console.WriteLine();
+                            Console.WriteLine($"You ascend to floor {towerFloor}, your legs growing heavier with each step.");
                                 Console.WriteLine($"Stamina: {stamina}");
                                 break;
                             case "down":
@@ -1031,7 +1052,8 @@ namespace Studio1Project
                                 if (towerFloor > 1)
                                 {
                                     towerFloor--;
-                                    Console.WriteLine($"You descend cautiously to floor {towerFloor}, the stairwell dark and narrow.");
+                                Console.WriteLine();
+                                Console.WriteLine($"You descend cautiously to floor {towerFloor}, the stairwell dark and narrow.");
                                 }
                                 else
                                 {
@@ -1051,6 +1073,7 @@ namespace Studio1Project
                         Console.WriteLine("Below, far beyond the castle wall, a river glimmers in the fading light—just within reach.");
                         Console.WriteLine("It’s a long drop. You might make it... or you might not.");
                         Console.WriteLine("Do you take the leap, or retreat back into the tower?");
+                        Console.WriteLine();
                         Console.Write(">> ");
 
                         string playerChoice = Console.ReadLine().ToLower();
@@ -1064,10 +1087,11 @@ namespace Studio1Project
                                 Console.WriteLine();
                                 Console.WriteLine("You take a deep breath, close your eyes—and leap.");
                                 Console.WriteLine("The air roars in your ears. For a moment, it feels like flying...");
-                                Console.WriteLine("Then everything fades to black."); // need to make it so you die
-                                jump = true;
-                                roomChoice = 9999;
-                                break;
+                                Console.WriteLine("Then everything fades to black.");
+                                Console.WriteLine();
+                                roomChoice = 9998;
+                                jump = true;                               
+                                return;
                             case "go down":
                             case "down":
                             case "back":
@@ -1328,6 +1352,12 @@ namespace Studio1Project
             
 
 
+        }
+        static void WriteCentered(string message)
+        {
+            int left = (Console.WindowWidth - message.Length) / 2;
+            Console.SetCursorPosition(left, Console.CursorTop);
+            Console.WriteLine(message);
         }
 
     }
