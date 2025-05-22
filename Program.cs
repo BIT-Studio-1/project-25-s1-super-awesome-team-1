@@ -720,6 +720,15 @@ namespace Studio1Project
                         GoBack();
                         validInput = true;
                         break;
+                    case "search":
+                    case "inspect":
+                    case "look around":
+                        Console.WriteLine();
+                        Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
+                        Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim*.");
+                        //Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
+                        Thread.Sleep(2000);
+                        break;
                     case "show inventory":
                     case "inv":
                         inventoryShow();
@@ -796,6 +805,9 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "search room":
+                    case "search":
+                    case "inspect":
+                    case "look around":
                         Console.WriteLine();
                         Console.WriteLine("You take a moment to search the yard, scanning the ground and checking under broken training dummies.");
                         Console.WriteLine("Most of what you find is useless — splintered wood, dulled blades, and worn-out gear.");
@@ -881,7 +893,9 @@ namespace Studio1Project
                         case "search":
                         case "search area":
                         case "search room":
-                            Console.WriteLine("You scour the courtyard, but all that's left are whispers of long-forgotten days.");
+                        case "inspect":
+                        case "look around":
+                        Console.WriteLine("You scour the courtyard, but all that's left are whispers of long-forgotten days.");
                             break;
                         case "show inventory":
                         case "inv":
@@ -938,19 +952,32 @@ namespace Studio1Project
                         case "escape":
                             if (inv.Contains("Gatehouse Key"))
                             {
-                                roomChoice = 9999;
+                            Console.WriteLine("Your fingers brush against the gate's cold iron as you spot the keyhole—");
+                            Console.WriteLine("and then, your heart skips. You have the key.");
+                            Console.WriteLine();
+                            Console.WriteLine("With a deep breath, you slide it into place. It fits perfectly.");
+                            Console.WriteLine("A heavy *click* echoes through the air as the mechanism unlocks.");
+                            Console.WriteLine("The gate creaks open, revealing the path beyond the castle walls—freedom at last.");
+                            Console.WriteLine();
+                            Console.WriteLine("You step into the fading light, the wind fresh against your skin.");
+                            Console.WriteLine("You’ve made it out.");
+                            Console.WriteLine();
+                            roomChoice = 9999;
                             }
                             else
                             {
                             Console.WriteLine("You study the keyhole, its shape unmistakable. But no key in your possession fits. Defeated, you turn away, the promise of freedom lingering just beyond your grasp.");
+                            Console.WriteLine();
                             Thread.Sleep(2000);
                             }
                         break;
                         case "search":
                         case "search room":
-                            Console.WriteLine("You carefully search the area, eyes scanning every nook and cranny.");
+                        case "inspect":
+                        case "look around":
+                        Console.WriteLine("You carefully search the area, eyes scanning every nook and cranny.");
                             Console.WriteLine("Dust swirls in the stale air, but nothing of value reveals itself.");
-                            Console.WriteLine("It seems this place holds no secrets — at least, not for now.");
+                            Console.WriteLine("If there’s a key here, it’s long gone.");
                             Console.WriteLine();
                             Thread.Sleep(1000);
                             break;
@@ -962,6 +989,7 @@ namespace Studio1Project
                         default:
                             Console.WriteLine();
                             Console.WriteLine("The gatehouse groans with age, but stands firm. The wind outside whispers of freedom... or of danger.");
+                            Console.WriteLine();
                             Thread.Sleep(1000);
                             break;
                     }
@@ -971,8 +999,8 @@ namespace Studio1Project
             {
                 Console.WriteLine();
                 Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
-                Console.WriteLine("A narrow, winding path leads back down to the Courtyard, the distant sounds of castle life faint on the breeze.");
-                Console.WriteLine("The heavy wooden door behind you creaks softly, offering a way back inside.");
+                Console.WriteLine("Looking back you see a narrow, winding path leading back down to the Courtyard, the distant sounds of castle life faint on the breeze.");
+                Console.WriteLine("The wooden door behind you creaks softly, offering a way inside.");
                 Console.WriteLine();
                 Thread.Sleep(1500);
 
@@ -982,7 +1010,7 @@ namespace Studio1Project
                 {
 
                     Console.WriteLine("What would you like to do?");
-                    Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step back inside through the door.");
+                    Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step inside through the door.");
                     Console.WriteLine("You might also take a moment to inspect the area more closely.");
                     Console.WriteLine();
                     Console.Write(">> ");
@@ -1009,7 +1037,20 @@ namespace Studio1Project
                             TowerClimb();
                         validInput = true;
                             break;
-
+                    case "search":
+                    case "inspect":
+                    case "look around":
+                        Console.WriteLine();
+                        Console.WriteLine("You take a slow walk around the base of the tower, scanning the moss-covered stones and worn path.");
+                        Console.WriteLine("A few scattered pebbles, dried leaves, and an old bird’s nest are all that greet you.");
+                        Console.WriteLine("If anything useful was ever left here, it's long gone.");
+                        Console.WriteLine();
+                        break;
+                    default:
+                        Console.WriteLine("You hesitate, uncertain what to do.");
+                        Console.WriteLine();
+                        Thread.Sleep(1000);
+                        break;
                     }
                 }
             }
