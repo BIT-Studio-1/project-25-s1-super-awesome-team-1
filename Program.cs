@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
+using System.Xml.Linq;
 using Microsoft.VisualBasic;
 using static System.Formats.Asn1.AsnWriter;
 
@@ -27,12 +28,8 @@ namespace Studio1Project
         private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
         static void Main(string[] args)
         {
-            playerWeapon.name = "fists";
-            playerWeapon.minDamage = 2;
-            playerWeapon.maxDamage = 10;
-            playerWeapon.block = 5;
-            playerWeapon.staminaCost = 10;
 
+            weaponEquip("fists", 2, 10, 5, 10);
             do
             {
                 switch (roomChoice)
@@ -1102,8 +1099,11 @@ namespace Studio1Project
                     Console.WriteLine(item);
                 }
                 Console.WriteLine("====================");
-                Console.WriteLine();
-            }
+                Console.WriteLine("");
+                Console.WriteLine($"{playerWeapon.name}\nDamage {playerWeapon.minDamage}-{playerWeapon.maxDamage}\nBlock Strength {playerWeapon.block}\nStamina cost {playerWeapon.staminaCost}");
+                Console.WriteLine("");
+                Console.WriteLine("====================");
+        }
             static void pickup(ref string[] items)//pickup items
             {
                 Console.Clear();
@@ -1157,7 +1157,6 @@ namespace Studio1Project
                 sleepCounter = 0;
                 inv.Clear();
                 infirmaryItems = new string[] { "health potion", "energy stim", "note" };
-                cellItems = new string[] { "cell keys" };
                 roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
             }
         
@@ -1206,7 +1205,17 @@ namespace Studio1Project
         //    }
         //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
         //}
-        public static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
+        
+        static void weaponEquip(string name,int minDmg,int maxDmg,int block,int stamCost)
+        {
+            playerWeapon.name = name;
+            playerWeapon.minDamage = minDmg;
+            playerWeapon.maxDamage = maxDmg;
+            playerWeapon.block = block;
+            playerWeapon.staminaCost = stamCost;
+        }
+        
+        static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
         {
             int userDamage, userDefence, enemyDamage;
             Random rand = new Random();
