@@ -40,7 +40,7 @@ namespace Studio1Project
             {
                 ShowWindow(consoleWindow, SW_MAXIMIZE);
             }
-            weaponEquip("fists", 2, 10, 5, 10);
+            weaponEquip("fists", 5, 15, 5, 10);
             do
             {
                 switch (roomChoice)
@@ -172,21 +172,25 @@ namespace Studio1Project
                                 {
                                     Console.WriteLine("you successfully take the keys form the gaurd");
                                     inv.Add("cell keys");
+                                    roomChoice = 2;
+                                    validInput = true;
                                 }
                                 else
                                 {
                                     Console.WriteLine("the Gaurd spots you prepare for a fight");
-                                    string outCome = combat(20, 3, 1, 5); 
+                                    string outCome = combat(20, 3, 1, 5);
                                     
-                                    if(outCome == "YOU WIN") {
+                                    if (outCome == "win") {
                                         inv.Add("cell keys");
                                         roomChoice = 2;
                                         validInput = true;
                                     }
-                                    else { }//idk what to do if you lose
+                                    else { Console.WriteLine("lose"); }//idk what to do if you lose
                                 };
                             }
-                            roomChoice = 1;
+                            else { 
+                                roomChoice = 1;
+                            }
                         }
                         break;
                     case "sewers":
@@ -1299,10 +1303,10 @@ namespace Studio1Project
             Console.WriteLine("You have entered combat");
             while (health > 0 && stamina > 0 && combatChoice != "run" && enemyHealth > 0)
             {
-                if (health > 10) {
+                if (health < 10) {
                     Console.WriteLine("Warning low health");
                 }
-                if (stamina > 10) { 
+                if (stamina < 10) { 
                  Console.WriteLine("Warning low Stamina");
                 }
 
@@ -1392,7 +1396,7 @@ namespace Studio1Project
 
                 }
             }
-            if (enemyHealth == 0) {
+            if (enemyHealth <= 0) {
                 Console.WriteLine("YOU WIN");
                 Thread.Sleep(1000);
                 return "win"; }
