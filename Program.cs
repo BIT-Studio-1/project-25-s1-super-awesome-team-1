@@ -776,12 +776,32 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
+            //Console.WriteLine("the Gaurd spots you prepare for a fight");
+            //string outCome = combat(20, 3, 1, 5);
+
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("You step into the open Training Yard. Dirt and dust swirl in the wind as the clang of metal echoes faintly from beyond.");
             Console.WriteLine("Faded dummies line the edges, and broken weapon shafts are scattered across the ground.");
             Console.WriteLine();
-            Thread.Sleep(2000);
+            Console.WriteLine("Your eyes scan the yard, settling on a guard leisurely sipping from his flask.");
+            Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
+            Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
+            Console.WriteLine();
+            //string outCome = combat(40, 4, 2, 10);
+
+            //if (outCome == "win")
+            //{
+            //    Console.WriteLine("You have defeated the guard and decide to search his pockets. You see keys and take them then proceed to take a proper look around the yard"); /* Haven't tested yet
+            //    inv.add("Gatehouse Key");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("You have been defeated and the guard confiscates your items and drags you back to your cell");
+            //    inv.Clear();
+            //    weaponEquip("fists", 5, 15, 5, 10);
+            //    roomChoice = 1;
+            //}
 
             bool validInput = false;
 
