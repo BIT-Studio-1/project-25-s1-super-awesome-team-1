@@ -31,6 +31,7 @@ namespace Studio1Project
         [DllImport("kernel32.dll", ExactSpelling = true)]
         static extern IntPtr GetConsoleWindow();
 
+
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         static void Main(string[] args)
@@ -978,6 +979,7 @@ namespace Studio1Project
                             Console.WriteLine("You’ve made it out.");
                             Console.WriteLine();
                             roomChoice = 9999;
+                            validInput = true;
                             }
                             else
                             {
