@@ -21,11 +21,12 @@ namespace Studio1Project
     }
     internal class Program
     {
-        private static int roomChoice=1, health = 100, stamina = 100, prev = 1, sleepCounter = 0;
+        private static int roomChoice=1, health = 100, stamina = 100, prev = 1, sleepCounter = 0, lossCount=0;
         private static string action = "";
         private static List<string> inv = new List<string>();
         private static Weapon playerWeapon;
         private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        
         const int SW_MAXIMIZE = 3;
 
         [DllImport("kernel32.dll", ExactSpelling = true)]
@@ -44,6 +45,10 @@ namespace Studio1Project
             weaponEquip("fists", 5, 15, 5, 10);
             do
             {
+                if(lossCount == 10)
+                {
+                    roomChoice = 9998;
+                }
                 switch (roomChoice)
                 {
 
@@ -163,22 +168,22 @@ namespace Studio1Project
                         }
                         else
                         {
-                            Console.WriteLine("Your cell is locked Do you want to take the keys frim the gaurd. Yes or No");
+                            Console.WriteLine("Your cell is locked Do you want to take the keys from the guard. Yes or No");
                             action = Console.ReadLine().ToLower().Remove(1);
                             if(action== "y")
                             {
-                                Console.WriteLine("You Reach for the gaurds keys ");
+                                Console.WriteLine("You Reach for the guards keys ");
                                 int success =random.Next(10);
                                 if (success < 8 )
                                 {
-                                    Console.WriteLine("you successfully take the keys form the gaurd");
+                                    Console.WriteLine("you successfully take the keys form the guard");
                                     inv.Add("cell keys");
                                     roomChoice = 2;
                                     validInput = true;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("the Gaurd spots you prepare for a fight");
+                                    Console.WriteLine("the Guard spots you prepare for a fight");
                                     string outCome = combat(20, 3, 1, 5);
                                     
                                     if (outCome == "win") {
@@ -186,7 +191,19 @@ namespace Studio1Project
                                         roomChoice = 2;
                                         validInput = true;
                                     }
-                                    else { Console.WriteLine("lose"); }//idk what to do if you lose
+                                    else {
+                                        Console.WriteLine("lose");
+                                        if (health <=0 || stamina <= 0)
+                                        {
+                                            Console.WriteLine("");
+                                            health = 50;
+                                            stamina = 50;
+                                            lossCount++;
+                                        }
+                                        else {
+                                            Console.WriteLine("");
+                                        }
+                                    }//idk what to do if you lose
                                 };
                             }
                             else { 
@@ -199,7 +216,6 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
-
                     case "return":
                     case "go back":
                         GoBack();
