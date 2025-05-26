@@ -42,7 +42,7 @@ namespace Studio1Project
             {
                 ShowWindow(consoleWindow, SW_MAXIMIZE);
             }
-            weaponEquip("fists", 5, 15, 5, 10);
+            weaponEquip("fists", 9999, 15, 5, 10);
             do
             {
                 if(lossCount == 10)
@@ -794,7 +794,7 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
-            //Console.WriteLine("the Gaurd spots you prepare for a fight");
+
             //string outCome = combat(20, 3, 1, 5);
 
             Console.Clear();
@@ -806,20 +806,34 @@ namespace Studio1Project
             Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
             Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
             Console.WriteLine();
-            //string outCome = combat(40, 4, 2, 10);
+            string outCome = combat(40, 4, 2, 10);
 
-            //if (outCome == "win")
-            //{
-            //    Console.WriteLine("You have defeated the guard and decide to search his pockets. You see keys and take them then proceed to take a proper look around the yard"); /* Haven't tested yet
-            //    inv.add("Gatehouse Key");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("You have been defeated and the guard confiscates your items and drags you back to your cell");
-            //    inv.Clear();
-            //    weaponEquip("fists", 5, 15, 5, 10);
-            //    roomChoice = 1;
-            //}
+            if (outCome == "win")
+            {
+                Console.WriteLine("The guard collapses at your feet, unmoving.");
+                Console.WriteLine("You crouch beside him and search his pockets carefully.");
+                Console.WriteLine("Your fingers brush against something cold and metallic—keys.");
+                Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
+                Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
+                Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
+                Console.WriteLine("Time to move... but where to first?"); /* Haven't tested yet */
+                inv.Add("Gatehouse Key");
+                Thread.Sleep(1000);                
+            }
+            else
+            {
+                Console.WriteLine("Pain surges through your body as you collapse to the ground, defeated.");
+                Console.WriteLine("The guard stands over you, victorious, his expression unreadable.");
+                Console.WriteLine("He methodically searches you, stripping away your hard-earned items one by one.");
+                Console.WriteLine("You try to resist, but your limbs are heavy and uncooperative.");
+                Console.WriteLine("With a grunt, he hauls you up and begins dragging you back toward the cell.");
+                Console.WriteLine("The cold stone floor scrapes against you as the shadows of freedom fade behind.");
+                Console.WriteLine("The door slams shut with a metallic clang... You're back where you started.");
+                inv.Clear();
+                weaponEquip("fists", 5, 15, 5, 10);
+                lossCount++;
+                roomChoice = 1;
+            }
 
             bool validInput = false;
 
