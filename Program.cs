@@ -160,13 +160,8 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "back":
-<<<<<<< HEAD
                     case "return":
                     case "go back":
-=======
-                    case "go back":
-                        GoBack();
->>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
@@ -247,10 +242,6 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-<<<<<<< HEAD
-=======
-                        GoBack();
->>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
@@ -314,10 +305,6 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-<<<<<<< HEAD
-=======
-                        GoBack();
->>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
@@ -372,10 +359,6 @@ namespace Studio1Project
                     case "back":
                     case "return":
                     case "go back":
-<<<<<<< HEAD
-=======
-                        GoBack();
->>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
                         roomChoice = prev;
                         GoBack();
                         validInput = true;
