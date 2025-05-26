@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
 using System.Text;
 using System.Threading;
+using System.Xml.Linq;
 using Microsoft.VisualBasic;
 using static System.Formats.Asn1.AsnWriter;
 
@@ -24,15 +25,22 @@ namespace Studio1Project
         private static string action = "";
         private static List<string> inv = new List<string>();
         private static Weapon playerWeapon;
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, cellItems = { "cell keys" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        const int SW_MAXIMIZE = 3;
+
+        [DllImport("kernel32.dll", ExactSpelling = true)]
+        static extern IntPtr GetConsoleWindow();
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         static void Main(string[] args)
         {
-            playerWeapon.name = "fists";
-            playerWeapon.minDamage = 2;
-            playerWeapon.maxDamage = 10;
-            playerWeapon.block = 5;
-            playerWeapon.staminaCost = 10;
-
+            IntPtr consoleWindow = GetConsoleWindow();
+            if (consoleWindow != IntPtr.Zero)
+            {
+                ShowWindow(consoleWindow, SW_MAXIMIZE);
+            }
+            weaponEquip("fists", 5, 15, 5, 10);
             do
             {
                 switch (roomChoice)
@@ -91,7 +99,9 @@ namespace Studio1Project
                         TowerBase();
                         break;
                     case 9999:
-                        Console.WriteLine("You win! Do you want to play again? y/n");
+                        /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Inserted text here makes it centered*/
+                        /*WriteCentered(win);*/ /*------------------This method centers any text if you call it*/
+                        Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -131,6 +141,7 @@ namespace Studio1Project
             Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps. The air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
             Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable. Each room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries. With your mission in mind you start exploring your surroundings...\n\n");
             bool validInput = false;
+            Random random = new Random();
             while (!validInput)
             {
                 Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
@@ -151,8 +162,35 @@ namespace Studio1Project
                         }
                         else
                         {
-                            Console.WriteLine("Your cell is locked! You cannot enter the hall.");
-                            roomChoice = 1;
+                            Console.WriteLine("Your cell is locked Do you want to take the keys frim the gaurd. Yes or No");
+                            action = Console.ReadLine().ToLower().Remove(1);
+                            if(action== "y")
+                            {
+                                Console.WriteLine("You Reach for the gaurds keys ");
+                                int success =random.Next(10);
+                                if (success < 8 )
+                                {
+                                    Console.WriteLine("you successfully take the keys form the gaurd");
+                                    inv.Add("cell keys");
+                                    roomChoice = 2;
+                                    validInput = true;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("the Gaurd spots you prepare for a fight");
+                                    string outCome = combat(20, 3, 1, 5);
+                                    
+                                    if (outCome == "win") {
+                                        inv.Add("cell keys");
+                                        roomChoice = 2;
+                                        validInput = true;
+                                    }
+                                    else { Console.WriteLine("lose"); }//idk what to do if you lose
+                                };
+                            }
+                            else { 
+                                roomChoice = 1;
+                            }
                         }
                         break;
                     case "sewers":
@@ -169,9 +207,6 @@ namespace Studio1Project
                     case "test":
                         roomChoice = Convert.ToInt32(Console.ReadLine());
                         validInput = true;
-                        break;
-                    case "pickup":
-                        pickup(ref cellItems);
                         break;
                     case "help":
                     case "h":
@@ -198,9 +233,6 @@ namespace Studio1Project
                     case "show inventory":
                     case "inv":
                         inventoryShow();
-                        break;
-                    case "test fight":
-                        combat(10,1,1,1);
                         break;
                     default:
                         Console.WriteLine("Try something else!");
@@ -394,7 +426,7 @@ namespace Studio1Project
             Console.WriteLine("The smell hits you first — sweat, oil, and something long past edible. A half-eaten loaf lies beside a dented helmet.");
             Console.WriteLine("You see no guards... but the clutter tells you they were here not long ago.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
             while (!validInput)
@@ -402,6 +434,7 @@ namespace Studio1Project
                 Console.WriteLine("There are three doors: one marked with the red cross of the Infirmary, the other one leading out to the Training Yard. The last one seems to lead in to a hallway.");
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -473,7 +506,7 @@ namespace Studio1Project
             Console.WriteLine("Light from a window overhead casts strange shadows between the rows of broken stalls.");
             Console.WriteLine("Somewhere in the distance, you hear a metallic clang... then silence.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
             while (!validInput)
@@ -481,6 +514,7 @@ namespace Studio1Project
                 Console.WriteLine("There’s a narrow iron door half-hinged open, marked faintly with the red cross of the Infirmary.");
                 Console.WriteLine("You could also climb back down into the sewers, if you’d rather not linger here any longer.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -535,7 +569,7 @@ namespace Studio1Project
             Console.WriteLine("Dust dances in the stale air, lit by flickering overhead lights. Rows of broken vials, shattered beakers, and rusted equipment clutter the counters.");
             Console.WriteLine("A thick chemical smell still lingers—acrid and sharp. This place hasn’t been used in a long time… or maybe it has, just not for science.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
             while (!validInput)
@@ -543,6 +577,7 @@ namespace Studio1Project
                 Console.WriteLine("There’s a door leading to the Training Yard, its reinforced window cracked but intact.");
                 Console.WriteLine("You could also Go Back the way you came, retracing your steps through the dungeon.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -599,6 +634,7 @@ namespace Studio1Project
                 Console.WriteLine("Beyond a storage rack, a battered door swings gently open, revealing a path toward the Courtyard.");
                 Console.WriteLine("You can also step back the way you came.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -653,6 +689,7 @@ namespace Studio1Project
             Console.WriteLine("The scent of alcohol and old blood hangs in the air, mixing with something faintly sweet — herbs, perhaps.");
             Console.WriteLine("A torn cot leans against the wall, and broken vials crunch underfoot as you move.");
             Console.WriteLine();
+            Thread.Sleep(2000);
 
             bool validInput = false;
 
@@ -663,7 +700,7 @@ namespace Studio1Project
                 Console.WriteLine("A heavier, creaking wooden door opens to the Courtyard, where cool air stirs through the cracks.");
                 Console.WriteLine("Or... you could always double back the way you came, if none of this feels right.");
                 Console.WriteLine();
-                Thread.Sleep(1000);
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -693,6 +730,15 @@ namespace Studio1Project
                         GoBack();
                         validInput = true;
                         break;
+                    case "search":
+                    case "inspect":
+                    case "look around":
+                        Console.WriteLine();
+                        Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
+                        Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim*.");
+                        //Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
+                        Thread.Sleep(2000);
+                        break;
                     case "show inventory":
                     case "inv":
                         inventoryShow();
@@ -714,14 +760,12 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
-<<<<<<< HEAD
             Console.Clear();
-
             Console.WriteLine();
             Console.WriteLine("You step into the open Training Yard. Dirt and dust swirl in the wind as the clang of metal echoes faintly from beyond.");
             Console.WriteLine("Faded dummies line the edges, and broken weapon shafts are scattered across the ground.");
             Console.WriteLine();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
 
             bool validInput = false;
 
@@ -733,6 +777,7 @@ namespace Studio1Project
                 Console.WriteLine("To the east, a heavy wooden door leads to the open Courtyard, where the scent of grass cuts through the dust.");
                 Console.WriteLine("And of course, you could always retrace your steps and leave the yard the way you came.");
                 Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -770,6 +815,9 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "search room":
+                    case "search":
+                    case "inspect":
+                    case "look around":
                         Console.WriteLine();
                         Console.WriteLine("You take a moment to search the yard, scanning the ground and checking under broken training dummies.");
                         Console.WriteLine("Most of what you find is useless — splintered wood, dulled blades, and worn-out gear.");
@@ -789,384 +837,404 @@ namespace Studio1Project
                         Thread.Sleep(1000);
                         break;
                 }
-=======
-            Console.WriteLine("You entered the Training Yard you can got to the \ngaurdbarracks \nlab\n courtyard  \n or back");
-            action = Console.ReadLine().ToLower();
-            switch (action)
-            {
-                case "lab":
-                    prev = roomChoice;
-                    roomChoice = 7;
-                    break;
-                case "gaurdbarracks":
-                    prev = roomChoice;
-                    roomChoice = 5;
-                    break;
-                case "courtyard":
-                    prev = roomChoice;
-                    roomChoice = 11;
-                    break;
-                case "back":
-                    roomChoice = prev;
-                    break;
-                case "show inventory":
-                case "inv":
-                    inventoryShow();
-                    Thread.Sleep(2000);
-                    break;
-                case "map":
-                    showMap();
-                    break;
->>>>>>> 7a450ce922f4e654379c8a14a2ae3191eaa97bd5
             }
-        }
-        static void Courtyard()//Room11
-        {
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine("You step out into the Courtyard. The open sky stretches above — a rare sight down here. Moss clings to crumbling stone walls, and the faint sound of birdsong feels almost surreal.");
-            Console.WriteLine("A broken statue of a knight stands guard in the center, its face worn smooth by time. The air smells of damp earth and old battle.");
-            Console.WriteLine();
+            }
 
-            bool validInput = false;
-
-            while (!validInput)
+            static void Courtyard()//Room11
             {
-
-                Console.WriteLine("There’s a barely visible grate behind a thorny bush — the passage to the Pantry.");
-                Console.WriteLine("A heavy oak door marked with a faded red cross leads into the Infirmary.");
-                Console.WriteLine("The Training Yard lies just beyond a sagging wooden gate, its hinges creaking in the breeze.");
-                Console.WriteLine("A winding stone path leads up to the Ancient Tower, its silhouette sharp against the sky.");
-                Console.WriteLine("Another narrow path disappears toward the looming Gatehouse, where freedom might yet be possible.");
-                Console.WriteLine();
-
-                action = Console.ReadLine().ToLower();
                 Console.Clear();
-                switch (action)
-                {
-                    case "gatehouse":
-                    case "exit":
-                    case "gate":
-                        roomChoice = 12;
-                        validInput = true;
-                        break;
-                    case "tower base":
-                    case "tower":
-                    case "watch tower":
-                        roomChoice = 13;
-                        validInput = true;
-                        break;
-                    case "pantry storage":
-                    case "pantry":
-                        roomChoice = 8;
-                        validInput = true;
-                        break;
-                    case "infirmary":
-                    case "infirm":
-                        roomChoice = 9;
-                        validInput = true;
-                        break;
-                    case "training yard":
-                    case "t/y":
-                        roomChoice = 10;
-                        validInput = true;
-                        break;
-                    case "back":
-                    case "return":
-                    case "go back":
-                        roomChoice = prev;
-                        GoBack();
-                        validInput = true;
-                        break;
-                    case "search":
-                    case "search area":
-                    case "search room":
-                        Console.WriteLine("You scour the courtyard, but all that's left are whispers of long-forgotten days.");
-                        break;
-                    case "show inventory":
-                    case "inv":
-                        inventoryShow();
-                        Thread.Sleep(2000);
-                        break;
-                    case "map":
-                        showMap();
-                        break;
-                    default:
-                        Console.WriteLine();
-                        Console.WriteLine("You pause in the courtyard, listening to the wind rattle the gate. There are many paths here — some leading forward, others perhaps to freedom.");
-                        Thread.Sleep(1000);
-                        Console.WriteLine();
-                        break;
-                }
-            }
-        }
-        static void GateHouse()//Room12 EXIT
-        {
-            Console.Clear();
-            Console.WriteLine();
-            Console.WriteLine("You step into the Gatehouse — a stone chamber looming with rusted chains and gear levers, once used to raise the portcullis.");
-            Console.WriteLine("Dust blankets every surface, and faded banners hang limp on the walls, whispering of long-forgotten glory.");
-            Console.WriteLine();
-
-            bool validInput = false;
-
-            while (!validInput)
-            {
-                
-                Console.WriteLine("Ahead, the Castle’s main gate stands sealed — an imposing iron door with a thick lock, its keyhole rusted but still intact. It won’t budge without the right key.");
-                Console.WriteLine("Behind you, the corridor stretches back toward the Courtyard, the faint breeze from outside already starting to fade.");
                 Console.WriteLine();
-
-                action = Console.ReadLine().ToLower();
-                Console.Clear();
-                switch (action)
-                {
-                    case "courtyard":
-                        roomChoice = 11;
-                        break;
-                    case "back":
-                    case "return":
-                    case "go back":
-                        roomChoice = prev;
-                        GoBack();
-                        validInput = true;
-                        break;
-                    case "exit":
-                    case "leave":
-                    case "escape":
-                        if (inv.Contains("Gatehouse Key"))
-                        {
-                            roomChoice = 9999;
-                        }
-                        else
-                        {
-                            Console.WriteLine("You don't have the key to open the gate");
-                        }
-                        break;
-                    case "search":
-                    case "search room":
-                        Console.WriteLine("You carefully search the area, eyes scanning every nook and cranny.");
-                        Console.WriteLine("Dust swirls in the stale air, but nothing of value reveals itself.");
-                        Console.WriteLine("It seems this place holds no secrets — at least, not for now.");
-                        Console.WriteLine();
-                        Thread.Sleep(1000);
-                        break;
-                    case "show inventory":
-                    case "inv":
-                        inventoryShow();
-                        Thread.Sleep(2000);
-                        break;
-                    default:
-                        Console.WriteLine();
-                        Console.WriteLine("The gatehouse groans with age, but stands firm. The wind outside whispers of freedom... or of danger.");
-                        Thread.Sleep(1000);
-                        break;
-                }
-            }
-        }
-        static void TowerBase()//Room13
-        {
-            int towerFloor = 0;
-            Console.WriteLine();
-            Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
-            Console.WriteLine("A narrow, winding path leads back down to the Courtyard, the distant sounds of castle life faint on the breeze.");
-            Console.WriteLine("The heavy wooden door behind you creaks softly, offering a way back inside.");
-            Console.WriteLine();
-
-            bool validInput = false;
-
-            while (!validInput)
-            {
-
-                Console.WriteLine("What would you like to do?");
-                Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step back inside through the door.");
-                Console.WriteLine("You might also take a moment to inspect the area more closely.");
+                Console.WriteLine("You step out into the Courtyard. The open sky stretches above — a rare sight down here. Moss clings to crumbling stone walls, and the faint sound of birdsong feels almost surreal.");
+                Console.WriteLine("A broken statue of a knight stands guard in the center, its face worn smooth by time. The air smells of damp earth and old battle.");
                 Console.WriteLine();
+                Thread.Sleep(2000);
 
-                action = Console.ReadLine().ToLower();
-                Console.Clear();
-                switch (action)
+                bool validInput = false;
+
+                while (!validInput)
                 {
-                    case "courtyard":
-                        roomChoice = 11;
-                        break;
-                    case "back":
-                    case "return":
-                    case "go back":
-                        GoBack();
-                        roomChoice = prev;
-                        break;
-                    case "go up":
-                    case "up":
-                    case "climb tower":
-                    case "climb":
-                        TowerClimb(); // need to make it so you die
-                        break;
 
-                }
-            }
-        }
-        static void TowerClimb()
-        {
-            int towerFloor = 1;
-            bool jump = false;
-
-            while (towerFloor > 0 && !jump)
-            {
-                string option = "";
-
-                while (towerFloor < 6 && towerFloor > 0)
-                {
+                    Console.WriteLine("There’s a barely visible grate behind a thorny bush — the passage to the Pantry.");
+                    Console.WriteLine("A heavy oak door marked with a faded red cross leads into the Infirmary.");
+                    Console.WriteLine("The Training Yard lies just beyond a sagging wooden gate, its hinges creaking in the breeze.");
+                    Console.WriteLine("A winding stone path leads up to the Ancient Tower, its silhouette sharp against the sky.");
+                    Console.WriteLine("Another narrow path disappears toward the looming Gatehouse, where freedom might yet be possible.");
                     Console.WriteLine();
-                    Console.WriteLine($"You stand on floor {towerFloor} of the tower. The stone stairs spiral tightly in both directions.");
-                    Console.WriteLine("Do you want to climb further or head back down?");
                     Console.Write(">> ");
-                    option = Console.ReadLine().ToLower();
 
-                    switch (option)
+                    action = Console.ReadLine().ToLower();
+                    Console.Clear();
+                    switch (action)
                     {
-                        case "climb":
-                        case "up":
-                        case "climb up":
-                        case "climb tower":
-                            towerFloor++;
-                            stamina -= 5;
-                            Console.WriteLine($"You ascend to floor {towerFloor}, your legs growing heavier with each step.");
-                            Console.WriteLine($"Stamina: {stamina}");
+                        case "gatehouse":
+                        case "exit":
+                        case "gate":
+                            roomChoice = 12;
+                            validInput = true;
                             break;
-                        case "down":
-                        case "go down":
-                        case "go back":
-                        case "return":
+                        case "tower base":
+                        case "tower":
+                        case "watch tower":
+                            roomChoice = 13;
+                            validInput = true;
+                            break;
+                        case "pantry storage":
+                        case "pantry":
+                            roomChoice = 8;
+                            validInput = true;
+                            break;
+                        case "infirmary":
+                        case "infirm":
+                            roomChoice = 9;
+                            validInput = true;
+                            break;
+                        case "training yard":
+                        case "t/y":
+                            roomChoice = 10;
+                            validInput = true;
+                            break;
                         case "back":
-                            if (towerFloor > 1)
+                        case "return":
+                        case "go back":
+                            roomChoice = prev;
+                            GoBack();
+                            validInput = true;
+                            break;
+                        case "search":
+                        case "search area":
+                        case "search room":
+                        case "inspect":
+                        case "look around":
+                        Console.WriteLine("You scour the courtyard, but all that's left are whispers of long-forgotten days.");
+                            break;
+                        case "show inventory":
+                        case "inv":
+                            inventoryShow();
+                            Thread.Sleep(2000);
+                            break;
+                        case "map":
+                            showMap();
+                            break;
+                        default:
+                            Console.WriteLine();
+                            Console.WriteLine("You pause in the courtyard, listening to the wind rattle the gate. There are many paths here — some leading forward, others perhaps to freedom.");
+                            Thread.Sleep(1000);
+                            Console.WriteLine();
+                            break;
+                    }
+                }
+            }
+            static void GateHouse()//Room12 EXIT
+            {
+                Console.Clear();
+                Console.WriteLine();
+                Console.WriteLine("You step into the Gatehouse — a stone chamber looming with rusted chains and gear levers, once used to raise the portcullis.");
+                Console.WriteLine("Dust blankets every surface, and faded banners hang limp on the walls, whispering of long-forgotten glory.");
+                Console.WriteLine();
+                Thread.Sleep(2000);
+
+                bool validInput = false;
+
+                while (!validInput)
+                {
+
+                    Console.WriteLine("Ahead, the Castle’s main gate stands sealed — an imposing iron door with a thick lock, its keyhole rusted but still intact. It won’t budge without the right key.");
+                    Console.WriteLine("Behind you, the corridor stretches back toward the Courtyard, the faint breeze from outside already starting to fade.");
+                    Console.WriteLine();
+                    Console.Write(">> ");
+
+                    action = Console.ReadLine().ToLower();
+                    Console.Clear();
+                    switch (action)
+                    {
+                        case "courtyard":
+                            roomChoice = 11;
+                            break;
+                        case "back":
+                        case "return":
+                        case "go back":
+                            roomChoice = prev;
+                            GoBack();
+                            validInput = true;
+                            break;
+                        case "exit":
+                        case "leave":
+                        case "escape":
+                            if (inv.Contains("Gatehouse Key"))
                             {
-                                towerFloor--;
-                                Console.WriteLine($"You descend cautiously to floor {towerFloor}, the stairwell dark and narrow.");
+                            Console.WriteLine("Your fingers brush against the gate's cold iron as you spot the keyhole—");
+                            Console.WriteLine("and then, your heart skips. You have the key.");
+                            Console.WriteLine();
+                            Console.WriteLine("With a deep breath, you slide it into place. It fits perfectly.");
+                            Console.WriteLine("A heavy *click* echoes through the air as the mechanism unlocks.");
+                            Console.WriteLine("The gate creaks open, revealing the path beyond the castle walls—freedom at last.");
+                            Console.WriteLine();
+                            Console.WriteLine("You step into the fading light, the wind fresh against your skin.");
+                            Console.WriteLine("You’ve made it out.");
+                            Console.WriteLine();
+                            roomChoice = 9999;
                             }
                             else
                             {
-                                Console.WriteLine("You’re already at the base of the tower—you can’t go any lower.");
+                            Console.WriteLine("You study the keyhole, its shape unmistakable. But no key in your possession fits. Defeated, you turn away, the promise of freedom lingering just beyond your grasp.");
+                            Console.WriteLine();
+                            Thread.Sleep(2000);
                             }
+                        break;
+                        case "search":
+                        case "search room":
+                        case "inspect":
+                        case "look around":
+                        Console.WriteLine("You carefully search the area, eyes scanning every nook and cranny.");
+                            Console.WriteLine("Dust swirls in the stale air, but nothing of value reveals itself.");
+                            Console.WriteLine("If there’s a key here, it’s long gone.");
+                            Console.WriteLine();
+                            Thread.Sleep(1000);
+                            break;
+                        case "show inventory":
+                        case "inv":
+                            inventoryShow();
+                            Thread.Sleep(2000);
                             break;
                         default:
-                            Console.WriteLine("The silence in the tower grows heavier as you hesitate.");
+                            Console.WriteLine();
+                            Console.WriteLine("The gatehouse groans with age, but stands firm. The wind outside whispers of freedom... or of danger.");
+                            Console.WriteLine();
+                            Thread.Sleep(1000);
                             break;
                     }
                 }
+            }
+            static void TowerBase()//Room13
+            {
+                Console.WriteLine();
+                Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
+                Console.WriteLine("Looking back you see a narrow, winding path leading back down to the Courtyard, the distant sounds of castle life faint on the breeze.");
+                Console.WriteLine("The wooden door behind you creaks softly, offering a way inside.");
+                Console.WriteLine();
+                Thread.Sleep(1500);
 
-                if (towerFloor == 6)
+                bool validInput = false;
+
+                while (!validInput)
                 {
+
+                    Console.WriteLine("What would you like to do?");
+                    Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step inside through the door.");
+                    Console.WriteLine("You might also take a moment to inspect the area more closely.");
                     Console.WriteLine();
-                    Console.WriteLine("At last, you reach the top of the tower. The cold wind bites at your skin as you step onto the open rooftop.");
-                    Console.WriteLine("Below, far beyond the castle wall, a river glimmers in the fading light—just within reach.");
-                    Console.WriteLine("It’s a long drop. You might make it... or you might not.");
-                    Console.WriteLine("Do you take the leap, or retreat back into the tower?");
                     Console.Write(">> ");
 
-                    string playerChoice = Console.ReadLine().ToLower();
-
-                    switch (playerChoice)
+                    action = Console.ReadLine().ToLower();
+                    Console.Clear();
+                    switch (action)
                     {
-                        case "jump":
-                        case "leap":
-                        case "jump off":
-                        case "leap off":
-                            Console.WriteLine();
-                            Console.WriteLine("You take a deep breath, close your eyes—and leap.");
-                            Console.WriteLine("The air roars in your ears. For a moment, it feels like flying...");
-                            Console.WriteLine("Then everything fades to black."); // need to make it so you die
-                            jump = true;
-                            roomChoice = 9999;
+                        case "courtyard":
+                            roomChoice = 11;
+                        validInput = true;
                             break;
-                        case "go down":
-                        case "down":
                         case "back":
                         case "return":
-                            Console.WriteLine("You turn away from the edge, heart pounding. Not today."); 
-                            towerFloor--;
+                        case "go back":
+                            GoBack();
+                            roomChoice = prev;
+                        validInput = true;
                             break;
-                        default:
-                            Console.WriteLine("The wind howls, waiting for your choice...");
+                        case "go up":
+                        case "up":
+                        case "climb tower":
+                        case "climb":
+                            TowerClimb();
+                        validInput = true;
                             break;
+                    case "search":
+                    case "inspect":
+                    case "look around":
+                        Console.WriteLine();
+                        Console.WriteLine("You take a slow walk around the base of the tower, scanning the moss-covered stones and worn path.");
+                        Console.WriteLine("A few scattered pebbles, dried leaves, and an old bird’s nest are all that greet you.");
+                        Console.WriteLine("If anything useful was ever left here, it's long gone.");
+                        Console.WriteLine();
+                        break;
+                    default:
+                        Console.WriteLine("You hesitate, uncertain what to do.");
+                        Console.WriteLine();
+                        Thread.Sleep(1000);
+                        break;
                     }
                 }
             }
-        }
-
-        static void GoBack()
-        {
-            Console.WriteLine("You cast a final glance at your surroundings before slipping away.");
-            Console.WriteLine("Every step echoes your decision to return the way you came.");
-            Console.WriteLine();
-            Thread.Sleep(1000);
-        }
-        static void inventoryShow()//Albert
-        {
-            Console.WriteLine("====================");
-            Console.WriteLine("Items in inventory");
-            foreach (string item in inv)
+            static void TowerClimb()
             {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("====================");
-            Console.WriteLine();
-        }
-        static void pickup(ref string[] items)//pickup items
-        {
-            Console.Clear();
-            string item = "";
+                int towerFloor = 1;
+                bool jump = false;
 
-            Console.WriteLine("what item do you want to pick up");
-            foreach (string i in items)
+                while (towerFloor > 0 && !jump)
+                {
+                    string option = "";
+
+                    while (towerFloor < 6 && towerFloor > 0)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine($"You stand on floor {towerFloor} of the tower. The stone stairs spiral tightly in both directions.");
+                        Console.WriteLine("Do you want to climb further or head back down?");
+                        Console.WriteLine();
+                        Console.Write(">> ");
+
+                        option = Console.ReadLine().ToLower();
+                        Console.Clear();
+                        switch (option)
+                        {
+                            case "climb":
+                            case "up":
+                            case "climb up":
+                            case "climb tower":
+                                towerFloor++;
+                                stamina -= 5;
+                            Console.WriteLine();
+                            Console.WriteLine($"You ascend to floor {towerFloor}, your legs growing heavier with each step.");
+                                Console.WriteLine($"Stamina: {stamina}");
+                                break;
+                            case "down":
+                            case "go down":
+                            case "go back":
+                            case "return":
+                            case "back":
+                                if (towerFloor > 1)
+                                {
+                                    towerFloor--;
+                                Console.WriteLine();
+                                Console.WriteLine($"You descend cautiously to floor {towerFloor}, the stairwell dark and narrow.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You’re already at the base of the tower—you can’t go any lower.");
+                                }
+                                break;
+                            default:
+                                Console.WriteLine("The silence in the tower grows heavier as you hesitate.");
+                                break;
+                        }
+                    }
+
+                    if (towerFloor == 6)
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("At last, you reach the top of the tower. The cold wind bites at your skin as you step onto the open rooftop.");
+                        Console.WriteLine("Below, far beyond the castle wall, a river glimmers in the fading light—just within reach.");
+                        Console.WriteLine("It’s a long drop. You might make it... or you might not.");
+                        Console.WriteLine("Do you take the leap, or retreat back into the tower?");
+                        Console.WriteLine();
+                        Console.Write(">> ");
+
+                        string playerChoice = Console.ReadLine().ToLower();
+
+                        switch (playerChoice)
+                        {
+                            case "jump":
+                            case "leap":
+                            case "jump off":
+                            case "leap off":
+                                Console.WriteLine();
+                                Console.WriteLine("You take a deep breath, close your eyes—and leap.");
+                                Console.WriteLine("The air roars in your ears. For a moment, it feels like flying...");
+                                Console.WriteLine("Then everything fades to black.");
+                                Console.WriteLine();
+                                roomChoice = 9998;
+                                jump = true;                               
+                                return;
+                            case "go down":
+                            case "down":
+                            case "back":
+                            case "return":
+                                Console.WriteLine("You turn away from the edge, heart pounding. Not today.");
+                                towerFloor--;
+                                break;
+                            default:
+                                Console.WriteLine("The wind howls, waiting for your choice...");
+                                break;
+                        }
+                    }
+                }
+            }
+
+            static void GoBack()
             {
-                Console.WriteLine(i);
+                Console.WriteLine("You cast a final glance at your surroundings before slipping away.");
+                Console.WriteLine("Every step echoes your decision to return the way you came.");
+                Console.WriteLine();
+                Thread.Sleep(1000);
             }
-            item = Console.ReadLine();
-            if (items.Contains(item) == true)
+            static void inventoryShow()//Albert
             {
-                inv.Add(item);
-                items = items.Where(x => x != item).ToArray();
+                Console.WriteLine("====================");
+                Console.WriteLine("Items in inventory");
+                foreach (string item in inv)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("====================");
+                Console.WriteLine("");
+                Console.WriteLine($"{playerWeapon.name}\nDamage {playerWeapon.minDamage}-{playerWeapon.maxDamage}\nBlock Strength {playerWeapon.block}\nStamina cost {playerWeapon.staminaCost}");
+                Console.WriteLine("");
+                Console.WriteLine("====================");
+        }
+            static void pickup(ref string[] items)//pickup items
+            {
+                Console.Clear();
+                string item = "";
 
+                Console.WriteLine("what item do you want to pick up");
+                foreach (string i in items)
+                {
+                    Console.WriteLine(i);
+                }
+                item = Console.ReadLine();
+                if (items.Contains(item) == true)
+                {
+                    inv.Add(item);
+                    items = items.Where(x => x != item).ToArray();
+
+                }
+                else
+                {
+                    Console.WriteLine("item not exists");
+                }
+                Console.WriteLine($"you picked up {item}");
+                Thread.Sleep(1000);
             }
-            else {
-                Console.WriteLine("item not exists");
+
+            static void showCommands()
+            {
+                Console.WriteLine("***************************************************************************");
+                Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
+                Console.WriteLine("***************************************************************************\n\n");
             }
-            Console.WriteLine($"you picked up {item}");
-            Thread.Sleep(1000);
-        }
 
-        static void showCommands()
-        {
-            Console.WriteLine("***************************************************************************");
-            Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
-            Console.WriteLine("***************************************************************************\n\n");
-        }
+            static void showEnergyLevels()
+            {
+                Console.WriteLine("***************************************************************************");
+                Console.WriteLine($"Health: {health} \nStamina: {stamina}");
+                Console.WriteLine("***************************************************************************\n\n");
+            }
+            static void showMap()
+            {
+                Console.WriteLine($"........................                              ........................                              ........................\r\n..                    ..                              ..                    ..                              ..                    ..\r\n..      {roomsVisited[0]}          ..................................      {roomsVisited[1]}       ..................................      {roomsVisited[3]}       ..\r\n..                    ..................................                    ..................................                    ..\r\n..                    ..                              ..                    ..                              ..                    ..\r\n........................                              ........................                              ........................\r\n          ...                                                   ....                                                  ...           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ....                                                  ....                                                  ...           \r\n........................   ........................  ........................                              ........................\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n..       {roomsVisited[2]}       .......      {roomsVisited[5]}       ..  ..   {roomsVisited[4]}  ..                              .        {roomsVisited[7]}       ..\r\n..                    .......                    ..  ..                    ..                              .                     ..\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n........................   ........................  ........................                              ........................\r\n          ....                   ....                   .....       ....                                              ...          \r\n          ...                     ..                   ....         ...                                                ..          \r\n          ...                     ..                 ....          ...                                                 ..          \r\n          ...                     ..                ..            ..                                                   ..          \r\n          ...                     ..              ..             ..                                                    ..          \r\n          ...                     ..            ...             ...                                                    ..          \r\n          ....                   ....        .....             ..                                                      ..           \r\n........................   .........................          ...                                           ........................\r\n..                    ..   ...                    ..        ....                                            .                     ..\r\n..         {roomsVisited[6]}        ..   ...    {roomsVisited[8]}       ....     ....                                             .      {roomsVisited[10]}      ..\r\n..                    ..   ...                    ...........................................................                     ..\r\n..                    ..   ...                    ..     ...                                                .                     ..\r\n........................   .........................    ...                                               ..........................\r\n           ....                                       ....                                             ......   ....        ....\r\n            ....                                     ....                                          .......     ...           ...\r\n              ....                                  ....                                       .......        ...             ...\r\n               ....                                 ..                                      ......           ...               ...\r\n                 ....                              ..                                   ......              ...                ...\r\n                   ....                          ...                                .......                 ..                  ...\r\n                    ...                         ...                             .......                    ..                    ...\r\n                      ...                      ....                          ......                       ..                      ...\r\n                       ...                    ...                        ......                          ..                       ....\r\n                        ....                 ...                     .......                            ...                        ...\r\n                         ....              ....                   ......                               ....                         ...\r\n                           .... ........................      ......                        ........................      ........................\r\n                             .....                    ..  .......                           .                     ..      ..                    ..\r\n                              ....   {roomsVisited[9]}    .........                             .      {roomsVisited[12]}     ..      ..     {roomsVisited[11]}     ..\r\n                                ..                    ....                                  .                     ..      ..                    ..\r\n                                ..                    ..                                    ..                    ..      ..                    ..\r\n                                ........................                                    ........................      ........................");
+            }
 
-        static void showEnergyLevels()
-        {
-            Console.WriteLine("***************************************************************************");
-            Console.WriteLine($"Health: {health} \nStamina: {stamina}");
-            Console.WriteLine("***************************************************************************\n\n");
-        }
-        static void showMap()
-        {
-            Console.WriteLine($"........................                              ........................                              ........................\r\n..                    ..                              ..                    ..                              ..                    ..\r\n..      {roomsVisited[0]}          ..................................      {roomsVisited[1]}       ..................................      {roomsVisited[3]}       ..\r\n..                    ..................................                    ..................................                    ..\r\n..                    ..                              ..                    ..                              ..                    ..\r\n........................                              ........................                              ........................\r\n          ...                                                   ....                                                  ...           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ....                                                  ....                                                  ...           \r\n........................   ........................  ........................                              ........................\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n..       {roomsVisited[2]}       .......      {roomsVisited[5]}       ..  ..   {roomsVisited[4]}  ..                              .        {roomsVisited[7]}       ..\r\n..                    .......                    ..  ..                    ..                              .                     ..\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n........................   ........................  ........................                              ........................\r\n          ....                   ....                   .....       ....                                              ...          \r\n          ...                     ..                   ....         ...                                                ..          \r\n          ...                     ..                 ....          ...                                                 ..          \r\n          ...                     ..                ..            ..                                                   ..          \r\n          ...                     ..              ..             ..                                                    ..          \r\n          ...                     ..            ...             ...                                                    ..          \r\n          ....                   ....        .....             ..                                                      ..           \r\n........................   .........................          ...                                           ........................\r\n..                    ..   ...                    ..        ....                                            .                     ..\r\n..         {roomsVisited[6]}        ..   ...    {roomsVisited[8]}       ....     ....                                             .      {roomsVisited[10]}      ..\r\n..                    ..   ...                    ...........................................................                     ..\r\n..                    ..   ...                    ..     ...                                                .                     ..\r\n........................   .........................    ...                                               ..........................\r\n           ....                                       ....                                             ......   ....        ....\r\n            ....                                     ....                                          .......     ...           ...\r\n              ....                                  ....                                       .......        ...             ...\r\n               ....                                 ..                                      ......           ...               ...\r\n                 ....                              ..                                   ......              ...                ...\r\n                   ....                          ...                                .......                 ..                  ...\r\n                    ...                         ...                             .......                    ..                    ...\r\n                      ...                      ....                          ......                       ..                      ...\r\n                       ...                    ...                        ......                          ..                       ....\r\n                        ....                 ...                     .......                            ...                        ...\r\n                         ....              ....                   ......                               ....                         ...\r\n                           .... ........................      ......                        ........................      ........................\r\n                             .....                    ..  .......                           .                     ..      ..                    ..\r\n                              ....   {roomsVisited[9]}    .........                             .      {roomsVisited[12]}     ..      ..     {roomsVisited[11]}     ..\r\n                                ..                    ....                                  .                     ..      ..                    ..\r\n                                ..                    ..                                    ..                    ..      ..                    ..\r\n                                ........................                                    ........................      ........................");
-        }
-
-        //resets all the variables, lists, .... to restart the game
-        static void reset()
-        {
-            roomChoice = 1;
-            heath = 100;
-            stamina = 100;
-            prev = 1;
-            sleepCounter = 0;
-            inv.Clear();
-            infirmaryItems = new string[] { "health potion", "energy stim", "note" };
-            cellItems = new string[] { "cell keys" };
-            roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
-        }
+            //resets all the variables, lists, .... to restart the game
+            static void reset()
+            {
+                roomChoice = 1;
+                health = 100;
+                stamina = 100;
+                prev = 1;
+                sleepCounter = 0;
+                inv.Clear();
+                infirmaryItems = new string[] { "health potion", "energy stim", "note" };
+                roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+            }
+        
 
         //public static void combat()
         //{
@@ -1212,7 +1280,17 @@ namespace Studio1Project
         //    }
         //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
         //}
-        public static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
+        
+        static void weaponEquip(string name,int minDmg,int maxDmg,int block,int stamCost)
+        {
+            playerWeapon.name = name;
+            playerWeapon.minDamage = minDmg;
+            playerWeapon.maxDamage = maxDmg;
+            playerWeapon.block = block;
+            playerWeapon.staminaCost = stamCost;
+        }
+        
+        static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
         {
             int userDamage, userDefence, enemyDamage;
             Random rand = new Random();
@@ -1220,6 +1298,13 @@ namespace Studio1Project
             Console.WriteLine("You have entered combat");
             while (health > 0 && stamina > 0 && combatChoice != "run" && enemyHealth > 0)
             {
+                if (health < 10) {
+                    Console.WriteLine("Warning low health");
+                }
+                if (stamina < 10) { 
+                 Console.WriteLine("Warning low Stamina");
+                }
+
                 userDefence = 0;
                 Console.WriteLine("What action do you want to take ");
                 combatChoice = Console.ReadLine().ToLower();
@@ -1302,10 +1387,11 @@ namespace Studio1Project
                     default:
                         Console.WriteLine("Please enter a valid input either\n**Attack**\n**Defend**\n**Run**\n**Heal**\n**Show Inventory**");
                         break;
+                    
 
                 }
             }
-            if (enemyHealth == 0) {
+            if (enemyHealth <= 0) {
                 Console.WriteLine("YOU WIN");
                 Thread.Sleep(1000);
                 return "win"; }
@@ -1317,6 +1403,12 @@ namespace Studio1Project
             
 
 
+        }
+        static void WriteCentered(string message)
+        {
+            int left = (Console.WindowWidth - message.Length) / 2;
+            Console.SetCursorPosition(left, Console.CursorTop);
+            Console.WriteLine(message);
         }
 
     }
