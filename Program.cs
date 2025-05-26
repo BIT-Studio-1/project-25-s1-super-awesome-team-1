@@ -42,7 +42,7 @@ namespace Studio1Project
             {
                 ShowWindow(consoleWindow, SW_MAXIMIZE);
             }
-            weaponEquip("fists", 9999, 15, 5, 10);
+            weaponEquip("fists", 5, 15, 5, 10);
             do
             {
                 if(lossCount == 10)
@@ -770,7 +770,9 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
                         Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim*.");
-                        //Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
+                        Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
+                        inv.Add("health potion");
+                        inv.Add("energy stim");
                         Thread.Sleep(2000);
                         break;
                     case "show inventory":
@@ -794,45 +796,62 @@ namespace Studio1Project
 
         static void TrainingYard()//Room10 Albert
         {
-
-            //string outCome = combat(20, 3, 1, 5);
+            string outCome = " ";
 
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("You step into the open Training Yard. Dirt and dust swirl in the wind as the clang of metal echoes faintly from beyond.");
             Console.WriteLine("Faded dummies line the edges, and broken weapon shafts are scattered across the ground.");
-            Console.WriteLine();
-            Console.WriteLine("Your eyes scan the yard, settling on a guard leisurely sipping from his flask.");
-            Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
-            Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
-            Console.WriteLine();
-            string outCome = combat(40, 4, 2, 10);
+            Thread.Sleep(2000);
 
-            if (outCome == "win")
+            if (inv.Contains("Gatehouse Key"))
             {
-                Console.WriteLine("The guard collapses at your feet, unmoving.");
-                Console.WriteLine("You crouch beside him and search his pockets carefully.");
-                Console.WriteLine("Your fingers brush against something cold and metallic—keys.");
-                Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
-                Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
-                Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
-                Console.WriteLine("Time to move... but where to first?"); /* Haven't tested yet */
-                inv.Add("Gatehouse Key");
-                Thread.Sleep(1000);                
+                Console.WriteLine();
+                Console.WriteLine("You see the guard you fought earlier, motionless and slumped on the ground.");
+                Console.WriteLine("He appears to be dreaming about the fight—but luckily, he’s still unconscious.");
             }
             else
             {
-                Console.WriteLine("Pain surges through your body as you collapse to the ground, defeated.");
-                Console.WriteLine("The guard stands over you, victorious, his expression unreadable.");
-                Console.WriteLine("He methodically searches you, stripping away your hard-earned items one by one.");
-                Console.WriteLine("You try to resist, but your limbs are heavy and uncooperative.");
-                Console.WriteLine("With a grunt, he hauls you up and begins dragging you back toward the cell.");
-                Console.WriteLine("The cold stone floor scrapes against you as the shadows of freedom fade behind.");
-                Console.WriteLine("The door slams shut with a metallic clang... You're back where you started.");
-                inv.Clear();
-                weaponEquip("fists", 5, 15, 5, 10);
-                lossCount++;
-                roomChoice = 1;
+                Console.WriteLine();
+                Console.WriteLine("Your eyes scan the yard, settling on a guard leisurely sipping from his flask.");
+                Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
+                Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
+                Console.WriteLine();
+                Thread.Sleep(3000);
+
+                outCome = combat(40, 4, 2, 10);
+
+                if (outCome == "win")
+                {
+                    Console.Clear();
+                    Console.WriteLine("The guard collapses at your feet, unmoving.");
+                    Console.WriteLine("You crouch beside him and search his pockets carefully.");
+                    Console.WriteLine("Your fingers brush against something cold and metallic—keys.");
+                    Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
+                    Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
+                    Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
+                    Console.WriteLine("Time to move... but where to first?"); /* Haven't tested yet */
+                    inv.Add("Gatehouse Key");
+                    Thread.Sleep(3000);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Pain surges through your body as you collapse to the ground, defeated.");
+                    Console.WriteLine("The guard stands over you, victorious, his expression unreadable.");
+                    Console.WriteLine("He methodically searches you, stripping away your hard-earned items one by one.");
+                    Console.WriteLine("You try to resist, but your limbs are heavy and uncooperative.");
+                    Console.WriteLine("With a grunt, he hauls you up and begins dragging you back toward the cell.");
+                    Console.WriteLine("The cold stone floor scrapes against you as the shadows of freedom fade behind.");
+                    Console.WriteLine("The door slams shut with a metallic clang... You're back where you started.");
+                    Console.WriteLine();
+                    inv.Clear();
+                    weaponEquip("fists", 5, 15, 5, 10);
+                    lossCount++;
+                    Thread.Sleep(5000);
+                    roomChoice = 1;
+                    return;
+                }
             }
 
             bool validInput = false;
@@ -1376,6 +1395,8 @@ namespace Studio1Project
 
                 userDefence = 0;
                 Console.WriteLine("What action do you want to take ");
+                Console.WriteLine();
+                Console.Write(">> ");
                 combatChoice = Console.ReadLine().ToLower();
                 switch (combatChoice)
                 {
