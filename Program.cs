@@ -475,11 +475,27 @@ namespace Studio1Project
                     case "search":
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
-                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Uniform. You search the pockets and find a Key.");
-                        Console.WriteLine("Type 'show inventory' to check what you're carrying.");
+                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Sword.");
+                        Console.WriteLine("Would you like to pickup the weapon: Guard's Sword?.");
                         Console.WriteLine();
-                        inv.Add("Gatehouse Key");
-                        Thread.Sleep(5000);
+                        Console.Write(">> ");
+                        string userInput = Console.ReadLine().ToLower();
+                        Console.WriteLine();
+                        if (userInput[0] == 'y')
+                        {
+                            Console.WriteLine("Your fingers tremble as they curl around the hilt of the Guard's Sword.");
+                            Console.WriteLine("The cold steel sends a shiver up your spine, its unexpected weight pressing into your palms like an unspoken challenge.");
+                            Console.WriteLine("You lift it slowly, the blade catching the dim light, whispering promises of both protection and peril.");
+                            Thread.Sleep(3000);
+                            weaponEquip("sword", 10, 20, 10, 10);
+                        }
+                        else
+                        {
+                            Console.WriteLine("You leave the dusty sword, trusting in your fists");
+                            weaponEquip("fists", 5, 15, 5, 10);
+                            Thread.Sleep(1500);
+                        }
+                        Console.WriteLine();
                         break;
                     case "show inventory":
                     case "inv":
