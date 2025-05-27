@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Design;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -25,7 +27,7 @@ namespace Studio1Project
         private static string action = "";
         private static List<string> inv = new List<string>();
         private static Weapon playerWeapon;
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        private static string[] infirmaryItems = { "health potion", "energy stim", "lab note" },labItems= { "energy stim", "health potion" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
 
         const int SW_MAXIMIZE = 3;
         [DllImport("kernel32.dll", ExactSpelling = true)]
@@ -46,6 +48,7 @@ namespace Studio1Project
                 {
                     roomChoice = 9998;
                 }
+                Console.Clear();
                 switch (roomChoice)
                 {
 
@@ -102,9 +105,16 @@ namespace Studio1Project
                         TowerBase();
                         break;
                     case 9999:
+<<<<<<< HEAD
                         /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Inserted text here makes it centered*/
                         /*WriteCentered(win);*/ /*------------------This method centers any text if you call it*/
                         Console.WriteLine("You win! Do you want to play again?  \ny/n\n"); // This is the original
+=======
+                        /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Text to make centered*/
+                        /*WriteCentered(win);*/ /*------------------ Method centers text*/
+                        Console.WriteLine();
+                        Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
+>>>>>>> 2c6ec43b77b40e2554d30772e39d8fa10bddafb1
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -140,20 +150,27 @@ namespace Studio1Project
         static void PrisonCell()//room 1 (main room)
         {
 
-            Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps. The air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
-            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable. Each room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries. With your mission in mind you start exploring your surroundings...\n\n");
+            Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps.\nThe air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
+            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable.\nEach room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries.\nWith your mission in mind you start exploring your surroundings...\n");
             bool validInput = false;
             Random random = new Random();
             while (!validInput)
             {
+<<<<<<< HEAD
                 if (!inv.Contains("cell keys"))
                 {
                     Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
                 }
                 Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
                 Console.Write("\n>> ");
+=======
+                Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n");
+                Console.WriteLine();
+                Console.Write(">> ");
+>>>>>>> 2c6ec43b77b40e2554d30772e39d8fa10bddafb1
                 action = Console.ReadLine().ToLower();
-
+                Console.Clear();
                 switch (action)
                 {
                     case "hall":
@@ -177,7 +194,7 @@ namespace Studio1Project
                                 int success =random.Next(10);
                                 if (success < 4 )
                                 {
-                                    Console.WriteLine("you successfully take the keys form the guard");
+                                    Console.WriteLine("you successfully take the keys from the guard");
                                     inv.Add("cell keys");
                                     roomChoice = 2;
                                     validInput = true;
@@ -213,6 +230,8 @@ namespace Studio1Project
                         }
                         break;
                     case "sewers":
+                    case "go to sewers":
+                    case "sewer":
                         roomChoice = 3;
                         validInput = true;
                         break;
@@ -261,15 +280,23 @@ namespace Studio1Project
         }
         static void DungeonHall()//Room 2
         {
+            Console.WriteLine();           
             Console.WriteLine("You quietly step into the dimly lit dungeon hall.");
             bool validInput = false;
             while (!validInput)
             {
+                Console.WriteLine();
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
                 Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+<<<<<<< HEAD
                 Console.Write("\n>> ");
+=======
+                Console.WriteLine();
+                Console.Write(">> ");
+>>>>>>> 2c6ec43b77b40e2554d30772e39d8fa10bddafb1
                 action = Console.ReadLine().ToLower();
+                Console.Clear();
                 switch (action)
                 {
                     case "cell":
@@ -324,11 +351,17 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your **left**, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
-                Console.WriteLine("To your **right**, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
+                Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
+                Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
                 Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
+<<<<<<< HEAD
                 Console.Write("\n>> ");
+=======
+                Console.WriteLine();
+                Console.Write(">> ");
+>>>>>>> 2c6ec43b77b40e2554d30772e39d8fa10bddafb1
                 action = Console.ReadLine().ToLower();
+                Console.Clear();
                 switch (action)
                 {
                     case "cell":
@@ -340,16 +373,22 @@ namespace Studio1Project
                         break;
                     case "showers":
                     case "showerss":
+                    case "go to showers":
                     case "left":
+                    case "go left":
                     case "washroom":
                     case "wash room":
+                    case "go to washroom":
                         prev = roomChoice;
                         roomChoice = 6;
                         validInput = true;
                         break;
                     case "lab room":
                     case "labroom":
+                    case "lab":
+                    case "go to lab":
                     case "right":
+                    case "go right":
                         prev = roomChoice;
                         roomChoice = 7;
                         validInput = true;
@@ -390,8 +429,14 @@ namespace Studio1Project
             {
                 Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
                 Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
+<<<<<<< HEAD
                 Console.Write("\n>> ");
+=======
+                Console.WriteLine();
+                Console.Write(">> ");
+>>>>>>> 2c6ec43b77b40e2554d30772e39d8fa10bddafb1
                 action = Console.ReadLine().ToLower();
+                Console.Clear();
                 switch (action)
                 {
                     case "dungeon hall":
@@ -498,7 +543,7 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
                         Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Sword.");
-                        Console.WriteLine("Would you like to pickup the weapon: Guard's Sword?.");
+                        Console.WriteLine("Would you like to pickup the Guard's Sword?.");
                         Console.WriteLine();
                         Console.Write(">> ");
                         string userInput = Console.ReadLine().ToLower();
@@ -509,7 +554,7 @@ namespace Studio1Project
                             Console.WriteLine("The cold steel sends a shiver up your spine, its unexpected weight pressing into your palms like an unspoken challenge.");
                             Console.WriteLine("You lift it slowly, the blade catching the dim light, whispering promises of both protection and peril.");
                             Thread.Sleep(3000);
-                            weaponEquip("sword", 10, 20, 10, 10);
+                            weaponEquip("sword", 10, 20, 10, 15);
                         }
                         else
                         {
@@ -627,6 +672,7 @@ namespace Studio1Project
                     case "t/y":
                         prev = roomChoice;
                         roomChoice = 10;
+                        validInput = true;
                         break;
                     case "back":
                     case "return":
@@ -636,8 +682,12 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "search room":
+                    case "search":
                         Console.WriteLine("You sift through the dusty tables and shattered glass. Most things are ruined or unusable...");
-                        Console.WriteLine("After a thorough search, you come up empty-handed.");
+                        Console.WriteLine("After a thorough search, find a *Health Potion* and a slightly dusty *Energy Stim* That you could pickup .");
+                        break;
+                    case "pickup":
+                        pickup(ref labItems);
                         break;
                     case "show inventory":
                     case "inv":
@@ -700,7 +750,15 @@ namespace Studio1Project
                     case "search":
                         Console.WriteLine("You scan the shelves, digging through empty jars and broken crates...");
                         Thread.Sleep(1000);
-                        Console.WriteLine("Nothing useful — just crumbs and cobwebs. Someone’s already cleaned this place out.");
+                        Console.WriteLine("A faint glint catches your eye beneath a collapsed stack of burlap sacks.");
+                        Thread.Sleep(1500);
+                        Console.WriteLine("You reach down and pull free a coarse, coiled rope — frayed in places, but strong enough.");
+                        Thread.Sleep(1500);
+                        Console.WriteLine();
+                        Console.WriteLine("\"Could come in handy,\" you mutter, looping it over your shoulder.");
+                        Console.WriteLine("You tuck it into your pack, just in case.");
+                        Thread.Sleep(1500);
+                        inv.Add("Rope");
                         break;
                     case "show inventory":
                     case "inv":
@@ -773,8 +831,8 @@ namespace Studio1Project
                     case "look around":
                         Console.WriteLine();
                         Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
-                        Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim*.");
-                        //Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
+                        Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim* That you could pickup");
+                        Console.WriteLine("inside the pocket of the lab coat you find a note");
                         Thread.Sleep(2000);
                         break;
                     case "show inventory":
@@ -797,9 +855,6 @@ namespace Studio1Project
         }
         static void TrainingYard()//Room10 Albert
         {
-            //Console.WriteLine("the Gaurd spots you prepare for a fight");
-            //string outCome = combat(20, 3, 1, 5);
-
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("You step into the open Training Yard. Dirt and dust swirl in the wind as the clang of metal echoes faintly from beyond.");
@@ -809,20 +864,57 @@ namespace Studio1Project
             Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
             Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
             Console.WriteLine();
-            //string outCome = combat(40, 4, 2, 10);
 
-            //if (outCome == "win")
-            //{
-            //    Console.WriteLine("You have defeated the guard and decide to search his pockets. You see keys and take them then proceed to take a proper look around the yard"); /* Haven't tested yet
-            //    inv.add("Gatehouse Key");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("You have been defeated and the guard confiscates your items and drags you back to your cell");
-            //    inv.Clear();
-            //    weaponEquip("fists", 5, 15, 5, 10);
-            //    roomChoice = 1;
-            //}
+            if (inv.Contains("Gatehouse Key"))
+            {
+                Console.WriteLine();
+                Console.WriteLine("You see the guard you fought earlier, motionless and slumped on the ground.");
+                Console.WriteLine("He appears to be dreaming about the fight—but luckily, he’s still unconscious.");
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Your eyes scan the yard, settling on a guard leisurely sipping from his flask.");
+                Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
+                Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
+                Console.WriteLine();
+                Thread.Sleep(3000);
+
+                string outCome = combat(75, 6, 11, 15);
+
+                if (outCome == "win")
+                {
+                    Console.Clear();
+                    Console.WriteLine("The guard collapses at your feet, unmoving.");
+                    Console.WriteLine("You crouch beside him and search his pockets carefully.");
+                    Console.WriteLine("Your fingers brush against something cold and metallic—keys.");
+                    Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
+                    Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
+                    Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
+                    Console.WriteLine("Time to move... but where to first?"); 
+                    inv.Add("Gatehouse Key");
+                    Thread.Sleep(3000);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Pain surges through your body as you collapse to the ground, defeated.");
+                    Console.WriteLine("The guard stands over you, victorious, his expression unreadable.");
+                    Console.WriteLine("He methodically searches you, stripping away your hard-earned items one by one.");
+                    Console.WriteLine("You try to resist, but your limbs are heavy and uncooperative.");
+                    Console.WriteLine("With a grunt, he hauls you up and begins dragging you back toward the cell.");
+                    Console.WriteLine("The cold stone floor scrapes against you as the shadows of freedom fade behind.");
+                    Console.WriteLine("The door slams shut with a metallic clang... You're back where you started.");
+                    Console.WriteLine();
+                    inv.Clear();
+                    weaponEquip("fists", 5, 15, 5, 10);
+                    lossCount++;
+                    Thread.Sleep(5000);
+                    prev = 1;
+                    roomChoice = 1;
+                    return;
+                }
+            }
 
             bool validInput = false;
 
@@ -1086,24 +1178,25 @@ namespace Studio1Project
                     Console.Clear();
                     switch (action)
                     {
-                        case "courtyard":
-                            roomChoice = 11;
+                    case "courtyard":
+                        roomChoice = 11;
                         validInput = true;
-                            break;
-                        case "back":
-                        case "return":
-                        case "go back":
-                            GoBack();
-                            roomChoice = prev;
+                        break;
+                    case "back":
+                    case "return":
+                    case "go back":
+                        GoBack();
+                        roomChoice = prev;
                         validInput = true;
-                            break;
-                        case "go up":
-                        case "up":
-                        case "climb tower":
-                        case "climb":
-                            TowerClimb();
+                        break;
+                    case "go up":
+                    case "up":
+                    case "go into tower":
+                    case "climb tower":
+                    case "climb":
+                        TowerClimb();
                         validInput = true;
-                            break;
+                        break;
                     case "search":
                     case "inspect":
                     case "look around":
@@ -1148,6 +1241,13 @@ namespace Studio1Project
                             case "climb tower":
                                 towerFloor++;
                                 stamina -= 5;
+                            if (stamina <= 0)
+                            {
+                                Console.WriteLine("You fainted from exhaustion and are sent back to your cell");
+                                Thread.Sleep(1000);
+                                roomChoice = 1;
+                                return;
+                            }
                             Console.WriteLine();
                             Console.WriteLine($"You ascend to floor {towerFloor}, your legs growing heavier with each step.");
                                 Console.WriteLine($"Stamina: {stamina}");
@@ -1207,6 +1307,35 @@ namespace Studio1Project
                                 Console.WriteLine("You turn away from the edge, heart pounding. Not today.");
                                 towerFloor--;
                                 break;
+                        case "use rope":
+                        case "escape":
+                            if (inv.Contains("Rope"))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("You pull the rope from your pack, the coarse fibers rough against your fingers.");
+                                Thread.Sleep(1500);
+                                Console.WriteLine("Securing it tightly around a jagged stone outcrop near the window, you give it a firm tug.");
+                                Thread.Sleep(1500);
+                                Console.WriteLine("\"Hope this holds...\" you mutter under your breath.");
+                                Thread.Sleep(1500);
+                                Console.WriteLine("You swing your legs over the edge and begin the descent. The wind howls louder now, almost warning you back.");
+                                Thread.Sleep(2000);
+                                Console.WriteLine("Hand over hand, foot by foot, you climb down—slow, steady, careful.");
+                                Thread.Sleep(2000);
+                                Console.WriteLine("At last, your boots touch the soft earth outside the castle wall.");
+                                Console.WriteLine("You're free.");
+                                Thread.Sleep(2000);
+                                roomChoice = 9999; // Success/escape room
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("You search your pack for something—anything—that might help you climb down...");
+                                Console.WriteLine("But it's empty. Nothing useful.");
+                                Thread.Sleep(2000);
+                            }
+                            return;
                             default:
                                 Console.WriteLine("The wind howls, waiting for your choice...");
                                 break;
@@ -1223,6 +1352,7 @@ namespace Studio1Project
             }
             static void inventoryShow()//Albert
             {
+                string action;
                 Console.WriteLine("====================");
                 Console.WriteLine("Items in inventory");
                 foreach (string item in inv)
@@ -1234,6 +1364,53 @@ namespace Studio1Project
                 Console.WriteLine($"{playerWeapon.name}\nDamage {playerWeapon.minDamage}-{playerWeapon.maxDamage}\nBlock Strength {playerWeapon.block}\nStamina cost {playerWeapon.staminaCost}");
                 Console.WriteLine("");
                 Console.WriteLine("====================");
+            Console.WriteLine(" is there anythig you want to do with your items eg heal or read notes");
+            action = Console.ReadLine();
+            if (action == "heal")
+            {
+                Console.WriteLine("do you want to heal health or stamina");
+                do
+                {
+                    action = Console.ReadLine().ToLower();
+                    if (action == "stamina")
+                    {
+                        if (inv.Contains("energy stim"))
+                        {
+                            stamina += 25;
+                            inv.Remove("energy stim");
+                        }
+                        else
+                        {
+                            Console.WriteLine("you dont have any energy stims");
+                        }
+                    }
+                    else if (action == "health")
+                    {
+                        if (inv.Contains("health potion"))
+                        {
+                            health += 25;
+                            inv.Remove("health potion");
+                        }
+                        else
+                        {
+                            Console.WriteLine("you don't have any health potions");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter **Health** or **Stamina**");
+                    }
+                } while (action != "health" && action != "stamina");
+            }
+            else if (action == "read note") {
+                Console.WriteLine("what note do yo want to read"){
+                action = Console.ReadLine();
+                    readNote(action);
+                }
+
+            }
+            
+
         }
             static void pickup(ref string[] items)//pickup items
             {
@@ -1286,54 +1463,7 @@ namespace Studio1Project
                 inv.Clear();
                 infirmaryItems = new string[] { "health potion", "energy stim", "note" };
                 roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
-            }
-        
-
-        //public static void combat()
-        //{
-
-        //    int health = 100;
-        //    int stamina = 100;
-        //    int healthcost = 10; //interchangeable amount idk what yet
-        //    int staminacost = 10; //interchangeable amount idk what yet
-        //    string choice ="";
-
-        //    while (health > 0 && stamina > 0 || choice !="no")
-        //    {
-        //        Console.WriteLine("Do you want to fight (yes/no): ");
-        //        choice = Console.ReadLine().ToLower();
-
-        //        if (choice == "yes")
-        //        {
-        //            if (stamina >= staminacost)
-        //            {
-        //                stamina -= staminacost;
-        //                health -= healthcost;
-        //                Console.WriteLine("you successfully beat your opponent");
-        //                Console.WriteLine($"You lost {staminacost} stamina and {healthcost} health.");
-        //                Console.WriteLine($"You now have {stamina} stamina and {health} health.");
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("not enough stamina");
-        //            }
-        //        }
-        //        else if (choice == "no")
-        //        {
-        //            Console.WriteLine("You Choose to flee");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Invalid input. Type 'yes' or 'no'.");
-        //        }
-
-        //        health = Math.Max(0, health);
-        //        stamina = Math.Max(0, stamina);
-
-        //    }
-        //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
-        //}
-        
+            }        
         static void weaponEquip(string name,int minDmg,int maxDmg,int block,int stamCost)
         {
             playerWeapon.name = name;
@@ -1342,7 +1472,19 @@ namespace Studio1Project
             playerWeapon.block = block;
             playerWeapon.staminaCost = stamCost;
         }
-        
+        static void readNote(string noteName)
+        {
+            switch(noteName){
+                case "lab note":
+                case "lab":
+                    Console.WriteLine("Gaol Infirmary Record\r\n\r\nPrisoner: John of Waltham\r\nOffense: Theft of wool\r\nSentence: Imprisonment until the next assizes\r\nAdmission Date: Feast of St. Michael, Year of Our Lord 1352\r\nSymptoms:\r\n\r\nHigh fever\r\n\r\nPersistent cough\r\n\r\nSwelling of the legs\r\n\r\nDelirium\r\n\r\nDiagnosis: Likely ague or consumption\r\n\r\nTreatment Administered:\r\n\r\nHerbal infusion of elderflower and yarrow to induce perspiration\r\n\r\nApplication of a mustard poultice to the chest to relieve congestion\r\n\r\nHoly water administered thrice daily\r\n\r\nPrayers for healing, including the recitation of the Salve Regina\r\n\r\nDiet of broths and pottage; abstinence from meat\r\n\r\nSpiritual Care: Confession and absolution granted; candle placed at bedside\r\n\r\nPrognosis: Condition remains grave; continued prayers are requested\r\n\r\nAttending Healer: Brother Thomas, infirmarer");
+                    break;
+                default:
+                    Console.WriteLine("you do not have that note");
+                    break;
+                }
+                
+        }
         static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
         {
             int userDamage, userDefence, enemyDamage;
@@ -1360,6 +1502,15 @@ namespace Studio1Project
 
                 userDefence = 0;
                 Console.WriteLine("What action do you want to take ");
+
+                Console.WriteLine("- Attack");
+                Console.WriteLine("- Defend");
+                Console.WriteLine("- Run");
+                Console.WriteLine("- Heal");
+                Console.WriteLine("- Status");
+                Console.WriteLine();
+                Console.Write(">> ");
+
                 combatChoice = Console.ReadLine().ToLower();
                 switch (combatChoice)
                 {
@@ -1383,6 +1534,17 @@ namespace Studio1Project
                         {
                             Console.WriteLine("you braced for the attack");
                             userDefence = playerWeapon.block;
+                            userDamage = playerWeapon.minDamage - enemyDef;
+                            stamina = stamina - playerWeapon.staminaCost;
+                            if (userDamage > 0)
+                            {
+                                Console.WriteLine($"You dealt {userDamage} to the enemy");
+                                enemyHealth = enemyHealth - userDamage;
+                            }
+                            else
+                            {
+                                Console.WriteLine("your attack was blocked");
+                            }
                         }
                         enemyDamage = rand.Next(enemyMin, enemyMax) - userDefence;
                         if (enemyDamage > 0)
@@ -1452,10 +1614,6 @@ namespace Studio1Project
                 Console.WriteLine("YOU LOSE");
                 Thread.Sleep(1000); 
                 return "lose"; }
-            
-            
-
-
         }
         static void WriteCentered(string message)
         {
