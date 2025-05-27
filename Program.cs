@@ -146,7 +146,10 @@ namespace Studio1Project
             Random random = new Random();
             while (!validInput)
             {
-                Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                if (!inv.Contains("cell keys"))
+                {
+                    Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                }
                 Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
                 Console.Write("\n>> ");
                 action = Console.ReadLine().ToLower();
