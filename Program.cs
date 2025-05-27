@@ -26,13 +26,10 @@ namespace Studio1Project
         private static List<string> inv = new List<string>();
         private static Weapon playerWeapon;
         private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
-        
-        const int SW_MAXIMIZE = 3;
 
+        const int SW_MAXIMIZE = 3;
         [DllImport("kernel32.dll", ExactSpelling = true)]
         static extern IntPtr GetConsoleWindow();
-
-
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
         static void Main(string[] args)
@@ -42,7 +39,7 @@ namespace Studio1Project
             {
                 ShowWindow(consoleWindow, SW_MAXIMIZE);
             }
-            weaponEquip("fists", 5, 15, 5, 10);
+            weaponEquip("fists", 5, 15, 5, 10);//name, mindmg, maxdmg, block, staminacost
             do
             {
                 if(lossCount == 10)
@@ -139,7 +136,6 @@ namespace Studio1Project
 
             Thread.Sleep(1000);
         }
-
         //All of the rooms 
         static void PrisonCell()//room 1 (main room)
         {
@@ -176,7 +172,7 @@ namespace Studio1Project
                             {
                                 Console.WriteLine("You Reach for the guards keys ");
                                 int success =random.Next(10);
-                                if (success < 8 )
+                                if (success < 4 )
                                 {
                                     Console.WriteLine("you successfully take the keys from the guard");
                                     inv.Add("cell keys");
@@ -186,8 +182,8 @@ namespace Studio1Project
                                 else
                                 {
                                     Console.WriteLine("the Guard spots you prepare for a fight");
-                                    string outCome = combat(20, 3, 1, 5);
-                                    
+                                    string outCome = combat(20, 3, 1, 5);//health,def,mindmg,maxdmg
+
                                     if (outCome == "win") {
                                         inv.Add("cell keys");
                                         roomChoice = 2;
@@ -262,7 +258,6 @@ namespace Studio1Project
                 }
             }
         }
-
         static void DungeonHall()//Room 2
         {
             Console.WriteLine();           
@@ -792,9 +787,7 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
                         Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim*.");
-                        Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
-                        inv.Add("health potion");
-                        inv.Add("energy stim");
+                        //Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
                         Thread.Sleep(2000);
                         break;
                     case "show inventory":
@@ -815,16 +808,17 @@ namespace Studio1Project
                 }
             }
         }
-
         static void TrainingYard()//Room10 Albert
         {
-            string outCome = " ";
-
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine("You step into the open Training Yard. Dirt and dust swirl in the wind as the clang of metal echoes faintly from beyond.");
             Console.WriteLine("Faded dummies line the edges, and broken weapon shafts are scattered across the ground.");
-            Thread.Sleep(2000);
+            Console.WriteLine();
+            Console.WriteLine("Your eyes scan the yard, settling on a guard leisurely sipping from his flask.");
+            Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
+            Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
+            Console.WriteLine();
 
             if (inv.Contains("Gatehouse Key"))
             {
@@ -841,7 +835,7 @@ namespace Studio1Project
                 Console.WriteLine();
                 Thread.Sleep(3000);
 
-                outCome = combat(75, 6, 11, 15);
+                string outCome = combat(75, 6, 11, 15);
 
                 if (outCome == "win")
                 {
@@ -949,8 +943,7 @@ namespace Studio1Project
                 }
             }
             }
-
-            static void Courtyard()//Room11
+        static void Courtyard()//Room11
             {
                 Console.Clear();
                 Console.WriteLine();
@@ -1034,7 +1027,7 @@ namespace Studio1Project
                     }
                 }
             }
-            static void GateHouse()//Room12 EXIT
+        static void GateHouse()//Room12 EXIT
             {
                 Console.Clear();
                 Console.WriteLine();
@@ -1116,7 +1109,7 @@ namespace Studio1Project
                     }
                 }
             }
-            static void TowerBase()//Room13
+        static void TowerBase()//Room13
             {
                 Console.WriteLine();
                 Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
@@ -1176,7 +1169,7 @@ namespace Studio1Project
                     }
                 }
             }
-            static void TowerClimb()
+        static void TowerClimb()
             {
                 int towerFloor = 1;
                 bool jump = false;
@@ -1276,7 +1269,6 @@ namespace Studio1Project
                     }
                 }
             }
-
             static void GoBack()
             {
                 Console.WriteLine("You cast a final glance at your surroundings before slipping away.");
@@ -1322,14 +1314,12 @@ namespace Studio1Project
                 Console.WriteLine($"you picked up {item}");
                 Thread.Sleep(1000);
             }
-
             static void showCommands()
             {
                 Console.WriteLine("***************************************************************************");
                 Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
                 Console.WriteLine("***************************************************************************\n\n");
             }
-
             static void showEnergyLevels()
             {
                 Console.WriteLine("***************************************************************************");
@@ -1340,7 +1330,6 @@ namespace Studio1Project
             {
                 Console.WriteLine($"........................                              ........................                              ........................\r\n..                    ..                              ..                    ..                              ..                    ..\r\n..      {roomsVisited[0]}          ..................................      {roomsVisited[1]}       ..................................      {roomsVisited[3]}       ..\r\n..                    ..................................                    ..................................                    ..\r\n..                    ..                              ..                    ..                              ..                    ..\r\n........................                              ........................                              ........................\r\n          ...                                                   ....                                                  ...           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ...                                                    ..                                                    ..           \r\n          ....                                                  ....                                                  ...           \r\n........................   ........................  ........................                              ........................\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n..       {roomsVisited[2]}       .......      {roomsVisited[5]}       ..  ..   {roomsVisited[4]}  ..                              .        {roomsVisited[7]}       ..\r\n..                    .......                    ..  ..                    ..                              .                     ..\r\n..                    ..   ..                    ..  ..                    ..                              .                     ..\r\n........................   ........................  ........................                              ........................\r\n          ....                   ....                   .....       ....                                              ...          \r\n          ...                     ..                   ....         ...                                                ..          \r\n          ...                     ..                 ....          ...                                                 ..          \r\n          ...                     ..                ..            ..                                                   ..          \r\n          ...                     ..              ..             ..                                                    ..          \r\n          ...                     ..            ...             ...                                                    ..          \r\n          ....                   ....        .....             ..                                                      ..           \r\n........................   .........................          ...                                           ........................\r\n..                    ..   ...                    ..        ....                                            .                     ..\r\n..         {roomsVisited[6]}        ..   ...    {roomsVisited[8]}       ....     ....                                             .      {roomsVisited[10]}      ..\r\n..                    ..   ...                    ...........................................................                     ..\r\n..                    ..   ...                    ..     ...                                                .                     ..\r\n........................   .........................    ...                                               ..........................\r\n           ....                                       ....                                             ......   ....        ....\r\n            ....                                     ....                                          .......     ...           ...\r\n              ....                                  ....                                       .......        ...             ...\r\n               ....                                 ..                                      ......           ...               ...\r\n                 ....                              ..                                   ......              ...                ...\r\n                   ....                          ...                                .......                 ..                  ...\r\n                    ...                         ...                             .......                    ..                    ...\r\n                      ...                      ....                          ......                       ..                      ...\r\n                       ...                    ...                        ......                          ..                       ....\r\n                        ....                 ...                     .......                            ...                        ...\r\n                         ....              ....                   ......                               ....                         ...\r\n                           .... ........................      ......                        ........................      ........................\r\n                             .....                    ..  .......                           .                     ..      ..                    ..\r\n                              ....   {roomsVisited[9]}    .........                             .      {roomsVisited[12]}     ..      ..     {roomsVisited[11]}     ..\r\n                                ..                    ....                                  .                     ..      ..                    ..\r\n                                ..                    ..                                    ..                    ..      ..                    ..\r\n                                ........................                                    ........................      ........................");
             }
-
             //resets all the variables, lists, .... to restart the game
             static void reset()
             {
@@ -1426,6 +1415,7 @@ namespace Studio1Project
 
                 userDefence = 0;
                 Console.WriteLine("What action do you want to take ");
+
                 Console.WriteLine("- Attack");
                 Console.WriteLine("- Defend");
                 Console.WriteLine("- Run");
@@ -1433,6 +1423,7 @@ namespace Studio1Project
                 Console.WriteLine("- Status");
                 Console.WriteLine();
                 Console.Write(">> ");
+
                 combatChoice = Console.ReadLine().ToLower();
                 switch (combatChoice)
                 {
