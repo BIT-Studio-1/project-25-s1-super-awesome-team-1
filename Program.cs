@@ -786,8 +786,8 @@ namespace Studio1Project
                     case "look around":
                         Console.WriteLine();
                         Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
-                        Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim*.");
-                        //Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
+                        Console.WriteLine("To your surprise, you find a small vial labeled Health Potion and a slightly dusty Energy Stim.");
+                        Console.WriteLine("Enter the **pickup** command to select what you want.");
                         Thread.Sleep(2000);
                         break;
                     case "show inventory":
