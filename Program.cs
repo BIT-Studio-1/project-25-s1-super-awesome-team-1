@@ -108,6 +108,10 @@ namespace Studio1Project
                         /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Text to make centered*/
                         /*WriteCentered(win);*/ /*------------------ Method centers text*/
                         Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
+<<<<<<< HEAD
+=======
+
+>>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -149,7 +153,12 @@ namespace Studio1Project
             Random random = new Random();
             while (!validInput)
             {
-                Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+
+                if (!inv.Contains("cell keys"))
+                {
+                    Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                }
+
                 Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -272,8 +281,12 @@ namespace Studio1Project
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
                 Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+<<<<<<< HEAD
                 Console.WriteLine();
                 Console.Write(">> ");
+=======
+                Console.Write("\n>> ");
+>>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
                 switch (action)
@@ -333,8 +346,13 @@ namespace Studio1Project
                 Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
                 Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
                 Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
+<<<<<<< HEAD
                 Console.WriteLine();
                 Console.Write(">> ");
+=======
+                Console.Write("\n>> ");
+
+>>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
                 switch (action)
@@ -404,8 +422,13 @@ namespace Studio1Project
             {
                 Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
                 Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
+<<<<<<< HEAD
                 Console.WriteLine();
                 Console.Write(">> ");
+=======
+                Console.Write("\n>> ");
+
+>>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
                 switch (action)
@@ -1395,6 +1418,10 @@ namespace Studio1Project
                 infirmaryItems = new string[] { "health potion", "energy stim", "note" };
                 roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
         static void weaponEquip(string name,int minDmg,int maxDmg,int block,int stamCost)
         {
             playerWeapon.name = name;
