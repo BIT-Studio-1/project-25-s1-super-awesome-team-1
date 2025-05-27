@@ -104,6 +104,7 @@ namespace Studio1Project
                     case 9999:
                         /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Text to make centered*/
                         /*WriteCentered(win);*/ /*------------------ Method centers text*/
+                        Console.WriteLine();
                         Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
                         action = Console.ReadLine();
                         if (action == "y")
@@ -713,7 +714,15 @@ namespace Studio1Project
                     case "search":
                         Console.WriteLine("You scan the shelves, digging through empty jars and broken crates...");
                         Thread.Sleep(1000);
-                        Console.WriteLine("Nothing useful — just crumbs and cobwebs. Someone’s already cleaned this place out.");
+                        Console.WriteLine("A faint glint catches your eye beneath a collapsed stack of burlap sacks.");
+                        Thread.Sleep(1500);
+                        Console.WriteLine("You reach down and pull free a coarse, coiled rope — frayed in places, but strong enough.");
+                        Thread.Sleep(1500);
+                        Console.WriteLine();
+                        Console.WriteLine("\"Could come in handy,\" you mutter, looping it over your shoulder.");
+                        Console.WriteLine("You tuck it into your pack, just in case.");
+                        Thread.Sleep(1500);
+                        inv.Add("Rope");
                         break;
                     case "show inventory":
                     case "inv":
@@ -1262,6 +1271,35 @@ namespace Studio1Project
                                 Console.WriteLine("You turn away from the edge, heart pounding. Not today.");
                                 towerFloor--;
                                 break;
+                        case "use rope":
+                        case "escape":
+                            if (inv.Contains("Rope"))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("You pull the rope from your pack, the coarse fibers rough against your fingers.");
+                                Thread.Sleep(1500);
+                                Console.WriteLine("Securing it tightly around a jagged stone outcrop near the window, you give it a firm tug.");
+                                Thread.Sleep(1500);
+                                Console.WriteLine("\"Hope this holds...\" you mutter under your breath.");
+                                Thread.Sleep(1500);
+                                Console.WriteLine("You swing your legs over the edge and begin the descent. The wind howls louder now, almost warning you back.");
+                                Thread.Sleep(2000);
+                                Console.WriteLine("Hand over hand, foot by foot, you climb down—slow, steady, careful.");
+                                Thread.Sleep(2000);
+                                Console.WriteLine("At last, your boots touch the soft earth outside the castle wall.");
+                                Console.WriteLine("You're free.");
+                                Thread.Sleep(2000);
+                                roomChoice = 9999; // Success/escape room
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("You search your pack for something—anything—that might help you climb down...");
+                                Console.WriteLine("But it's empty. Nothing useful.");
+                                Thread.Sleep(2000);
+                            }
+                            return;
                             default:
                                 Console.WriteLine("The wind howls, waiting for your choice...");
                                 break;
@@ -1342,52 +1380,6 @@ namespace Studio1Project
                 infirmaryItems = new string[] { "health potion", "energy stim", "note" };
                 roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
             }
-        
-
-        //public static void combat()
-        //{
-
-        //    int health = 100;
-        //    int stamina = 100;
-        //    int healthcost = 10; //interchangeable amount idk what yet
-        //    int staminacost = 10; //interchangeable amount idk what yet
-        //    string choice ="";
-
-        //    while (health > 0 && stamina > 0 || choice !="no")
-        //    {
-        //        Console.WriteLine("Do you want to fight (yes/no): ");
-        //        choice = Console.ReadLine().ToLower();
-
-        //        if (choice == "yes")
-        //        {
-        //            if (stamina >= staminacost)
-        //            {
-        //                stamina -= staminacost;
-        //                health -= healthcost;
-        //                Console.WriteLine("you successfully beat your opponent");
-        //                Console.WriteLine($"You lost {staminacost} stamina and {healthcost} health.");
-        //                Console.WriteLine($"You now have {stamina} stamina and {health} health.");
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("not enough stamina");
-        //            }
-        //        }
-        //        else if (choice == "no")
-        //        {
-        //            Console.WriteLine("You Choose to flee");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Invalid input. Type 'yes' or 'no'.");
-        //        }
-
-        //        health = Math.Max(0, health);
-        //        stamina = Math.Max(0, stamina);
-
-        //    }
-        //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
-        //}
         
         static void weaponEquip(string name,int minDmg,int maxDmg,int block,int stamCost)
         {
