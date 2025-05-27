@@ -105,8 +105,8 @@ namespace Studio1Project
                         TowerBase();
                         break;
                     case 9999:
-                        /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Inserted text here makes it centered*/
-                        /*WriteCentered(win);*/ /*------------------This method centers any text if you call it*/
+                        /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Text to make centered*/
+                        /*WriteCentered(win);*/ /*------------------ Method centers text*/
                         Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
                         action = Console.ReadLine();
                         if (action == "y")
@@ -144,8 +144,8 @@ namespace Studio1Project
         static void PrisonCell()//room 1 (main room)
         {
 
-            Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps. The air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
-            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable. Each room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries. With your mission in mind you start exploring your surroundings...\n\n");
+            Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps.\nThe air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
+            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable.\nEach room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries. With your mission in mind you start exploring your surroundings...\n\n");
             bool validInput = false;
             Random random = new Random();
             while (!validInput)
@@ -176,7 +176,7 @@ namespace Studio1Project
                                 int success =random.Next(10);
                                 if (success < 8 )
                                 {
-                                    Console.WriteLine("you successfully take the keys form the guard");
+                                    Console.WriteLine("you successfully take the keys from the guard");
                                     inv.Add("cell keys");
                                     roomChoice = 2;
                                     validInput = true;
@@ -261,13 +261,17 @@ namespace Studio1Project
 
         static void DungeonHall()//Room 2
         {
+            Console.WriteLine();           
             Console.WriteLine("You quietly step into the dimly lit dungeon hall.");
             bool validInput = false;
             while (!validInput)
             {
+                Console.WriteLine();
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
                 Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+                Console.WriteLine();
+                Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
                 switch (action)
                 {
@@ -323,9 +327,11 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your **left**, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
-                Console.WriteLine("To your **right**, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
+                Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
+                Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
                 Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
+                Console.WriteLine();
+                Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
                 switch (action)
                 {
@@ -388,6 +394,8 @@ namespace Studio1Project
             {
                 Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
                 Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
+                Console.WriteLine();
+                Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
                 switch (action)
                 {
@@ -494,7 +502,7 @@ namespace Studio1Project
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
                         Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Sword.");
-                        Console.WriteLine("Would you like to pickup the weapon: Guard's Sword?.");
+                        Console.WriteLine("Would you like to pickup the Guard's Sword?.");
                         Console.WriteLine();
                         Console.Write(">> ");
                         string userInput = Console.ReadLine().ToLower();
@@ -505,7 +513,7 @@ namespace Studio1Project
                             Console.WriteLine("The cold steel sends a shiver up your spine, its unexpected weight pressing into your palms like an unspoken challenge.");
                             Console.WriteLine("You lift it slowly, the blade catching the dim light, whispering promises of both protection and peril.");
                             Thread.Sleep(3000);
-                            weaponEquip("sword", 10, 20, 10, 10);
+                            weaponEquip("sword", 10, 20, 10, 15);
                         }
                         else
                         {
@@ -819,7 +827,7 @@ namespace Studio1Project
                 Console.WriteLine();
                 Thread.Sleep(3000);
 
-                outCome = combat(40, 4, 2, 10);
+                outCome = combat(75, 6, 11, 15);
 
                 if (outCome == "win")
                 {
@@ -830,7 +838,7 @@ namespace Studio1Project
                     Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
                     Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
                     Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
-                    Console.WriteLine("Time to move... but where to first?"); /* Haven't tested yet */
+                    Console.WriteLine("Time to move... but where to first?"); 
                     inv.Add("Gatehouse Key");
                     Thread.Sleep(3000);
                 }
@@ -1117,24 +1125,25 @@ namespace Studio1Project
                     Console.Clear();
                     switch (action)
                     {
-                        case "courtyard":
-                            roomChoice = 11;
+                    case "courtyard":
+                        roomChoice = 11;
                         validInput = true;
-                            break;
-                        case "back":
-                        case "return":
-                        case "go back":
-                            GoBack();
-                            roomChoice = prev;
+                        break;
+                    case "back":
+                    case "return":
+                    case "go back":
+                        GoBack();
+                        roomChoice = prev;
                         validInput = true;
-                            break;
-                        case "go up":
-                        case "up":
-                        case "climb tower":
-                        case "climb":
-                            TowerClimb();
+                        break;
+                    case "go up":
+                    case "up":
+                    case "go into tower":
+                    case "climb tower":
+                    case "climb":
+                        TowerClimb();
                         validInput = true;
-                            break;
+                        break;
                     case "search":
                     case "inspect":
                     case "look around":
@@ -1179,6 +1188,13 @@ namespace Studio1Project
                             case "climb tower":
                                 towerFloor++;
                                 stamina -= 5;
+                            if (stamina <= 0)
+                            {
+                                Console.WriteLine("You fainted from exhaustion and are sent back to your cell");
+                                Thread.Sleep(1000);
+                                roomChoice = 1;
+                                return;
+                            }
                             Console.WriteLine();
                             Console.WriteLine($"You ascend to floor {towerFloor}, your legs growing heavier with each step.");
                                 Console.WriteLine($"Stamina: {stamina}");
