@@ -338,13 +338,9 @@ namespace Studio1Project
                 Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
                 Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
                 Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
-<<<<<<< HEAD
-                Console.WriteLine();
-                Console.Write(">> ");
-=======
+
                 Console.Write("\n>> ");
 
->>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
                 switch (action)
