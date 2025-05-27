@@ -151,7 +151,7 @@ namespace Studio1Project
             Random random = new Random();
             while (!validInput)
             {
-
+                //guard prompt will only be displayed, if the keys haven't been picked up yet
                 if (!inv.Contains("cell keys"))
                 {
                     Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
