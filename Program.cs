@@ -107,7 +107,7 @@ namespace Studio1Project
                     case 9999:
                         /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Inserted text here makes it centered*/
                         /*WriteCentered(win);*/ /*------------------This method centers any text if you call it*/
-                        Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
+                        Console.WriteLine("You win! Do you want to play again?  \ny/n\n"); // This is the original
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -120,7 +120,7 @@ namespace Studio1Project
                             return;
                         }
                     case 9998:
-                        Console.WriteLine("You lose! Do you want to play again? y/n");
+                        Console.WriteLine("You lose! Do you want to play again? \ny/n\n");
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -151,7 +151,8 @@ namespace Studio1Project
             while (!validInput)
             {
                 Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
-                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n\n");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.");
+                Console.Write("\n>> ");
                 action = Console.ReadLine().ToLower();
 
                 switch (action)
@@ -169,6 +170,7 @@ namespace Studio1Project
                         else
                         {
                             Console.WriteLine("Your cell is locked Do you want to take the keys from the guard. Yes or No");
+                            Console.Write("\n>> ");
                             action = Console.ReadLine().ToLower().Remove(1);
                             if(action== "y")
                             {
@@ -268,6 +270,7 @@ namespace Studio1Project
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
                 Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+                Console.Write("\n>> ");
                 action = Console.ReadLine().ToLower();
                 switch (action)
                 {
@@ -326,6 +329,7 @@ namespace Studio1Project
                 Console.WriteLine("To your **left**, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
                 Console.WriteLine("To your **right**, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
                 Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
+                Console.Write("\n>> ");
                 action = Console.ReadLine().ToLower();
                 switch (action)
                 {
@@ -388,6 +392,7 @@ namespace Studio1Project
             {
                 Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
                 Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
+                Console.Write("\n>> ");
                 action = Console.ReadLine().ToLower();
                 switch (action)
                 {
@@ -402,6 +407,7 @@ namespace Studio1Project
                         break;
                     case "pantry storage":
                     case "left":
+                    case "pantry":
                         prev = roomChoice;
                         roomChoice = 8;
                         validInput = true;
