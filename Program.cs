@@ -108,10 +108,6 @@ namespace Studio1Project
                         /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Text to make centered*/
                         /*WriteCentered(win);*/ /*------------------ Method centers text*/
                         Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
-<<<<<<< HEAD
-=======
-
->>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -281,12 +277,8 @@ namespace Studio1Project
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
                 Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
-<<<<<<< HEAD
                 Console.WriteLine();
                 Console.Write(">> ");
-=======
-                Console.Write("\n>> ");
->>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
                 switch (action)
@@ -422,13 +414,8 @@ namespace Studio1Project
             {
                 Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
                 Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
-<<<<<<< HEAD
                 Console.WriteLine();
                 Console.Write(">> ");
-=======
-                Console.Write("\n>> ");
-
->>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
                 switch (action)
@@ -1415,13 +1402,10 @@ namespace Studio1Project
                 prev = 1;
                 sleepCounter = 0;
                 inv.Clear();
+                labItems = new string[] { "energy stim", "health potion" }
                 infirmaryItems = new string[] { "health potion", "energy stim", "note" };
                 roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> ddc14a44668af8de251dfa3bde5d6c12ea22c64a
         static void weaponEquip(string name,int minDmg,int maxDmg,int block,int stamCost)
         {
             playerWeapon.name = name;
