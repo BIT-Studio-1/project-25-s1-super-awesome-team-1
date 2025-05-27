@@ -1297,8 +1297,8 @@ namespace Studio1Project
                 Console.WriteLine($"{playerWeapon.name}\nDamage {playerWeapon.minDamage}-{playerWeapon.maxDamage}\nBlock Strength {playerWeapon.block}\nStamina cost {playerWeapon.staminaCost}");
                 Console.WriteLine("");
                 Console.WriteLine("====================");
-            Console.WriteLine(" is there anythig you want to do with your items eg heal or read notes");
-            action = Console.ReadLine();
+            Console.WriteLine("Is there anything you want to do with your items eg heal or read notes");
+            action = Console.ReadLine().ToLower();
             if (action == "heal")
             {
                 Console.WriteLine("do you want to heal health or stamina");
@@ -1335,16 +1335,14 @@ namespace Studio1Project
                     }
                 } while (action != "health" && action != "stamina");
             }
-            else if (action == "read note") {
-                Console.WriteLine("what note do yo want to read"){
-                action = Console.ReadLine();
+            else if (action == "read note" || action == "read"|| action == "read notes") {
+                Console.WriteLine("what note do yo want to read");
+                action = Console.ReadLine().ToLower();
                     readNote(action);
                 }
-
+            Console.Clear();
             }
             
-
-        }
             static void pickup(ref string[] items)//pickup items
             {
                 Console.Clear();
@@ -1355,13 +1353,21 @@ namespace Studio1Project
                 {
                     Console.WriteLine(i);
                 }
-                item = Console.ReadLine();
+                item = Console.ReadLine().ToLower().Trim();
                 if (items.Contains(item) == true)
                 {
                     inv.Add(item);
                     items = items.Where(x => x != item).ToArray();
 
                 }
+                else if (item == "all")
+                    {
+                        foreach (string i in items)
+                        {
+                            inv.Add(i);
+                            items = items.Where(x => x != i).ToArray();
+                        }
+                    }
                 else
                 {
                     Console.WriteLine("item not exists");
