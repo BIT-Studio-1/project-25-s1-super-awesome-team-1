@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Design;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -25,7 +27,7 @@ namespace Studio1Project
         private static string action = "";
         private static List<string> inv = new List<string>();
         private static Weapon playerWeapon;
-        private static string[] infirmaryItems = { "health potion", "energy stim", "note" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
+        private static string[] infirmaryItems = { "health potion", "energy stim", "lab note" },labItems= { "energy stim", "health potion" }, roomsVisited = { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
 
         const int SW_MAXIMIZE = 3;
         [DllImport("kernel32.dll", ExactSpelling = true)]
@@ -46,6 +48,7 @@ namespace Studio1Project
                 {
                     roomChoice = 9998;
                 }
+                Console.Clear();
                 switch (roomChoice)
                 {
 
@@ -627,8 +630,12 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "search room":
+                    case "search":
                         Console.WriteLine("You sift through the dusty tables and shattered glass. Most things are ruined or unusable...");
-                        Console.WriteLine("After a thorough search, you come up empty-handed.");
+                        Console.WriteLine("After a thorough search, find a *Health Potion* and a slightly dusty *Energy Stim* That you could pickup .");
+                        break;
+                    case "pickup":
+                        pickup(ref labItems);
                         break;
                     case "show inventory":
                     case "inv":
@@ -764,8 +771,8 @@ namespace Studio1Project
                     case "look around":
                         Console.WriteLine();
                         Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
-                        Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim*.");
-                        //Console.WriteLine("You tuck them into your inventory, grateful for the small fortune.");
+                        Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim* That you could pickup");
+                        Console.WriteLine("inside the pocket of the lab coat you find a note");
                         Thread.Sleep(2000);
                         break;
                     case "show inventory":
@@ -1214,6 +1221,7 @@ namespace Studio1Project
             }
             static void inventoryShow()//Albert
             {
+                string action;
                 Console.WriteLine("====================");
                 Console.WriteLine("Items in inventory");
                 foreach (string item in inv)
@@ -1225,6 +1233,53 @@ namespace Studio1Project
                 Console.WriteLine($"{playerWeapon.name}\nDamage {playerWeapon.minDamage}-{playerWeapon.maxDamage}\nBlock Strength {playerWeapon.block}\nStamina cost {playerWeapon.staminaCost}");
                 Console.WriteLine("");
                 Console.WriteLine("====================");
+            Console.WriteLine(" is there anythig you want to do with your items eg heal or read notes");
+            action = Console.ReadLine();
+            if (action == "heal")
+            {
+                Console.WriteLine("do you want to heal health or stamina");
+                do
+                {
+                    action = Console.ReadLine().ToLower();
+                    if (action == "stamina")
+                    {
+                        if (inv.Contains("energy stim"))
+                        {
+                            stamina += 25;
+                            inv.Remove("energy stim");
+                        }
+                        else
+                        {
+                            Console.WriteLine("you dont have any energy stims");
+                        }
+                    }
+                    else if (action == "health")
+                    {
+                        if (inv.Contains("health potion"))
+                        {
+                            health += 25;
+                            inv.Remove("health potion");
+                        }
+                        else
+                        {
+                            Console.WriteLine("you don't have any health potions");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter **Health** or **Stamina**");
+                    }
+                } while (action != "health" && action != "stamina");
+            }
+            else if (action == "read note") {
+                Console.WriteLine("what note do yo want to read"){
+                action = Console.ReadLine();
+                    readNote(action);
+                }
+
+            }
+            
+
         }
             static void pickup(ref string[] items)//pickup items
             {
@@ -1278,53 +1333,6 @@ namespace Studio1Project
                 infirmaryItems = new string[] { "health potion", "energy stim", "note" };
                 roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
             }
-        
-
-        //public static void combat()
-        //{
-
-        //    int health = 100;
-        //    int stamina = 100;
-        //    int healthcost = 10; //interchangeable amount idk what yet
-        //    int staminacost = 10; //interchangeable amount idk what yet
-        //    string choice ="";
-
-        //    while (health > 0 && stamina > 0 || choice !="no")
-        //    {
-        //        Console.WriteLine("Do you want to fight (yes/no): ");
-        //        choice = Console.ReadLine().ToLower();
-
-        //        if (choice == "yes")
-        //        {
-        //            if (stamina >= staminacost)
-        //            {
-        //                stamina -= staminacost;
-        //                health -= healthcost;
-        //                Console.WriteLine("you successfully beat your opponent");
-        //                Console.WriteLine($"You lost {staminacost} stamina and {healthcost} health.");
-        //                Console.WriteLine($"You now have {stamina} stamina and {health} health.");
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("not enough stamina");
-        //            }
-        //        }
-        //        else if (choice == "no")
-        //        {
-        //            Console.WriteLine("You Choose to flee");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Invalid input. Type 'yes' or 'no'.");
-        //        }
-
-        //        health = Math.Max(0, health);
-        //        stamina = Math.Max(0, stamina);
-
-        //    }
-        //    Console.WriteLine("You're too tired to fight"); //we should add a way to regain stamina such as food
-        //}
-        
         static void weaponEquip(string name,int minDmg,int maxDmg,int block,int stamCost)
         {
             playerWeapon.name = name;
@@ -1333,7 +1341,19 @@ namespace Studio1Project
             playerWeapon.block = block;
             playerWeapon.staminaCost = stamCost;
         }
-        
+        static void readNote(string noteName)
+        {
+            switch(noteName){
+                case "lab note":
+                case "lab":
+                    Console.WriteLine("Gaol Infirmary Record\r\n\r\nPrisoner: John of Waltham\r\nOffense: Theft of wool\r\nSentence: Imprisonment until the next assizes\r\nAdmission Date: Feast of St. Michael, Year of Our Lord 1352\r\nSymptoms:\r\n\r\nHigh fever\r\n\r\nPersistent cough\r\n\r\nSwelling of the legs\r\n\r\nDelirium\r\n\r\nDiagnosis: Likely ague or consumption\r\n\r\nTreatment Administered:\r\n\r\nHerbal infusion of elderflower and yarrow to induce perspiration\r\n\r\nApplication of a mustard poultice to the chest to relieve congestion\r\n\r\nHoly water administered thrice daily\r\n\r\nPrayers for healing, including the recitation of the Salve Regina\r\n\r\nDiet of broths and pottage; abstinence from meat\r\n\r\nSpiritual Care: Confession and absolution granted; candle placed at bedside\r\n\r\nPrognosis: Condition remains grave; continued prayers are requested\r\n\r\nAttending Healer: Brother Thomas, infirmarer");
+                    break;
+                default:
+                    Console.WriteLine("you do not have that note");
+                    break;
+                }
+                
+        }
         static string combat(int enemyHealth, int enemyDef, int enemyMin, int enemyMax)
         {
             int userDamage, userDefence, enemyDamage;
@@ -1374,6 +1394,17 @@ namespace Studio1Project
                         {
                             Console.WriteLine("you braced for the attack");
                             userDefence = playerWeapon.block;
+                            userDamage = playerWeapon.minDamage - enemyDef;
+                            stamina = stamina - playerWeapon.staminaCost;
+                            if (userDamage > 0)
+                            {
+                                Console.WriteLine($"You dealt {userDamage} to the enemy");
+                                enemyHealth = enemyHealth - userDamage;
+                            }
+                            else
+                            {
+                                Console.WriteLine("your attack was blocked");
+                            }
                         }
                         enemyDamage = rand.Next(enemyMin, enemyMax) - userDefence;
                         if (enemyDamage > 0)
@@ -1443,10 +1474,6 @@ namespace Studio1Project
                 Console.WriteLine("YOU LOSE");
                 Thread.Sleep(1000); 
                 return "lose"; }
-            
-            
-
-
         }
         static void WriteCentered(string message)
         {
