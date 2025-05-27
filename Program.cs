@@ -145,15 +145,17 @@ namespace Studio1Project
         {
 
             Console.WriteLine("You awaken in a dimly lit cell, the cold stone walls echoing with the faint sounds of distant footsteps.\nThe air is thick with the scent of dampness and despair. A single flickering light bulb casts long shadows.");
-            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable.\nEach room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries. With your mission in mind you start exploring your surroundings...\n\n");
+            Console.WriteLine("You have no memory of how you got here, but you know one thing: you must escape.The clock is ticking, and the guards are unpredictable.\nEach room you navigate brings you closer to freedom—or deeper into the labyrinth of the prison's mysteries.\nWith your mission in mind you start exploring your surroundings...\n");
             bool validInput = false;
             Random random = new Random();
             while (!validInput)
             {
                 Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
-                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n\n");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n");
+                Console.WriteLine();
+                Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
-
+                Console.Clear();
                 switch (action)
                 {
                     case "hall":
@@ -212,6 +214,8 @@ namespace Studio1Project
                         }
                         break;
                     case "sewers":
+                    case "go to sewers":
+                    case "sewer":
                         roomChoice = 3;
                         validInput = true;
                         break;
@@ -273,6 +277,7 @@ namespace Studio1Project
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
+                Console.Clear();
                 switch (action)
                 {
                     case "cell":
@@ -333,6 +338,7 @@ namespace Studio1Project
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
+                Console.Clear();
                 switch (action)
                 {
                     case "cell":
@@ -344,16 +350,22 @@ namespace Studio1Project
                         break;
                     case "showers":
                     case "showerss":
+                    case "go to showers":
                     case "left":
+                    case "go left":
                     case "washroom":
                     case "wash room":
+                    case "go to washroom":
                         prev = roomChoice;
                         roomChoice = 6;
                         validInput = true;
                         break;
                     case "lab room":
                     case "labroom":
+                    case "lab":
+                    case "go to lab":
                     case "right":
+                    case "go right":
                         prev = roomChoice;
                         roomChoice = 7;
                         validInput = true;
@@ -397,6 +409,7 @@ namespace Studio1Project
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
+                Console.Clear();
                 switch (action)
                 {
                     case "dungeon hall":
@@ -631,6 +644,7 @@ namespace Studio1Project
                     case "t/y":
                         prev = roomChoice;
                         roomChoice = 10;
+                        validInput = true;
                         break;
                     case "back":
                     case "return":
@@ -857,6 +871,7 @@ namespace Studio1Project
                     weaponEquip("fists", 5, 15, 5, 10);
                     lossCount++;
                     Thread.Sleep(5000);
+                    prev = 1;
                     roomChoice = 1;
                     return;
                 }
@@ -1411,6 +1426,11 @@ namespace Studio1Project
 
                 userDefence = 0;
                 Console.WriteLine("What action do you want to take ");
+                Console.WriteLine("- Attack");
+                Console.WriteLine("- Defend");
+                Console.WriteLine("- Run");
+                Console.WriteLine("- Heal");
+                Console.WriteLine("- Status");
                 Console.WriteLine();
                 Console.Write(">> ");
                 combatChoice = Console.ReadLine().ToLower();
