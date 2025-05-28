@@ -150,7 +150,7 @@ namespace Studio1Project
                 //guard prompt will only be displayed, if the keys haven't been picked up yet
                 if (!inv.Contains("cell keys"))
                 {
-                    Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                    Console.WriteLine("A guard snores loudly in the hallway just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
                 }
 
                 Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n");
@@ -848,8 +848,7 @@ namespace Studio1Project
             Console.WriteLine();
 
             if (inv.Contains("Gatehouse Key"))
-            {
-                Console.WriteLine();
+            {               
                 Console.WriteLine("You see the guard you fought earlier, motionless and slumped on the ground.");
                 Console.WriteLine("He appears to be dreaming about the fight—but luckily, he’s still unconscious.");
             }
@@ -1455,6 +1454,7 @@ namespace Studio1Project
                 case "lab note":
                 case "lab":
                     Console.WriteLine("Gaol Infirmary Record\r\n\r\nPrisoner: John of Waltham\r\nOffense: Theft of wool\r\nSentence: Imprisonment until the next assizes\r\nAdmission Date: Feast of St. Michael, Year of Our Lord 1352\r\nSymptoms:\r\n\r\nHigh fever\r\n\r\nPersistent cough\r\n\r\nSwelling of the legs\r\n\r\nDelirium\r\n\r\nDiagnosis: Likely ague or consumption\r\n\r\nTreatment Administered:\r\n\r\nHerbal infusion of elderflower and yarrow to induce perspiration\r\n\r\nApplication of a mustard poultice to the chest to relieve congestion\r\n\r\nHoly water administered thrice daily\r\n\r\nPrayers for healing, including the recitation of the Salve Regina\r\n\r\nDiet of broths and pottage; abstinence from meat\r\n\r\nSpiritual Care: Confession and absolution granted; candle placed at bedside\r\n\r\nPrognosis: Condition remains grave; continued prayers are requested\r\n\r\nAttending Healer: Brother Thomas, infirmarer");
+                    Console.ReadKey();
                     break;
                 default:
                     Console.WriteLine("you do not have that note");
@@ -1491,6 +1491,7 @@ namespace Studio1Project
                 combatChoice = Console.ReadLine().ToLower();
                 switch (combatChoice)
                 {
+
                     case "attack"://might add heavy and light attacks
                     case "defend":
                         if (combatChoice == "attack")
@@ -1527,6 +1528,7 @@ namespace Studio1Project
                         if (enemyDamage > 0)
                         {
                             health = health - enemyDamage;
+                            Console.WriteLine($"The enemy dealt {enemyDamage} you have {health} remaining");
                         }
                         break;
                     case "heal":
@@ -1589,7 +1591,9 @@ namespace Studio1Project
                 return "win"; }
             else { 
                 Console.WriteLine("YOU LOSE");
-                Thread.Sleep(1000); 
+                Thread.Sleep(1000);
+                health = 50;
+                Console.WriteLine("you regain some health");
                 return "lose"; }
         }
         static void WriteCentered(string message)
