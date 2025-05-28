@@ -150,7 +150,7 @@ namespace Studio1Project
                 //guard prompt will only be displayed, if the keys haven't been picked up yet
                 if (!inv.Contains("cell keys"))
                 {
-                    Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                    Console.WriteLine("A guard snores loudly in the hallway just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
                 }
 
                 Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n");
