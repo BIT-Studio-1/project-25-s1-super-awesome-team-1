@@ -104,10 +104,8 @@ namespace Studio1Project
                         roomsVisited[12] = "Tower Base";
                         TowerBase();
                         break;
-                    case 9999:
-                        /*string win = "You win! Do you want to play again? y/n";*/ /*------------------Text to make centered*/
-                        /*WriteCentered(win);*/ /*------------------ Method centers text*/
-                        Console.WriteLine("You win! Do you want to play again? y/n"); // This is the original
+                    case 9999:                       
+                        Console.WriteLine("You win! Do you want to play again? y/n");
                         action = Console.ReadLine();
                         if (action == "y")
                         {
@@ -251,6 +249,7 @@ namespace Studio1Project
                         {
                             Console.WriteLine("You win!");
                             roomChoice = 9999;
+                            return;
                         }
                         break;
                     case "show energy":
