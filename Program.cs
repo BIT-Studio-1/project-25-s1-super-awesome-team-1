@@ -249,8 +249,8 @@ namespace Studio1Project
                         stamina = stamina + 10;
                         if (sleepCounter > 10)
                         {
-                            Console.WriteLine("You win!");
                             roomChoice = 9999;
+                            validInput = true;
                         }
                         break;
                     case "show energy":
