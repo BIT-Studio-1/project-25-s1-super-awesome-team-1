@@ -241,15 +241,14 @@ namespace Studio1Project
                         break;
                     case "sleep":
                         Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
-                        Thread.Sleep(2000);
+                        
                         Console.WriteLine("Sleeping helped you regain some energy!!");
                         sleepCounter = sleepCounter + 1;
                         stamina = stamina + 10;
                         if (sleepCounter > 10)
                         {
-                            Console.WriteLine("You win!");
                             roomChoice = 9999;
-                            return;
+                            validInput = true;
                         }
                         break;
                     case "show energy":
