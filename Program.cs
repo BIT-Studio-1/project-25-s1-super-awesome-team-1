@@ -337,8 +337,8 @@ namespace Studio1Project
                 Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
                 Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
                 Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
-
-                Console.Write("\n>> ");
+                Console.WriteLine();
+                Console.Write(">> ");
 
                 action = Console.ReadLine().ToLower();
                 Console.Clear();
@@ -1397,7 +1397,7 @@ namespace Studio1Project
                 prev = 1;
                 sleepCounter = 0;
                 inv.Clear();
-                labItems = new string[] { "energy stim", "health potion" }
+            labItems = new string[] { "energy stim", "health potion" };
                 infirmaryItems = new string[] { "health potion", "energy stim", "note" };
                 roomsVisited = new string[] { "?", "???????", "??????", "???????", "???????????????", "???????", "???", "??????", "?????????", "?????????????", "?????????", "??????????", "??????????" };
             }
