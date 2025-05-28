@@ -241,7 +241,7 @@ namespace Studio1Project
                         break;
                     case "sleep":
                         Console.WriteLine("You lie back on the cold stone floor and close your eyes. Despite the discomfort, you manage to rest.");
-                        
+                        Thread.Sleep(2000);
                         Console.WriteLine("Sleeping helped you regain some energy!!");
                         sleepCounter = sleepCounter + 1;
                         stamina = stamina + 10;
@@ -424,6 +424,8 @@ namespace Studio1Project
                         validInput = true;
                         break;
                     case "pantry storage":
+                    case "pantry":
+                    case "storage":
                     case "left":
                         prev = roomChoice;
                         roomChoice = 8;
@@ -514,6 +516,8 @@ namespace Studio1Project
                         break;
                     case "search room":
                     case "search":
+                    case "look around":
+                    case "look":
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
                         Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Sword.");
@@ -528,7 +532,8 @@ namespace Studio1Project
                             Console.WriteLine("The cold steel sends a shiver up your spine, its unexpected weight pressing into your palms like an unspoken challenge.");
                             Console.WriteLine("You lift it slowly, the blade catching the dim light, whispering promises of both protection and peril.");
                             Thread.Sleep(3000);
-                            weaponEquip("sword", 10, 20, 10, 15);
+                            weaponEquip("Sword", 15, 20, 10, 15);
+                            Console.Clear();
                         }
                         else
                         {
@@ -593,6 +598,8 @@ namespace Studio1Project
                         break;
                     case "search room":
                     case "search":
+                    case "look around":
+                    case "look":
                         Console.WriteLine();
                         Console.WriteLine("You move cautiously between the cracked stalls and broken tiles, checking behind pipes and under benches.");
                         Console.WriteLine("Slippery moss clings to your boots. The floor creaks in protest, and for a moment, you think you spot movement—but it's just a shadow.");
@@ -655,6 +662,8 @@ namespace Studio1Project
                         break;
                     case "search room":
                     case "search":
+                    case "look around":
+                    case "look":
                         Console.WriteLine("You sift through the dusty tables and shattered glass. Most things are ruined or unusable...");
                         Console.WriteLine("After a thorough search, find a *Health Potion* and a slightly dusty *Energy Stim* That you could pickup .");
                         break;
@@ -719,9 +728,20 @@ namespace Studio1Project
                         break;
                     case "search room":
                     case "search":
+                    case "look around":
+                    case "look":
                         Console.WriteLine("You scan the shelves, digging through empty jars and broken crates...");
+                        Thread.Sleep(1500);
+                        Console.WriteLine("Dust swirls in the dim light as your fingers brush past a bundle of dried herbs and old tools.");
+                        Thread.Sleep(1500);
+                        Console.WriteLine("Just when you're about to give up, your hand catches on something coarse and fibrous.");
                         Thread.Sleep(1000);
-                        Console.WriteLine("Nothing useful — just crumbs and cobwebs. Someone’s already cleaned this place out.");
+                        Console.WriteLine();
+                        Console.WriteLine("\"Well, hello there,\" you mutter to yourself.");
+                        Console.WriteLine("You tug and pull free a **length of sturdy rope**, frayed at the ends but still strong.");
+                        Console.WriteLine();
+                        Console.WriteLine("You add the rope to your inventory.");
+                        inv.Add("Rope");
                         break;
                     case "show inventory":
                     case "inv":
@@ -791,6 +811,7 @@ namespace Studio1Project
                     case "search":
                     case "inspect":
                     case "look around":
+                    case "look":
                         Console.WriteLine();
                         Console.WriteLine("You rummage through a mostly intact cabinet beneath a cracked sink.");
                         Console.WriteLine("To your surprise, you find a small vial labeled *Health Potion* and a slightly dusty *Energy Stim* That you could pickup");
@@ -1258,6 +1279,26 @@ namespace Studio1Project
                                 roomChoice = 9998;
                                 jump = true;                               
                                 return;
+                        case "use rope":
+                        case "tie rope":
+                        case "climb with rope":
+                            if (inv.Contains("Rope"))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("You tie the rope securely to a cracked stone outcropping and lower it over the edge.");
+                                Console.WriteLine("Hand over hand, you descend slowly—every foot closer to freedom.");
+                                Thread.Sleep(2000);
+                                Console.WriteLine("With a final drop, your feet splash into the river below. You’ve escaped the tower safely!");
+                                Thread.Sleep(1500);
+                                roomChoice = 9999;
+                                jump = true;
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine("You fumble through your things, but you don’t have any rope to use.");
+                            }
+                            break;
                             case "go down":
                             case "down":
                             case "back":
