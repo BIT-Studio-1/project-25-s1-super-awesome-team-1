@@ -222,6 +222,8 @@ namespace Studio1Project
                     case "go to sewers":
                     case "sewer":
                     case "move stone":
+                    case "stone":
+                    case "get stone":
                         roomChoice = 3;
                         validInput = true;
                         break;
@@ -412,7 +414,7 @@ namespace Studio1Project
             while (!validInput)
             {
                 Console.WriteLine("To your left, a narrow door leads to what looks like a **pantry** — you hear muffled movement inside.");
-                Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
+                Console.WriteLine("Behind you is the corridor leading back to the dungeon **hall**.");
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
@@ -581,8 +583,8 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There’s a narrow iron door half-hinged open, marked faintly with the red cross of the Infirmary.");
-                Console.WriteLine("You could also climb back down into the sewers, if you’d rather not linger here any longer.");
+                Console.WriteLine("There’s a narrow iron door half-hinged open, marked faintly with the red cross of the **Infirmary**.");
+                Console.WriteLine("You could also climb back down into the **sewers**, if you’d rather not linger here any longer.");
                 Console.WriteLine();
                 Console.Write(">> ");
 
@@ -652,7 +654,7 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There’s a door leading to the Training Yard, its reinforced window cracked but intact.");
+                Console.WriteLine("There’s a door leading to the **Training Yard**, its reinforced window cracked but intact.");
                 Console.WriteLine("You could also Go Back the way you came, retracing your steps through the dungeon.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -714,8 +716,8 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, a narrow archway leads back to the Kitchen — faint light flickers from a distant torch.");
-                Console.WriteLine("Beyond a storage rack, a battered door swings gently open, revealing a path toward the Courtyard.");
+                Console.WriteLine("To your left, a narrow archway leads back to the **Kitchen** — faint light flickers from a distant torch.");
+                Console.WriteLine("Beyond a storage rack, a battered door swings gently open, revealing a path toward the **Courtyard**.");
                 Console.WriteLine("You can also step back the way you came.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -790,8 +792,8 @@ namespace Studio1Project
             while (!validInput)
             {
                 Console.WriteLine("There’s a narrow iron door half-hinged open, leading back into the sweat-soaked air of the **Guards’ Barracks**.");
-                Console.WriteLine("Beyond the flickering lantern light, a tiled corridor veers off toward the Showers, echoing with the faint sound of dripping water.");
-                Console.WriteLine("A heavier, creaking wooden door opens to the Courtyard, where cool air stirs through the cracks.");
+                Console.WriteLine("Beyond the flickering lantern light, a tiled corridor veers off toward the **Showers**, echoing with the faint sound of dripping water.");
+                Console.WriteLine("A heavier, creaking wooden door opens to the **Courtyard**, where cool air stirs through the cracks.");
                 Console.WriteLine("Or... you could always double back the way you came, if none of this feels right.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -885,7 +887,7 @@ namespace Studio1Project
                     Console.Clear();
                     Console.WriteLine("The guard collapses at your feet, unmoving.");
                     Console.WriteLine("You crouch beside him and search his pockets carefully.");
-                    Console.WriteLine("Your fingers brush against something cold and metallic—keys.");
+                    Console.WriteLine("Your fingers brush against something cold and metallic—**keys**.");
                     Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
                     Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
                     Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
@@ -919,9 +921,9 @@ namespace Studio1Project
             while (!validInput)
             {
                 Console.WriteLine();
-                Console.WriteLine("There’s a gate at the far end, leading back into the Guards’ Barracks, where voices echo faintly through stone walls.");
-                Console.WriteLine("Off to the side, a rusted service hatch opens into the dimly-lit Lab, the air thick with chemicals.");
-                Console.WriteLine("To the east, a heavy wooden door leads to the open Courtyard, where the scent of grass cuts through the dust.");
+                Console.WriteLine("There’s a gate at the far end, leading back into the **Guards’ Barracks**, where voices echo faintly through stone walls.");
+                Console.WriteLine("Off to the side, a rusted service hatch opens into the dimly-lit **Lab**, the air thick with chemicals.");
+                Console.WriteLine("To the east, a heavy wooden door leads to the open **Courtyard**, where the scent of grass cuts through the dust.");
                 Console.WriteLine("And of course, you could always retrace your steps and leave the yard the way you came.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -965,6 +967,7 @@ namespace Studio1Project
                     case "search":
                     case "inspect":
                     case "look around":
+                    case "look":
                         Console.WriteLine();
                         Console.WriteLine("You take a moment to search the yard, scanning the ground and checking under broken training dummies.");
                         Console.WriteLine("Most of what you find is useless — splintered wood, dulled blades, and worn-out gear.");
@@ -1083,7 +1086,7 @@ namespace Studio1Project
                 {
 
                     Console.WriteLine("Ahead, the Castle’s main gate stands sealed — an imposing iron door with a thick lock, its keyhole rusted but still intact. It won’t budge without the right key.");
-                    Console.WriteLine("Behind you, the corridor stretches back toward the Courtyard, the faint breeze from outside already starting to fade.");
+                    Console.WriteLine("Behind you, the corridor stretches back toward the **Courtyard**, the faint breeze from outside already starting to fade.");
                     Console.WriteLine();
                     Console.Write(">> ");
 
@@ -1092,6 +1095,7 @@ namespace Studio1Project
                     switch (action)
                     {
                         case "courtyard":
+                        case "go to courtyard":
                             roomChoice = 11;
                             break;
                         case "back":
@@ -1104,6 +1108,7 @@ namespace Studio1Project
                         case "exit":
                         case "leave":
                         case "escape":
+                        case "use key":
                             if (inv.Contains("Gatehouse Key"))
                             {
                             Console.WriteLine("Your fingers brush against the gate's cold iron as you spot the keyhole—");
@@ -1153,8 +1158,8 @@ namespace Studio1Project
             {
                 Console.WriteLine();
                 Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
-                Console.WriteLine("Looking back you see a narrow, winding path leading back down to the Courtyard, the distant sounds of castle life faint on the breeze.");
-                Console.WriteLine("The wooden door behind you creaks softly, offering a way inside.");
+                Console.WriteLine("Looking back you see a narrow, winding path leading back down to the **Courtyard**, the distant sounds of castle life faint on the breeze.");
+                Console.WriteLine("The wooden door behind you creaks softly, offering a way inside. Maybe you could **climb** the stairs.");
                 Console.WriteLine();
                 Thread.Sleep(1500);
 
