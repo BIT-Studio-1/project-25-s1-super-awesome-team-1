@@ -150,10 +150,10 @@ namespace Studio1Project
                 //guard prompt will only be displayed, if the keys haven't been picked up yet
                 if (!inv.Contains("cell keys"))
                 {
-                    Console.WriteLine("A guard snores loudly in the hallway just outside, slouched in a wooden chair, keys hanging loosely from his belt.");
+                    Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, **keys** hanging loosely from his belt.");
                 }
 
-                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the sewers.\n");
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the **Sewers**.\n");
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
@@ -165,6 +165,9 @@ namespace Studio1Project
                     case "hallway":
                     case "dungeon hall":
                     case "open cell":
+                    case "grab keys":
+                    case "steal keys":
+                    case "leave cell":
                         if (inv.Contains("cell keys"))
                         {
                             roomChoice = 2;
@@ -218,6 +221,7 @@ namespace Studio1Project
                     case "sewers":
                     case "go to sewers":
                     case "sewer":
+                    case "move stone":
                         roomChoice = 3;
                         validInput = true;
                         break;
@@ -273,7 +277,7 @@ namespace Studio1Project
             {
                 Console.WriteLine();
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
-                Console.WriteLine("To your left, heavy boots echo faintly from the guard barracks. Ahead, the scent of stale broth and overcooked meat wafts from the kitchen.");
+                Console.WriteLine("To your left, heavy boots echo faintly from the **guard barracks**. Ahead, the scent of stale broth and overcooked meat wafts from the **kitchen**.");
                 Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -289,6 +293,7 @@ namespace Studio1Project
                     case "guard barracks":
                     case "gaurd barracks":
                     case "left":
+                    case "barracks":
                         prev = roomChoice;
                         roomChoice = 5;
                         validInput = true;
@@ -333,8 +338,8 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old washroom.");
-                Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air.");
+                Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old **washroom**.");
+                Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air, seems to be a **lab**.");
                 Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -406,7 +411,7 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, a narrow door leads to what looks like a pantry — you hear muffled movement inside.");
+                Console.WriteLine("To your left, a narrow door leads to what looks like a **pantry** — you hear muffled movement inside.");
                 Console.WriteLine("Behind you is the corridor leading back to the dungeon hall.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -474,7 +479,7 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There are three doors: one marked with the red cross of the Infirmary, the other one leading out to the Training Yard. The last one seems to lead in to a hallway.");
+                Console.WriteLine("There are three doors: one marked with the red cross of the **Infirmary**, the other one leading out to the **Training Yard**. The last one seems to lead in to a **hallway**.");
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -520,27 +525,31 @@ namespace Studio1Project
                     case "look":
                         Console.WriteLine();
                         Console.WriteLine("You sift through the mess. Most of it is junk—empty bottles, broken gear...");
-                        Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Sword.");
-                        Console.WriteLine("Would you like to pickup the Guard's Sword?.");
-                        Console.WriteLine();
-                        Console.Write(">> ");
-                        string userInput = Console.ReadLine().ToLower();
-                        Console.WriteLine();
-                        if (userInput[0] == 'y')
+                        if (playerWeapon.name != "Sword")
                         {
-                            Console.WriteLine("Your fingers tremble as they curl around the hilt of the Guard's Sword.");
-                            Console.WriteLine("The cold steel sends a shiver up your spine, its unexpected weight pressing into your palms like an unspoken challenge.");
-                            Console.WriteLine("You lift it slowly, the blade catching the dim light, whispering promises of both protection and peril.");
-                            Thread.Sleep(3000);
-                            weaponEquip("Sword", 15, 20, 10, 15);
-                            Console.Clear();
+                            Console.WriteLine("But tucked under a thin mattress, you find a dusty but intact Guard’s Sword.");
+                            Console.WriteLine("Would you like to pickup the Guard's Sword?.");
+                            Console.WriteLine();
+                            Console.Write(">> ");
+                            string userInput = Console.ReadLine().ToLower();
+                            Console.WriteLine();
+                            if (userInput[0] == 'y')
+                            {
+                                Console.WriteLine("Your fingers tremble as they curl around the hilt of the Guard's Sword.");
+                                Console.WriteLine("The cold steel sends a shiver up your spine, its unexpected weight pressing into your palms like an unspoken challenge.");
+                                Console.WriteLine("You lift it slowly, the blade catching the dim light, whispering promises of both protection and peril.");
+                                Thread.Sleep(3000);
+                                weaponEquip("Sword", 15, 20, 10, 10);
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                Console.WriteLine("You leave the dusty sword, trusting in your fists");
+                                weaponEquip("fists", 5, 15, 5, 10);
+                                Thread.Sleep(1500);
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("You leave the dusty sword, trusting in your fists");
-                            weaponEquip("fists", 5, 15, 5, 10);
-                            Thread.Sleep(1500);
-                        }
+                        
                         Console.WriteLine();
                         break;
                     case "show inventory":
@@ -587,6 +596,13 @@ namespace Studio1Project
                     case "goto infirmary":
                         prev = roomChoice;
                         roomChoice = 9;
+                        validInput = true;
+                        break;
+                    case "sewers":
+                    case "go to sewers":
+                    case "sewer":
+                        prev = roomChoice;
+                        roomChoice = 3;
                         validInput = true;
                         break;
                     case "back":
@@ -848,7 +864,8 @@ namespace Studio1Project
             Console.WriteLine();
 
             if (inv.Contains("Gatehouse Key"))
-            {               
+            {
+                Console.WriteLine();
                 Console.WriteLine("You see the guard you fought earlier, motionless and slumped on the ground.");
                 Console.WriteLine("He appears to be dreaming about the fight—but luckily, he’s still unconscious.");
             }
@@ -982,11 +999,11 @@ namespace Studio1Project
                 while (!validInput)
                 {
 
-                    Console.WriteLine("There’s a barely visible grate behind a thorny bush — the passage to the Pantry.");
-                    Console.WriteLine("A heavy oak door marked with a faded red cross leads into the Infirmary.");
-                    Console.WriteLine("The Training Yard lies just beyond a sagging wooden gate, its hinges creaking in the breeze.");
-                    Console.WriteLine("A winding stone path leads up to the Ancient Tower, its silhouette sharp against the sky.");
-                    Console.WriteLine("Another narrow path disappears toward the looming Gatehouse, where freedom might yet be possible.");
+                    Console.WriteLine("There’s a barely visible grate behind a thorny bush — the passage to the **Pantry**.");
+                    Console.WriteLine("A heavy oak door marked with a faded red cross leads into the **Infirmary**.");
+                    Console.WriteLine("The **Training Yard** lies just beyond a sagging wooden gate, its hinges creaking in the breeze.");
+                    Console.WriteLine("A winding stone path leads up to the Ancient **Tower**, its silhouette sharp against the sky.");
+                    Console.WriteLine("Another narrow path disappears toward the looming **Gatehouse**, where freedom might yet be possible.");
                     Console.WriteLine();
                     Console.Write(">> ");
 
@@ -1454,7 +1471,6 @@ namespace Studio1Project
                 case "lab note":
                 case "lab":
                     Console.WriteLine("Gaol Infirmary Record\r\n\r\nPrisoner: John of Waltham\r\nOffense: Theft of wool\r\nSentence: Imprisonment until the next assizes\r\nAdmission Date: Feast of St. Michael, Year of Our Lord 1352\r\nSymptoms:\r\n\r\nHigh fever\r\n\r\nPersistent cough\r\n\r\nSwelling of the legs\r\n\r\nDelirium\r\n\r\nDiagnosis: Likely ague or consumption\r\n\r\nTreatment Administered:\r\n\r\nHerbal infusion of elderflower and yarrow to induce perspiration\r\n\r\nApplication of a mustard poultice to the chest to relieve congestion\r\n\r\nHoly water administered thrice daily\r\n\r\nPrayers for healing, including the recitation of the Salve Regina\r\n\r\nDiet of broths and pottage; abstinence from meat\r\n\r\nSpiritual Care: Confession and absolution granted; candle placed at bedside\r\n\r\nPrognosis: Condition remains grave; continued prayers are requested\r\n\r\nAttending Healer: Brother Thomas, infirmarer");
-                    Console.ReadKey();
                     break;
                 default:
                     Console.WriteLine("you do not have that note");
@@ -1491,7 +1507,6 @@ namespace Studio1Project
                 combatChoice = Console.ReadLine().ToLower();
                 switch (combatChoice)
                 {
-
                     case "attack"://might add heavy and light attacks
                     case "defend":
                         if (combatChoice == "attack")
@@ -1528,7 +1543,6 @@ namespace Studio1Project
                         if (enemyDamage > 0)
                         {
                             health = health - enemyDamage;
-                            Console.WriteLine($"The enemy dealt {enemyDamage} you have {health} remaining");
                         }
                         break;
                     case "heal":
@@ -1591,9 +1605,7 @@ namespace Studio1Project
                 return "win"; }
             else { 
                 Console.WriteLine("YOU LOSE");
-                Thread.Sleep(1000);
-                health = 50;
-                Console.WriteLine("you regain some health");
+                Thread.Sleep(1000); 
                 return "lose"; }
         }
         static void WriteCentered(string message)
