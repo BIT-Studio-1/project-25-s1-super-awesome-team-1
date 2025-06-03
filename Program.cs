@@ -157,10 +157,16 @@ namespace Studio1Project
                 //guard prompt will only be displayed, if the keys haven't been picked up yet
                 if (!inv.Contains("cell keys"))
                 {
-                    Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, **keys** hanging loosely from his belt.");
+                    Console.Write("A guard snores loudly just outside, slouched in a wooden chair, ");
+                        
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Write("**Keys**\n");
+                        Console.ResetColor();
+                        
+                        Console.WriteLine("hanging loosely from his belt.");
                 }
 
-                Console.Write("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the "); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("**Sewers**.\n"); Console.ResetColor();
+                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the "); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("**Sewers**.\n"); Console.ResetColor();
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
