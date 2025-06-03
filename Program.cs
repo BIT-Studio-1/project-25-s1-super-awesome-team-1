@@ -42,6 +42,11 @@ namespace Studio1Project
                 ShowWindow(consoleWindow, SW_MAXIMIZE);
             }
             weaponEquip("fists", 5, 15, 5, 10);//name, mindmg, maxdmg, block, staminacost
+            Console.WriteLine("How to Play");
+            showCommands();
+            Console.WriteLine("press any key to start");
+            Console.ReadKey();
+            Console.Clear();
             do
             {
                 if(lossCount == 10)
@@ -1449,7 +1454,7 @@ namespace Studio1Project
             static void showCommands()
             {
                 Console.WriteLine("***************************************************************************");
-                Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
+                Console.WriteLine("Type one of the following commands: \nshow inventory \nshow energy \nsearch \nmap \n To select a room:\n Enter the green name");
                 Console.WriteLine("***************************************************************************\n\n");
             }
             static void showEnergyLevels()
