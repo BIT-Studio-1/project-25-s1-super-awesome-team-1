@@ -508,7 +508,15 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There are three doors: one marked with the red cross of the **Infirmary**, the other one leading out to the **Training Yard**. The last one seems to lead in to a **hallway**.");
+                Console.Write("There are three doors: one marked with the red cross of the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write("  **Infirmary** ");
+                Console.ResetColor();
+                Console.Write("the other one leading out to the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("  **Training Yard**.");
+                Console.ResetColor();
+                Console.Write("The last one seems to lead in to a");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(" **hallway**.");
+                Console.ResetColor();
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
                 Console.Write(">> ");
