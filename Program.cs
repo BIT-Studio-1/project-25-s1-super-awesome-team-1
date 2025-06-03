@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -434,8 +435,13 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, a narrow door leads to what looks like a **pantry** — you hear muffled movement inside.");
-                Console.WriteLine("Behind you is the corridor leading back to the dungeon **hall**.");
+                Console.Write("To your left, a narrow door leads to what looks like a");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" **pantry ** ");
+                Console.ResetColor();
+                Console.WriteLine("— you hear muffled movement inside.");
+                Console.Write("Behind you is the corridor leading back to the dungeon");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(" **hall**.");
+                Console.ResetColor();
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
