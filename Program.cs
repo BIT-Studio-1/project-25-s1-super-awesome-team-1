@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System;
+using System.ComponentModel.Design;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -1566,6 +1567,7 @@ namespace Studio1Project
                         if (enemyDamage > 0)
                         {
                             health = health - enemyDamage;
+                            Console.WriteLine($"you took {enemyDamage} Damage");
                         }
                         break;
                     case "heal":
