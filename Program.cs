@@ -42,6 +42,11 @@ namespace Studio1Project
                 ShowWindow(consoleWindow, SW_MAXIMIZE);
             }
             weaponEquip("fists", 5, 15, 5, 10);//name, mindmg, maxdmg, block, staminacost
+            Console.WriteLine("How to Play");
+            showCommands();
+            Console.WriteLine("press any key to start");
+            Console.ReadKey();
+            Console.Clear();
             do
             {
                 if(lossCount == 10)
@@ -153,7 +158,7 @@ namespace Studio1Project
                     Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, **keys** hanging loosely from his belt.");
                 }
 
-                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the **Sewers**.\n");
+                Console.Write("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the "); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("**Sewers**.\n"); Console.ResetColor();
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
@@ -198,6 +203,12 @@ namespace Studio1Project
                                         roomChoice = 2;
                                         validInput = true;
                                     }
+                                    else if (outCome == "run")
+                                    {
+                                        Console.WriteLine("you ran from the fight");
+                                        roomChoice = prev;
+                                        validInput = true;
+                                    }
                                     else {
                                         Console.WriteLine("lose");
                                         if (health <=0 || stamina <= 0)
@@ -210,7 +221,7 @@ namespace Studio1Project
                                         else {
                                             Console.WriteLine("");
                                         }
-                                    }//idk what to do if you lose
+                                    }
                                 };
                             }
                             else { 
@@ -864,7 +875,7 @@ namespace Studio1Project
             Console.WriteLine("As the last drop vanishes, he exhales, then turns—his gaze meeting yours with piercing intensity.");
             Console.WriteLine("The air thickens as he straightens, hand instinctively hovering near his weapon, prepared for whatever comes next.");
             Console.WriteLine();
-
+            bool validInput = false;
             if (inv.Contains("Gatehouse Key"))
             {
                 Console.WriteLine();
@@ -887,13 +898,20 @@ namespace Studio1Project
                     Console.Clear();
                     Console.WriteLine("The guard collapses at your feet, unmoving.");
                     Console.WriteLine("You crouch beside him and search his pockets carefully.");
-                    Console.WriteLine("Your fingers brush against something cold and metallic—**keys**.");
+                    Console.Write("Your fingers brush against something cold and metallic—**keys**."); 
                     Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
                     Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
                     Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
-                    Console.WriteLine("Time to move... but where to first?"); 
+                    Console.WriteLine("Time to move... but where to first?");
                     inv.Add("Gatehouse Key");
                     Thread.Sleep(3000);
+                }
+                else if (outCome == "run")
+                {
+                    Console.WriteLine("You ran from the fight");
+                    roomChoice = prev;
+                    validInput = true;
+
                 }
                 else
                 {
@@ -916,7 +934,7 @@ namespace Studio1Project
                 }
             }
 
-            bool validInput = false;
+            
 
             while (!validInput)
             {
@@ -1433,7 +1451,7 @@ namespace Studio1Project
             static void showCommands()
             {
                 Console.WriteLine("***************************************************************************");
-                Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
+                Console.WriteLine("Type one of the following commands: \nshow inventory \nshow energy \nsearch \nmap \n To select a room:\n Enter the green name");
                 Console.WriteLine("***************************************************************************\n\n");
             }
             static void showEnergyLevels()
@@ -1601,14 +1619,22 @@ namespace Studio1Project
 
                 }
             }
-            if (enemyHealth <= 0) {
+            if (enemyHealth <= 0)
+            {
                 Console.WriteLine("YOU WIN");
                 Thread.Sleep(1000);
-                return "win"; }
-            else { 
+                return "win";
+            }
+            else if (combatChoice == "run"){
+                Console.WriteLine("you ran from combat");
+                return "run";
+            }
+            else
+            {
                 Console.WriteLine("YOU LOSE");
-                Thread.Sleep(1000); 
-                return "lose"; }
+                Thread.Sleep(1000);
+                return "lose";
+            }
         }
         static void WriteCentered(string message)
         {
