@@ -1156,21 +1156,15 @@ namespace Studio1Project
             }
         static void TowerBase()//Room13
             {
-                Console.WriteLine();
-                Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
-                Console.WriteLine("Looking back you see a narrow, winding path leading back down to the **Courtyard**, the distant sounds of castle life faint on the breeze.");
-                Console.WriteLine("The wooden door behind you creaks softly, offering a way inside. Maybe you could **climb** the stairs.");
-                Console.WriteLine();
-                Thread.Sleep(1500);
-
                 bool validInput = false;
 
                 while (!validInput)
                 {
 
-                    Console.WriteLine("What would you like to do?");
-                    Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step inside through the door.");
-                    Console.WriteLine("You might also take a moment to inspect the area more closely.");
+                    Console.WriteLine();
+                    Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
+                    Console.WriteLine("Looking back you see a narrow, winding path leading back down to the **Courtyard**, the distant sounds of castle life faint on the breeze.");
+                    Console.WriteLine("The wooden door behind you creaks softly, offering a way inside. Maybe you could **climb** the stairs.");
                     Console.WriteLine();
                     Console.Write(">> ");
 
@@ -1191,6 +1185,9 @@ namespace Studio1Project
                         break;
                     case "go up":
                     case "up":
+                    case "go inside":
+                    case "door":
+                    case "open door":
                     case "go into tower":
                     case "climb tower":
                     case "climb":
