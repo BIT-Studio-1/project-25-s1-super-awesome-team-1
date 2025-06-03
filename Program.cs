@@ -354,9 +354,16 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old **washroom**.");
-                Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air, seems to be a **lab**.");
-                Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
+                Console.Write("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(" **washroom. **");
+                Console.ResetColor();
+                Console.Write("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air, seems to be a");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write("  **lab**.");
+                Console.ResetColor();
+                Console.Write("Behind you is the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" tunnel ");
+                Console.ResetColor();
+                Console.WriteLine("you crawled through to get here.");
                 Console.WriteLine();
                 Console.Write(">> ");
 
