@@ -153,7 +153,7 @@ namespace Studio1Project
                     Console.WriteLine("A guard snores loudly just outside, slouched in a wooden chair, **keys** hanging loosely from his belt.");
                 }
 
-                Console.WriteLine("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the **Sewers**.\n");
+                Console.Write("As you scan the cell, you notice a loose stone at the back wall. Behind it, there's a faint draft—it must lead to the "); Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("**Sewers**.\n"); Console.ResetColor();
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
@@ -893,7 +893,7 @@ namespace Studio1Project
                     Console.Clear();
                     Console.WriteLine("The guard collapses at your feet, unmoving.");
                     Console.WriteLine("You crouch beside him and search his pockets carefully.");
-                    Console.WriteLine("Your fingers brush against something cold and metallic—**keys**.");
+                    Console.Write("Your fingers brush against something cold and metallic—**keys**."); 
                     Console.WriteLine("You grab them without hesitation, a surge of hope rising in your chest.");
                     Console.WriteLine("Standing up, you take a slow, deliberate look around the yard.");
                     Console.WriteLine("The air is still, but you can’t shake the feeling that you’re being watched.");
