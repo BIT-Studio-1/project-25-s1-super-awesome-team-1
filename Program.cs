@@ -285,8 +285,16 @@ namespace Studio1Project
             {
                 Console.WriteLine();
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
-                Console.WriteLine("To your left, heavy boots echo faintly from the **guard barracks**. Ahead, the scent of stale broth and overcooked meat wafts from the **kitchen**.");
-                Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+                Console.Write("To your left, heavy boots echo faintly from the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" **guard barracks** "); 
+                Console.ResetColor();
+                Console.Write("Ahead, the scent of stale broth and overcooked meat wafts from the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" **kitchen**\n");
+                Console.ResetColor();
+                Console.Write("Behind you, your");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" cell ");
+                Console.ResetColor();
+                Console.WriteLine("waits — but that’s not a place you want to return to.");
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
