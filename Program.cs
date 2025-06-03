@@ -43,6 +43,11 @@ namespace Studio1Project
                 ShowWindow(consoleWindow, SW_MAXIMIZE);
             }
             weaponEquip("fists", 5, 15, 5, 10);//name, mindmg, maxdmg, block, staminacost
+            Console.WriteLine("How to Play");
+            showCommands();
+            Console.WriteLine("press any key to start");
+            Console.ReadKey();
+            Console.Clear();
             do
             {
                 if(lossCount == 10)
@@ -1198,21 +1203,15 @@ namespace Studio1Project
             }
         static void TowerBase()//Room13
             {
-                Console.WriteLine();
-                Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
-                Console.WriteLine("Looking back you see a narrow, winding path leading back down to the **Courtyard**, the distant sounds of castle life faint on the breeze.");
-                Console.WriteLine("The wooden door behind you creaks softly, offering a way inside. Maybe you could **climb** the stairs.");
-                Console.WriteLine();
-                Thread.Sleep(1500);
-
                 bool validInput = false;
 
                 while (!validInput)
                 {
 
-                    Console.WriteLine("What would you like to do?");
-                    Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step inside through the door.");
-                    Console.WriteLine("You might also take a moment to inspect the area more closely.");
+                    Console.WriteLine();
+                    Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
+                    Console.WriteLine("Looking back you see a narrow, winding path leading back down to the **Courtyard**, the distant sounds of castle life faint on the breeze.");
+                    Console.WriteLine("The wooden door behind you creaks softly, offering a way inside. Maybe you could **climb** the stairs.");
                     Console.WriteLine();
                     Console.Write(">> ");
 
@@ -1233,6 +1232,9 @@ namespace Studio1Project
                         break;
                     case "go up":
                     case "up":
+                    case "go inside":
+                    case "door":
+                    case "open door":
                     case "go into tower":
                     case "climb tower":
                     case "climb":
@@ -1478,7 +1480,7 @@ namespace Studio1Project
             static void showCommands()
             {
                 Console.WriteLine("***************************************************************************");
-                Console.WriteLine("Type one of the following commands or select a room: \nshow inventory \nshow energy \nsearch \nmap \n");
+                Console.WriteLine("Type one of the following commands: \nshow inventory \nshow energy \nsearch \nmap \n To select a room:\n Enter the green name");
                 Console.WriteLine("***************************************************************************\n\n");
             }
             static void showEnergyLevels()
