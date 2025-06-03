@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Diagnostics.CodeAnalysis;
@@ -291,8 +292,16 @@ namespace Studio1Project
             {
                 Console.WriteLine();
                 Console.WriteLine("Shadows stretch along the damp stone corridor, torches flickering weakly in rusted sconces.");
-                Console.WriteLine("To your left, heavy boots echo faintly from the **guard barracks**. Ahead, the scent of stale broth and overcooked meat wafts from the **kitchen**.");
-                Console.WriteLine("Behind you, your cell waits — but that’s not a place you want to return to.");
+                Console.Write("To your left, heavy boots echo faintly from the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" **guard barracks** "); 
+                Console.ResetColor();
+                Console.Write("Ahead, the scent of stale broth and overcooked meat wafts from the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" **kitchen**\n");
+                Console.ResetColor();
+                Console.Write("Behind you, your");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" cell ");
+                Console.ResetColor();
+                Console.WriteLine("waits — but that’s not a place you want to return to.");
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
@@ -352,9 +361,16 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old **washroom**.");
-                Console.WriteLine("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air, seems to be a **lab**.");
-                Console.WriteLine("Behind you is the tunnel you crawled through to get here.");
+                Console.Write("To your left, the tunnel narrows into a tiled area where water drips steadily — it sounds like an old");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(" **washroom. **");
+                Console.ResetColor();
+                Console.Write("To your right, faint lights flicker behind a rusted iron grate, and a sharp chemical odor hangs in the air, seems to be a");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write("  **lab**.");
+                Console.ResetColor();
+                Console.Write("Behind you is the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" tunnel ");
+                Console.ResetColor();
+                Console.WriteLine("you crawled through to get here.");
                 Console.WriteLine();
                 Console.Write(">> ");
 
@@ -425,8 +441,13 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("To your left, a narrow door leads to what looks like a **pantry** — you hear muffled movement inside.");
-                Console.WriteLine("Behind you is the corridor leading back to the dungeon **hall**.");
+                Console.Write("To your left, a narrow door leads to what looks like a");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write(" **pantry ** ");
+                Console.ResetColor();
+                Console.WriteLine("— you hear muffled movement inside.");
+                Console.Write("Behind you is the corridor leading back to the dungeon");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(" **hall**.");
+                Console.ResetColor();
                 Console.WriteLine();
                 Console.Write(">> ");
                 action = Console.ReadLine().ToLower();
@@ -493,7 +514,15 @@ namespace Studio1Project
             bool validInput = false;
             while (!validInput)
             {
-                Console.WriteLine("There are three doors: one marked with the red cross of the **Infirmary**, the other one leading out to the **Training Yard**. The last one seems to lead in to a **hallway**.");
+                Console.Write("There are three doors: one marked with the red cross of the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.Write("  **Infirmary** ");
+                Console.ResetColor();
+                Console.Write("the other one leading out to the");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine("  **Training Yard**.");
+                Console.ResetColor();
+                Console.Write("The last one seems to lead in to a");
+                Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine(" **hallway**.");
+                Console.ResetColor();
                 Console.WriteLine("You could also take a moment to look around the barracks.");
                 Console.WriteLine();
                 Console.Write(">> ");
@@ -1175,21 +1204,15 @@ namespace Studio1Project
             }
         static void TowerBase()//Room13
             {
-                Console.WriteLine();
-                Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
-                Console.WriteLine("Looking back you see a narrow, winding path leading back down to the **Courtyard**, the distant sounds of castle life faint on the breeze.");
-                Console.WriteLine("The wooden door behind you creaks softly, offering a way inside. Maybe you could **climb** the stairs.");
-                Console.WriteLine();
-                Thread.Sleep(1500);
-
                 bool validInput = false;
 
                 while (!validInput)
                 {
 
-                    Console.WriteLine("What would you like to do?");
-                    Console.WriteLine("Perhaps you could explore the path leading away from the tower, or step inside through the door.");
-                    Console.WriteLine("You might also take a moment to inspect the area more closely.");
+                    Console.WriteLine();
+                    Console.WriteLine("You stand at the base of the ancient tower, its worn stones rising like silent sentinels into the misty sky.");
+                    Console.WriteLine("Looking back you see a narrow, winding path leading back down to the **Courtyard**, the distant sounds of castle life faint on the breeze.");
+                    Console.WriteLine("The wooden door behind you creaks softly, offering a way inside. Maybe you could **climb** the stairs.");
                     Console.WriteLine();
                     Console.Write(">> ");
 
@@ -1210,6 +1233,9 @@ namespace Studio1Project
                         break;
                     case "go up":
                     case "up":
+                    case "go inside":
+                    case "door":
+                    case "open door":
                     case "go into tower":
                     case "climb tower":
                     case "climb":
